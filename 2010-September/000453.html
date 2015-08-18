@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #17491] smb4k v 0.10.8 cannot mount Plextor PX-EH	drive
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2317491%5D%20smb4k%20v%200.10.8%20cannot%20mount%20Plextor%20PX-EH%0A%09drive&In-Reply-To=%3C201009221706.o8MH6Jxk013484%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000452.html">
+   <LINK REL="Next"  HREF="000454.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #17491] smb4k v 0.10.8 cannot mount Plextor PX-EH	drive</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2317491%5D%20smb4k%20v%200.10.8%20cannot%20mount%20Plextor%20PX-EH%0A%09drive&In-Reply-To=%3C201009221706.o8MH6Jxk013484%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #17491] smb4k v 0.10.8 cannot mount Plextor PX-EH	drive">admin at berlios.de
+       </A><BR>
+    <I>Wed Sep 22 19:06:19 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000452.html">[Smb4K-bugs] [Bug #17491] smb4k v 0.10.8 cannot mount Plextor PX-EH	drive
+</A></li>
+        <LI>Next message: <A HREF="000454.html">[Smb4K-bugs] [Bug #17535] can't mount shares with russian names
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#453">[ date ]</a>
+              <a href="thread.html#453">[ thread ]</a>
+              <a href="subject.html#453">[ subject ]</a>
+              <a href="author.html#453">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #17491, was updated on 2010-Sep-03 14:21
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Closed
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: pastone
+Assigned to : none
+Summary: smb4k v 0.10.8 cannot mount Plextor PX-EH drive
+
+Details: This problem does not arise with smb4k 0.9 (as in Debian Lenny).
+
+But it arises with smb4k 0.10, as in Debian Squeeze using 0.10.7 and also in my own compilation from source using 0.10.8. The distro used is Antix 8.5 (based on a Mepis 8 2.6.32 kernel and Debian Squeeze).
+
+The drive is a Plextor PX-EH nas drive, dating from about 2005. It runs Windows NT 3.9.
+
+The drive is accessible using Dolphin.
+
+There is a failure to mount the drive, with the following error message:
+
+The list of shares could not be retrieved.
+
+Details:
+cli_rpc_pipe_open_noauth: 
+rpc_pipe_bind for pipe \srvsvc failed 
+with error NT_STATUS_UNSUCCESSFUL
+
+Please investigate this.
+
+Best wishes (and congratulations on what is otherwise an excellent product),
+Peter Stone
+
+
+
+Follow-Ups:
+
+Date: 2010-Sep-22 19:06
+By: dustpuppy
+
+Comment:
+Thanks for performing this last test for me. It uncovered a bug and I'll fix it.
+
+Since mounting works and you also said that from your point of view this issue is resolved, I close the bug report now.
+-------------------------------------------------------
+
+Date: 2010-Sep-22 12:03
+By: pastone
+
+Comment:
+Setting the custom option to RAP produces an error message: 
+Invalid command: net rap share list
+
+This is so both on antix 8.5 using debian squeeze repositories and my own compilation from source of smb4k  0.10.8 , and on kubuntu 10.04 with smb4k 0.10.4 from the kubuntu repository.
+
+Setting the custom option to RPC fails (in both cases) but without any message.
+
+Mount manually works with 0.10.8 on antix, but not with 0.10.4 on kubuntu.
+
+So the problem seems to have been solved (sufficiently for me, at least) in smb4k 0.10.8, since it can reasonably be assumed that what works on antix 8.5 will work on the eventual stable release of Debian Squeeze.
+
+Best wishes,
+Peter Stone
+
+-------------------------------------------------------
+
+Date: 2010-Sep-22 11:01
+By: dustpuppy
+
+Comment:
+OK, so it seems that the 'net' program has problems to discover the share. My first guess is that the protocol cannot be determined automatically. Could you please open the custom options dialog (right-click on your nas and choose Custom Options) and set the protocol from 'automatic' to 'RAP'? This should definitively work. You might also want to try the 'RPC' protocol, but that might not work.
+
+Please drop a note whether setting the protocol helps.
+-------------------------------------------------------
+
+Date: 2010-Sep-21 12:59
+By: pastone
+
+Comment:
+On further testing of smb4k version 0.10.8 on Antix distro, I find that it is possible to mount the relevant network share after all by using the &quot;Mount manually&quot; function.
+
+Smb4k sees the drive but cannot itself find the share on it. But if told the share-name explicitly in the &quot;mount manually&quot; box, it does mount the share.
+
+Thus in my view this bug can now be regarded as resolved.
+
+Thanks to dustpuppy for this efforts to resolve this.
+
+Regards,
+Peter Stone
+
+-------------------------------------------------------
+
+Date: 2010-Sep-20 19:48
+By: pastone
+
+Comment:
+In both cases, a command along the lines of either
+
+sudo /sbin/mount.cifs //your_nas/share /mount/point -o domain=nas_domain,ip=nas_ip,user=your_username,port=445
+
+or
+
+sudo /sbin/mount.cifs //your_nas/share /mount/point -o domain=nas_domain,ip=nas_ip,user=your_username,port=139
+
+seems to mount the network share. 
+
+Thus the port does not seem to be the problem.
+
+This was tested in Kubuntu 10.04. 
+
+Regards,
+Peter Stone
+
+-------------------------------------------------------
+
+Date: 2010-Sep-19 18:13
+By: dustpuppy
+
+Comment:
+Yes, that's right. To enable write access for the normal user, you have to add the mount options uid and - optionally - gid. The command would then look like this:
+
+sudo /sbin/mount.cifs //your_nas/share /mount/point -o domain=nas_domain,ip=nas_ip,user=your_username,uid=your_uid,gid=your_gid
+
+However, this was only a test to find out, whether it is possible at all to mount the share. Obviously, it is. 
+
+Could you please run a second test for me? I suspect that the port maybe wrong for your nas. By default, Smb4K uses the port 445, but older versions of Windows use port 139. So, I'd like to ask you to run the following two commands and see what happens:
+
+sudo /sbin/mount.cifs //your_nas/share /mount/point -o domain=nas_domain,ip=nas_ip,user=your_username,port=445
+
+sudo /sbin/mount.cifs //your_nas/share /mount/point -o domain=nas_domain,ip=nas_ip,user=your_username,port=139
+-------------------------------------------------------
+
+Date: 2010-Sep-19 14:20
+By: pastone
+
+Comment:
+Correction:
+
+After mounting in Kubuntu 10.04 along the lines of 
+
+sudo /sbin/mount.cifs //your_nas/share /mount/point -o domain=nas_domain,ip=nas_ip,user=your_username 
+
+it is possible to write to the share (e.g. using kate) if one proceeds as root, rather than as an ordinary user.
+
+Regards,
+Peter Stone
+
+-------------------------------------------------------
+
+Date: 2010-Sep-19 13:34
+By: pastone
+
+Comment:
+In Kubuntu 10.04, a command along the lines of:
+
+sudo /sbin/mount.cifs //your_nas/share /mount/point -o domain=nas_domain,ip=nas_ip,user=your_username 
+
+succeeded in mounting the share. It was then possible to read from, but not write to, the share. One could copy from it, or open a .txt file in kedit, but one could not save the edited .txt file to the share.
+
+Regards,
+Peter Stone
+ 
+-------------------------------------------------------
+
+Date: 2010-Sep-19 10:36
+By: dustpuppy
+
+Comment:
+Most likely mount.cifs is installed in /sbin. Could you please retry with the following command line:
+
+/sbin/mount.cifs //your_nas/share /mount/point -o domain=nas_domain,ip=nas_ip,user=your_username
+
+Maybe you'll get the response that only root is allowed to do this. In this case try to mount the share as root by either running
+
+sudo /sbin/mount.cifs //your_nas/share /mount/point -o domain=nas_domain,ip=nas_ip,user=your_username
+(your password is needed)
+
+or
+
+su -c &quot;/sbin/mount.cifs //your_nas/share /mount/point -o domain=nas_domain,ip=nas_ip,user=your_username&quot;
+(root's password is needed)
+
+If the response is again
+
+bash: mount.cifs: command not found 
+
+please find out where mount.cifs is installed and adjust the command(s) accordingly.
+-------------------------------------------------------
+
+Date: 2010-Sep-18 17:40
+By: pastone
+
+Comment:
+The response to a command along the lines of
+
+mount.cifs //your_nas/share /mount/point -o domain=nas_domain,ip=nas_ip,user=your_username
+
+is simply
+
+bash: mount.cifs: command not found
+
+Regards,
+Peter Stone
+
+-------------------------------------------------------
+
+Date: 2010-Sep-06 09:00
+By: dustpuppy
+
+Comment:
+Since I cannot really test what is going, I guess your problem arises because mount.cifs (provided by the cifs.utils package) and/or the CIFS kernel module has problems when mounting the shares. Could you please try to mount a share from your nas drive from the shell with the following command (use sudo if you are not allowed to do this as normal user):
+
+mount.cifs //your_nas/share /mount/point -o domain=nas_domain,ip=nas_ip,user=your_username
+
+If there is any output, please post it here. Does the mounting succeed or does it fail as well? 
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17491&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17491&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000452.html">[Smb4K-bugs] [Bug #17491] smb4k v 0.10.8 cannot mount Plextor PX-EH	drive
+</A></li>
+	<LI>Next message: <A HREF="000454.html">[Smb4K-bugs] [Bug #17535] can't mount shares with russian names
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#453">[ date ]</a>
+              <a href="thread.html#453">[ thread ]</a>
+              <a href="subject.html#453">[ subject ]</a>
+              <a href="author.html#453">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

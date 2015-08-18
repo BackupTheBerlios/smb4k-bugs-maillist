@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #18247] When setting UTF8 option shares no longer	mount
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2318247%5D%20When%20setting%20UTF8%20option%20shares%20no%20longer%0A%09mount&In-Reply-To=%3C201107190649.p6J6nZcn007801%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000497.html">
+   <LINK REL="Next"  HREF="000499.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #18247] When setting UTF8 option shares no longer	mount</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2318247%5D%20When%20setting%20UTF8%20option%20shares%20no%20longer%0A%09mount&In-Reply-To=%3C201107190649.p6J6nZcn007801%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #18247] When setting UTF8 option shares no longer	mount">admin at berlios.de
+       </A><BR>
+    <I>Tue Jul 19 08:49:35 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000497.html">[Smb4K-bugs] [Bug #18246] System log says: [ 1615.567431] CIFS:	Unknown mount option
+</A></li>
+        <LI>Next message: <A HREF="000499.html">[Smb4K-bugs] [Bug #18246] System log says: [ 1615.567431] CIFS:	Unknown mount option
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#498">[ date ]</a>
+              <a href="thread.html#498">[ thread ]</a>
+              <a href="subject.html#498">[ subject ]</a>
+              <a href="author.html#498">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #18247, was updated on 2011-Jul-17 18:22
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: ronaldvr
+Assigned to : none
+Summary: When setting UTF8 option shares no longer mount
+
+Details: Continuing the trial and error saga, I now tried to set the UTF8 option in the Samba/Mounting tab. I now first unmounted the shares, set the UTF8 option, and try to remount: smb4k does not crash, but seems to be stuck in a loop and it does say &quot;Mounting share ...&quot;  but nothing visible happens and the share is not mounted.
+
+(as an aside, when using fstab the option 
+iocharset=utf8
+does work and have the desired effect.
+
+Follow-Ups:
+
+Date: 2011-Jul-19 08:49
+By: dustpuppy
+
+Comment:
+When you pinpointed the problem, please report it.
+-------------------------------------------------------
+
+Date: 2011-Jul-18 21:29
+By: ronaldvr
+
+Comment:
+I may have another one (bug that is: I have to investigate further, but suddenly my dolphin and krusader keep crashing, I am currently under windows because of that , but I just realised that this may be related...)
+-------------------------------------------------------
+
+Date: 2011-Jul-18 21:20
+By: dustpuppy
+
+Comment:
+I could reproduce this bug. It seems it is a combination of several programming errors. I have to investigate it further.
+-------------------------------------------------------
+
+Date: 2011-Jul-18 10:14
+By: dustpuppy
+
+Comment:
+I will have a look at thi shortly. Thanks for the report.
+-------------------------------------------------------
+
+Date: 2011-Jul-17 18:32
+By: ronaldvr
+
+Comment:
+After a reboot and a retest: It is definitely connected to the UTF8 option: setting the option back to &quot;default&quot; makes the shares mountable again.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18247&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18247&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000497.html">[Smb4K-bugs] [Bug #18246] System log says: [ 1615.567431] CIFS:	Unknown mount option
+</A></li>
+	<LI>Next message: <A HREF="000499.html">[Smb4K-bugs] [Bug #18246] System log says: [ 1615.567431] CIFS:	Unknown mount option
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#498">[ date ]</a>
+              <a href="thread.html#498">[ thread ]</a>
+              <a href="subject.html#498">[ subject ]</a>
+              <a href="author.html#498">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

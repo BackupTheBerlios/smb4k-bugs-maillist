@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #17834] smb4k 0.10.66 crashes on startup
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2317834%5D%20smb4k%200.10.66%20crashes%20on%20startup&In-Reply-To=%3C201101031302.p03D24QB021653%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000461.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #17834] smb4k 0.10.66 crashes on startup</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2317834%5D%20smb4k%200.10.66%20crashes%20on%20startup&In-Reply-To=%3C201101031302.p03D24QB021653%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #17834] smb4k 0.10.66 crashes on startup">admin at berlios.de
+       </A><BR>
+    <I>Mon Jan  3 14:02:04 CET 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000461.html">[Smb4K-bugs] [Bug #17834] smb4k 0.10.66 crashes on startup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#460">[ date ]</a>
+              <a href="thread.html#460">[ thread ]</a>
+              <a href="subject.html#460">[ subject ]</a>
+              <a href="author.html#460">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #17834, was updated on 2011-Jan-03 14:02
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: crash
+Priority: 5
+Submitted by: bero
+Assigned to : none
+Summary: smb4k 0.10.66 crashes on startup
+
+Details: smb4k 0.10.66 crashes on startup on an x86_64 Linux box with KDE 4.6RC1, Qt 4.7.1.
+This was the first attempt to run smb4k on this box, so the problem might be caused by a config file not yet existing or something.
+
+Backtrace:
+#6  QString (this=0x7ffffab236b0, host=0x0) at /usr/lib64/qt4/include/QtCore/qstring.h:728
+#7  Smb4KAuthInfo (this=0x7ffffab236b0, host=0x0) at /home/arklinux/Desktop/smb4k-0.10.66/core/smb4kauthinfo.cpp:36
+#8  0x00007f85dd350ca8 in Smb4KScanner::slotThreadFinished (this=0x15cebd0) at /home/arklinux/Desktop/smb4k-0.10.66/core/smb4kscanner.cpp:1401
+#9  0x00007f85dd35213c in Smb4KScanner::qt_metacall (this=0x15cebd0, _c=QMetaObject::InvokeMetaMethod, _id=&lt;value optimized out&gt;, _a=0x7f85ac001fd0)
+    at /home/arklinux/Desktop/smb4k-0.10.66/core/smb4kscanner.moc:111
+#10 0x00007f85db2122da in QObject::event(QEvent*) () from /usr/lib64/qt4/lib64/libQtCore.so.4
+#11 0x00007f85da3cb364 in QApplicationPrivate::notify_helper(QObject*, QEvent*) () from /usr/lib64/qt4/lib64/libQtGui.so.4
+#12 0x00007f85da3cff3a in QApplication::notify(QObject*, QEvent*) () from /usr/lib64/qt4/lib64/libQtGui.so.4
+#13 0x00007f85dcc22742 in KApplication::notify(QObject*, QEvent*) () from /usr/lib64/libkdeui.so.5
+#14 0x00007f85db1fdf5c in QCoreApplication::notifyInternal(QObject*, QEvent*) () from /usr/lib64/qt4/lib64/libQtCore.so.4
+#15 0x00007f85db201785 in QCoreApplicationPrivate::sendPostedEvents(QObject*, int, QThreadData*) () from /usr/lib64/qt4/lib64/libQtCore.so.4
+#16 0x00007f85db22a2c3 in ?? () from /usr/lib64/qt4/lib64/libQtCore.so.4
+#17 0x00007f85d63b61df in g_main_context_dispatch () from /usr/lib64/libglib-2.0.so.0
+#18 0x00007f85d63b6868 in ?? () from /usr/lib64/libglib-2.0.so.0
+#19 0x00007f85d63b6b21 in g_main_context_iteration () from /usr/lib64/libglib-2.0.so.0
+#20 0x00007f85db22a45f in QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) () from /usr/lib64/qt4/lib64/libQtCore.so.4
+#21 0x00007f85da4708ce in ?? () from /usr/lib64/qt4/lib64/libQtGui.so.4
+#22 0x00007f85db1fd312 in QEventLoop::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) () from /usr/lib64/qt4/lib64/libQtCore.so.4
+#23 0x00007f85db1fd55c in QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) () from /usr/lib64/qt4/lib64/libQtCore.so.4
+#24 0x00007f85db201a3b in QCoreApplication::exec() () from /usr/lib64/qt4/lib64/libQtCore.so.4
+#25 0x000000000040a9f3 in main (argc=1, argv=0x7ffffab24498) at /home/arklinux/Desktop/smb4k-0.10.66/smb4k/main.cpp:114
+
+There is a samba server in the local network, and &quot;nmblookup -M -&quot; sees it (so it's not a crash caused by a lack of smb servers).
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17834&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17834&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000461.html">[Smb4K-bugs] [Bug #17834] smb4k 0.10.66 crashes on startup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#460">[ date ]</a>
+              <a href="thread.html#460">[ thread ]</a>
+              <a href="subject.html#460">[ subject ]</a>
+              <a href="author.html#460">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

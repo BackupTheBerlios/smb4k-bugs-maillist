@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #11467] System/fstab mounts and User's mounts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2311467%5D%20System/fstab%20mounts%20and%20User%27s%20mounts&In-Reply-To=%3C200706271025.l5RAPlgq021779%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000095.html">
+   <LINK REL="Next"  HREF="000097.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #11467] System/fstab mounts and User's mounts</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2311467%5D%20System/fstab%20mounts%20and%20User%27s%20mounts&In-Reply-To=%3C200706271025.l5RAPlgq021779%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #11467] System/fstab mounts and User's mounts">admin at berlios.de
+       </A><BR>
+    <I>Wed Jun 27 12:25:47 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000095.html">[Smb4K-bugs] Sudo and smb4k
+</A></li>
+        <LI>Next message: <A HREF="000097.html">[Smb4K-bugs] [Bug #11470] Mounting share in a cifs mode leads to 22	= Invalid argument
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#96">[ date ]</a>
+              <a href="thread.html#96">[ thread ]</a>
+              <a href="subject.html#96">[ subject ]</a>
+              <a href="author.html#96">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #11467, was updated on 2007-Jun-27 12:25
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: crash
+Priority: 5
+Submitted by: plasma77
+Assigned to : none
+Summary: System/fstab mounts and User's mounts
+
+Details: Hi!
+The scenario:
+A Multiuser/multiused Gentoo Box that use a remote LDAP directory for name services and authentication.
+
+There's a &quot;system&quot; mount (CIFS) mounted at boot via fstab, mounting a remote samba share with unix extensions (-&gt; and uid/gid coherence between client and server)
+The mount command after the boot (no users logged in) shows:
+//192.168.41.8/distfiles on /usr/portage/distfiles type cifs (rw,mand)
+
+and is used by the gentoo's package manager.
+
+The problem:
+when a user login and launch smb4k for the first time, there are no problems, but if the user activate the option: &quot;Remount recently used shares on program start&quot;, then logout, login again, and launch smb4k, it crash! In fact smb4k store the already fstab mounted share (/usr/portage/distfiles) as share to remount on program start, but it's already mounted and the application crash!
+
+After the crash mount give:
+//192.168.41.8/distfiles on /usr/portage/distfiles type cifs (rw,mand)
+//192.168.41.8/distfiles on /home/plasma/Netmount/192.168.41.8/distfiles type cifs (rw,mand,nosuid,nodev,user=plasma)
+
+So smb4k try to mount the &quot;system&quot; cifs share inside my personall Netmount folder! From my point of view smb4k should completely ignore the non-user cifs mounts!
+
+I think smb4k should &quot;understand&quot; if a smb/cifs mount is a &quot;system&quot; mount or a user mount and avoid to try to manage it or remount it at startup when the option &quot;Remount recently ecc ecc&quot;!
+
+Some info:
+smb4k version: 0.8.3 (no debug symbols)
+mount.cifs version: 1.10-3.0.24
+kwallet is used for password storing
+
+Please tell me if you need some stack trace, I can recomplie smb4k with debug symbols if useful!
+
+Regards
+
+Mark
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=11467&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=11467&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000095.html">[Smb4K-bugs] Sudo and smb4k
+</A></li>
+	<LI>Next message: <A HREF="000097.html">[Smb4K-bugs] [Bug #11470] Mounting share in a cifs mode leads to 22	= Invalid argument
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#96">[ date ]</a>
+              <a href="thread.html#96">[ thread ]</a>
+              <a href="subject.html#96">[ subject ]</a>
+              <a href="author.html#96">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

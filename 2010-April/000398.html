@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] Application that crashed: smb4k
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20Application%20that%20crashed%3A%20smb4k&In-Reply-To=%3C201004060707.11321.alexander.reinholdt%40t-online.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000399.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] Application that crashed: smb4k</H1>
+    <B>Alexander Reinholdt</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20Application%20that%20crashed%3A%20smb4k&In-Reply-To=%3C201004060707.11321.alexander.reinholdt%40t-online.de%3E"
+       TITLE="[Smb4K-bugs] Application that crashed: smb4k">alexander.reinholdt at t-online.de
+       </A><BR>
+    <I>Tue Apr  6 07:07:11 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000399.html">[Smb4K-bugs] [Bug #17084] smb4k unable to detect shares
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#398">[ date ]</a>
+              <a href="thread.html#398">[ thread ]</a>
+              <a href="subject.html#398">[ subject ]</a>
+              <a href="author.html#398">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello!
+
+It seems you do not have the development files installed. Please install them 
+(the package is called e.g. kdelibs5-dev under Debian) and it should work.
+
+Best regards
+Alexander
+
+
+Am Dienstag, 30. M&#228;rz 2010 schrieb Shawn Botha:
+&gt;<i> Hi
+</I>&gt;<i> 
+</I>&gt;<i> Thanks for the response.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I have another issue at hand
+</I>&gt;<i> 
+</I>&gt;<i> When i try to install the new release i get the following error
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------------
+</I>&gt;<i> freaklinux smb4k_build # cmake --version
+</I>&gt;<i> cmake version 2.6-patch 4
+</I>&gt;<i> freaklinux smb4k_build # cmake -DCMAKE_INSTALL_PREFIX=$(kde4-config
+</I>&gt;<i> --prefix) -DCMAKE_BUILD_TYPE=Release .
+</I>&gt;<i> /home/freak/Downloads/smb4k-0.10.6-- The CXX compiler identification
+</I>&gt;<i> is unknown
+</I>&gt;<i> CMake Error: your CXX compiler: &quot;CMAKE_CXX_COMPILER-NOTFOUND&quot; was not
+</I>&gt;<i> found.   Please set CMAKE_CXX_COMPILER to a valid compiler path or
+</I>&gt;<i> name.
+</I>&gt;<i> CMake Error at /usr/share/cmake-2.6/Modules/FindKDE4.cmake:84 (MESSAGE):
+</I>&gt;<i>   ERROR: cmake/modules/FindKDE4Internal.cmake not found in
+</I>&gt;<i>   /root/.kde/share/apps;/usr/share/kde4/apps
+</I>&gt;<i> Call Stack (most recent call first):
+</I>&gt;<i>   CMakeLists.txt:10 (find_package)
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> -- Configuring incomplete, errors occurred!
+</I>&gt;<i> freaklinux smb4k_build #
+</I>&gt;<i> ---------------------------------------------------------------------------
+</I>&gt;<i> -
+</I>&gt;<i> 
+</I>&gt;<i> I have installed/re-installed all the required as stated in the
+</I>&gt;<i> README. Can you assist me?
+</I>&gt;<i> 
+</I>&gt;<i> OS Info: Linux Mint 8_x64
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Shawn Botha
+</I>&gt;<i> Email : <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">shawnbotha at gmail.com</A>
+</I>&gt;<i> Email : <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">accounts at gigabothosting.com</A>
+</I>&gt;<i> Email : <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">info at gigabothosting.com</A>
+</I>&gt;<i> Mobile:  +27 (79) 970 7556
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> On Fri, Mar 26, 2010 at 11:16, Alexander Reinholdt
+</I>&gt;<i> 
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">alexander.reinholdt at t-online.de</A>&gt; wrote:
+</I>&gt;<i> &gt; Hello!
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Thank you for reporting this issue. However, it has already been fixed.
+</I>&gt;<i> &gt; Please upgrade to the latest version (0.10.6) available from our web
+</I>&gt;<i> &gt; site <A HREF="http://smb4k.berlios.de.">http://smb4k.berlios.de.</A>
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Best regards
+</I>&gt;<i> &gt; Alexander
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Am Freitag 26 M&#228;rz 2010 08:56:37 schrieb Shawn Botha:
+</I>&gt;<i> &gt;&gt; Application that crashed: smb4k
+</I>&gt;<i> &gt;&gt; Version of the application: 0.10.2
+</I>&gt;<i> &gt;&gt; KDE Version: 4.3.2 (KDE 4.3.2)
+</I>&gt;<i> &gt;&gt; Qt Version: 4.5.2
+</I>&gt;<i> &gt;&gt; Operating System: Linux 2.6.31-20-generic x86_64
+</I>&gt;<i> &gt;&gt; Distribution: Linux Mint 8 Helena - x64 Edition
+</I>&gt;<i> &gt;&gt; 
+</I>&gt;<i> &gt;&gt; What I was doing when the application crashed:
+</I>&gt;<i> &gt;&gt; &lt;In detail, tell us what you were doing  when the application crashed.&gt;
+</I>&gt;<i> &gt;&gt; 
+</I>&gt;<i> &gt;&gt;  -- Backtrace:
+</I>&gt;<i> &gt;&gt; Application: Smb4K (smb4k), signal: Segmentation fault
+</I>&gt;<i> &gt;&gt; [KCrash Handler]
+</I>&gt;<i> &gt;&gt; #4  0x00007febc7a6b770 in QString::operator=(QString const&amp;) () from
+</I>&gt;<i> &gt;&gt; /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;&gt; #5  0x00007febca348c78 in Smb4KAuthInfo::unc(int) const () from
+</I>&gt;<i> &gt;&gt; /usr/lib/libsmb4kcore.so.3
+</I>&gt;<i> &gt;&gt; #6  0x00007febca38eb86 in
+</I>&gt;<i> &gt;&gt; Smb4KWalletManager::readAuthInfo(Smb4KAuthInfo*) () from
+</I>&gt;<i> &gt;&gt; /usr/lib/libsmb4kcore.so.3
+</I>&gt;<i> &gt;&gt; #7  0x00007febca36221d in Smb4KMounter::mount(Smb4KShare const&amp;) ()
+</I>&gt;<i> &gt;&gt; from /usr/lib/libsmb4kcore.so.3
+</I>&gt;<i> &gt;&gt; #8  0x00007febca3634c1 in Smb4KMounter::timerEvent(QTimerEvent*) ()
+</I>&gt;<i> &gt;&gt; from /usr/lib/libsmb4kcore.so.3
+</I>&gt;<i> &gt;&gt; #9  0x00007febc7b1dd83 in QObject::event(QEvent*) () from
+</I>&gt;<i> &gt;&gt; /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;&gt; #10 0x00007febc8212efc in QApplicationPrivate::notify_helper(QObject*,
+</I>&gt;<i> &gt;&gt; QEvent*) () from /usr/lib/libQtGui.so.4
+</I>&gt;<i> &gt;&gt; #11 0x00007febc821a1ce in QApplication::notify(QObject*, QEvent*) ()
+</I>&gt;<i> &gt;&gt; from /usr/lib/libQtGui.so.4
+</I>&gt;<i> &gt;&gt; #12 0x00007febc9d18ab6 in KApplication::notify(QObject*, QEvent*) ()
+</I>&gt;<i> &gt;&gt; from /usr/lib/libkdeui.so.5
+</I>&gt;<i> &gt;&gt; #13 0x00007febc7b0ec2c in QCoreApplication::notifyInternal(QObject*,
+</I>&gt;<i> &gt;&gt; QEvent*) () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;&gt; #14 0x00007febc7b39862 in ?? () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;&gt; #15 0x00007febc7b3725d in ?? () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;&gt; #16 0x00007febc4027bce in g_main_context_dispatch () from
+</I>&gt;<i> &gt;&gt;  /lib/libglib-2.0.so.0 #17 0x00007febc402b598 in ?? () from
+</I>&gt;<i> &gt;&gt;  /lib/libglib-2.0.so.0
+</I>&gt;<i> &gt;&gt; #18 0x00007febc402b6c0 in g_main_context_iteration () from
+</I>&gt;<i> &gt;&gt;  /lib/libglib-2.0.so.0 #19 0x00007febc7b371a6 in
+</I>&gt;<i> &gt;&gt; QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag
+</I>&gt;<i> &gt;&gt; &gt;) () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;&gt; #20 0x00007febc82a74be in ?? () from /usr/lib/libQtGui.so.4
+</I>&gt;<i> &gt;&gt; #21 0x00007febc7b0d532 in
+</I>&gt;<i> &gt;&gt; QEventLoop::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) ()
+</I>&gt;<i> &gt;&gt; from /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;&gt; #22 0x00007febc7b0d904 in
+</I>&gt;<i> &gt;&gt; QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) () from
+</I>&gt;<i> &gt;&gt; /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;&gt; #23 0x00007febc7b0fab9 in QCoreApplication::exec() () from
+</I>&gt;<i> &gt;&gt; /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;&gt; #24 0x000000000040bdd4 in _start ()
+</I>&gt;<i> &gt;&gt; 
+</I>&gt;<i> &gt;&gt; Report to <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">smb4k-bugs at lists.berlios.de</A>
+</I>&gt;<i> &gt;&gt; 
+</I>&gt;<i> &gt;&gt; 
+</I>&gt;<i> &gt;&gt; Shawn Botha
+</I>&gt;<i> &gt;&gt; Email : <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">shawnbotha at gmail.com</A>
+</I>&gt;<i> &gt;&gt; _______________________________________________
+</I>&gt;<i> &gt;&gt; Smb4K-bugs mailing list
+</I>&gt;<i> &gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">Smb4K-bugs at lists.berlios.de</A>
+</I>&gt;<i> &gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">https://lists.berlios.de/mailman/listinfo/smb4k-bugs</A>
+</I>
+
+-- 
+&quot;Never argue with idiots. They drag you down to their level and beat you with 
+experience...&quot; (unknown)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000399.html">[Smb4K-bugs] [Bug #17084] smb4k unable to detect shares
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#398">[ date ]</a>
+              <a href="thread.html#398">[ thread ]</a>
+              <a href="subject.html#398">[ subject ]</a>
+              <a href="author.html#398">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

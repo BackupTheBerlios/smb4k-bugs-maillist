@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] smb4k bug scanning windows 7 ultimate shares
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20smb4k%20bug%20scanning%20windows%207%20ultimate%20shares&In-Reply-To=%3Cd7469b931001260724l581cf933t46daa30a4ab3d97a%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000362.html">
+   <LINK REL="Next"  HREF="000364.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] smb4k bug scanning windows 7 ultimate shares</H1>
+    <B>Luis Alcaraz Leal</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20smb4k%20bug%20scanning%20windows%207%20ultimate%20shares&In-Reply-To=%3Cd7469b931001260724l581cf933t46daa30a4ab3d97a%40mail.gmail.com%3E"
+       TITLE="[Smb4K-bugs] smb4k bug scanning windows 7 ultimate shares">lalcaraz at lalcaraz.com
+       </A><BR>
+    <I>Tue Jan 26 16:24:54 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000362.html">[Smb4K-bugs] smb4k bug scanning windows 7 ultimate shares
+</A></li>
+        <LI>Next message: <A HREF="000364.html">[Smb4K-bugs] [Bug #16500] problems with empty passwords
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#363">[ date ]</a>
+              <a href="thread.html#363">[ thread ]</a>
+              <a href="subject.html#363">[ subject ]</a>
+              <a href="author.html#363">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thnks Alexander.
+This version was on the Ubuntu Center for installation, where i downloaded.
+
+Will try the new version.
+Regards!
+
+
+On Tue, Jan 26, 2010 at 9:22 AM, Alexander Reinholdt &lt;
+<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">alexander.reinholdt at t-online.de</A>&gt; wrote:
+
+&gt;<i> Hello!
+</I>&gt;<i>
+</I>&gt;<i> Thank you for reporting this issue. However, it has already been fixed in
+</I>&gt;<i> version 0.10.4 that is available from our home page. Please upgrade.
+</I>&gt;<i>
+</I>&gt;<i> Best regards
+</I>&gt;<i> Alexander
+</I>&gt;<i>
+</I>&gt;<i> Am Dienstag 26 Januar 2010 16:10:22 schrieb Luis Alcaraz Leal:
+</I>&gt;<i> &gt; Application that crashed: smb4k
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Version of the application: 0.10.2
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; KDE Version: 4.3.2 (KDE 4.3.2)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Qt Version: 4.5.2
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Operating System: Linux 2.6.31-17-generic i686
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Distribution: Ubuntu 9.10
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;  -- Backtrace:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Application: Smb4K (smb4k), signal: Segmentation fault
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; [KCrash Handler]
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #6 0x04396aca in QString::operator=(QString const&amp;) () from
+</I>&gt;<i> &gt; /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #7 0x00e33ef5 in Smb4KAuthInfo::unc(int) const () from
+</I>&gt;<i> &gt; /usr/lib/libsmb4kcore.so.3
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #8 0x00e80326 in Smb4KWalletManager::readAuthInfo(Smb4KAuthInfo*) () from
+</I>&gt;<i> &gt; /usr/lib/libsmb4kcore.so.3
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #9 0x00e4f650 in Smb4KMounter::mount(Smb4KShare const&amp;) () from
+</I>&gt;<i> &gt; /usr/lib/libsmb4kcore.so.3
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #10 0x00e50ab0 in Smb4KMounter::timerEvent(QTimerEvent*) () from
+</I>&gt;<i> &gt; /usr/lib/libsmb4kcore.so.3
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #11 0x044513bf in QObject::event(QEvent*) () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #12 0x058a7f54 in QApplicationPrivate::notify_helper(QObject*, QEvent*)
+</I>&gt;<i> ()
+</I>&gt;<i> &gt; from /usr/lib/libQtGui.so.4
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #13 0x058af67c in QApplication::notify(QObject*, QEvent*) () from
+</I>&gt;<i> &gt; /usr/lib/libQtGui.so.4
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #14 0x0052abfa in KApplication::notify(QObject*, QEvent*) () from
+</I>&gt;<i> &gt; /usr/lib/libkdeui.so.5
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #15 0x044416cb in QCoreApplication::notifyInternal(QObject*, QEvent*) ()
+</I>&gt;<i> &gt; from /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #16 0x0446e7ce in ?? () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #17 0x0446c0e0 in ?? () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #18 0x0660fe88 in g_main_context_dispatch () from /lib/libglib-2.0.so.0
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #19 0x06613730 in ?? () from /lib/libglib-2.0.so.0
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #20 0x06613863 in g_main_context_iteration () from /lib/libglib-2.0.so.0
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #21 0x0446c02c in
+</I>&gt;<i> &gt;
+</I>&gt;<i> QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+</I>&gt;<i> &gt; () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #22 0x05948be5 in ?? () from /usr/lib/libQtGui.so.4
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #23 0x0443fc79 in
+</I>&gt;<i> &gt; QEventLoop::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) () from
+</I>&gt;<i> &gt; /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #24 0x044400ca in QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+</I>&gt;<i> &gt;  () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #25 0x0444253f in QCoreApplication::exec() () from
+</I>&gt;<i> /usr/lib/libQtCore.so.4
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #26 0x058a7dd7 in QApplication::exec() () from /usr/lib/libQtGui.so.4
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; #27 0x08051e34 in _start ()
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Report to <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">smb4k-bugs at lists.berlios.de</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>
+
+
+-- 
+Luis Alcaraz Leal
+&quot;Res publica non dominetur&quot;
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/smb4k-bugs/attachments/20100126/680b0768/attachment.html">https://lists.berlios.de/pipermail/smb4k-bugs/attachments/20100126/680b0768/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000362.html">[Smb4K-bugs] smb4k bug scanning windows 7 ultimate shares
+</A></li>
+	<LI>Next message: <A HREF="000364.html">[Smb4K-bugs] [Bug #16500] problems with empty passwords
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#363">[ date ]</a>
+              <a href="thread.html#363">[ thread ]</a>
+              <a href="subject.html#363">[ subject ]</a>
+              <a href="author.html#363">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

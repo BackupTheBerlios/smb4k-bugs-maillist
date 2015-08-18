@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2312262%5D%20Breaks%20sudo%20in%20openSUSE&In-Reply-To=%3C200710271341.l9RDfITJ029652%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000117.html">
+   <LINK REL="Next"  HREF="000119.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2312262%5D%20Breaks%20sudo%20in%20openSUSE&In-Reply-To=%3C200710271341.l9RDfITJ029652%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE">admin at berlios.de
+       </A><BR>
+    <I>Sat Oct 27 15:41:18 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000117.html">[Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE
+</A></li>
+        <LI>Next message: <A HREF="000119.html">[Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#118">[ date ]</a>
+              <a href="thread.html#118">[ thread ]</a>
+              <a href="subject.html#118">[ subject ]</a>
+              <a href="author.html#118">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #12262, was updated on 2007-Oct-23 13:14
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: Works For Me
+Bug Group: None
+Priority: 5
+Submitted by: fingerprint64
+Assigned to : none
+Summary: Breaks sudo in openSUSE
+
+Details: I use smb4k to mount my NAS drive. I'm just installed openSUSE 10.3 on a test machine. Under settings, the sudo is selected and I also check the &quot;Use super user privileges to mount and unmount shares&quot; option.
+
+Once this has been set, I enter all required passwords. From that point onwards, sudo no longer works giving me the following error: &quot;su return with an error&quot; every time I launch a programme that requires the root password. the su command still works from the console.
+
+When I type sudo from in console, a message informing me that the sudoers file is out of sync. I have also opened the file and it is blank.
+
+The only way I can find to get sudo to work again is by doing a repair-install.
+
+Follow-Ups:
+
+Date: 2007-Oct-27 05:41
+By: fingerprint64
+
+Comment:
+Hello again.
+
+I managed to figure out how to get access to the sudoers file from the console using visudo command whilst as su. I looked through the lines of code, found line 26, made a note of it and just tried deleting it.
+
+I worked!!!!!!!!
+
+I have full access - for the moment - and can even mount the shares from my NAS drive. I'm going to now try a x-restart followed by a reboot as soon as the updates have been installed.
+
+I'll let you know what happens.
+
+Thanks for all your help. I knew there would be a solution one day. Linux - it's fun and challenging at the same time...
+-------------------------------------------------------
+
+Date: 2007-Oct-27 04:25
+By: fingerprint64
+
+Comment:
+Sorry, forgot the step-by-step:
+Installed openSUSE 10.3 as a clean install. Installed smb4k 0.8.5 and updated to 0.8.6, as well as all other available updates.
+
+In smb4k settings I placed a check in &quot;Use super user when mounting and unmount shares&quot;. Applied the changes and from there on I get the above error plus &quot;Su returned with an error&quot; message whenever I tried to run YaST2 from the KDE menu. I can still use the su function via the console.
+-------------------------------------------------------
+
+Date: 2007-Oct-27 04:19
+By: fingerprint64
+
+Comment:
+Thanks for your replay.
+
+I am using version 0.8.6 on KDE 3.5.8 release 21.1 opensuse
+
+Here is the output:
+<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">saalo at computer3</A>:~&gt; ls -la /etc/sudoers
+-r--r----- 1 root root 2281 2007-10-23 19:22 /etc/sudoers
+<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">saalo at computer3</A>:~&gt;
+
+Here my sudoers file:
+# sudoers file.
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# See the sudoers man page for the details on how to write a sudoers file.
+#
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# Defaults specification
+
+# Prevent environment variables from influencing programs in an
+# unexpected or harmful way (CVE-2005-2959, CVE-2005-4158, CVE-2006-0151)
+Defaults always_set_home
+Defaults env_reset
+
+Defaults env_keep = &quot;LANG LC_ADDRESS LC_CTYPE LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE LC_TIME LC_ALL LANGUAGE LINGUAS XDG_SESSION_COOKIE&quot;
+# Comment out the preceding line and uncomment the following one if you need
+# to use special input methods. This may allow users to compromise  the root
+# account if they are allowed to run commands without authentication.
+#Defaults env_keep = &quot;LANG LC_ADDRESS LC_CTYPE LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE LC_TIME LC_ALL LANGUAGE LINGUAS XDG_SESSION_COOKIE XMODIFIERS GTK_IM_MODULE QT_IM_MODULE QT_IM_SWIT
+CHER&quot; &lt;---(this is line 26)
+
+# In the default (unconfigured) configuration, sudo asks for the root password.
+# This allows use of an ordinary user account for administration of a freshly
+# installed system. When configuring sudo, delete the two
+# following lines:
+Defaults targetpw   # ask for the password of the target user i.e. root
+ALL ALL=(ALL) ALL   # WARNING! Only use this together with 'Defaults targetpw'!
+
+# Runas alias specification
+
+# User privilege specification
+root    ALL=(ALL) SETENV: ALL
+
+# Uncomment to allow people in group wheel to run all commands
+# and set environment variables.
+# %wheel  ALL=(ALL) SETENV: ALL
+
+# Same thing without a password
+# %wheel        ALL=(ALL) NOPASSWD: SETENV: ALL
+
+# Samples
+# %users  ALL=/sbin/mount /cdrom,/sbin/umount /cdrom
+# %users  localhost=/sbin/shutdown -h now
+
+# Entries for Smb4K users.
+# Generated by Smb4K. Please do not modify!
+User_Alias      SMB4KUSERS = saalo
+Defaults:SMB4KUSERS     env_keep=&quot;PASSWD USER&quot;
+SMB4KUSERS      computer3 = NOPASSWD: /opt/kde3/bin/smb4k_kill
+SMB4KUSERS      computer3 = NOPASSWD: /opt/kde3/bin/smb4k_umount
+SMB4KUSERS      computer3 = NOPASSWD: /opt/kde3/bin/smb4k_mount
+# End of Smb4K user entries.
+
+-------------------------------------------------------
+
+Date: 2007-Oct-27 00:29
+By: dustpuppy
+
+Comment:
+I used a fresh installation of OpenSUSE 10.3 and the latest version of Smb4K (i.e. version 0.8.6, self-compiled) in my attempt to reproduce your problem. I did not succeed. The /etc/sudoers file is sane and Smb4K works as expected even after writing several times to the file.
+
+Which version of Smb4K do you use? What exactly did you do (step by step) to get this problem? Could you please provide the output of 
+
+$ ls -la /etc/sudoers
+
+before and after Smb4K wrote to the file? If you get the parse error and the file is *not* empty, could you please also paste its contents here?
+-------------------------------------------------------
+
+Date: 2007-Oct-23 13:32
+By: fingerprint64
+
+Comment:
+Found the error when running the sudo command from console:
+&gt;&gt;&gt;<i> sudoers file: syntax error, line 26 &lt;&lt;&lt;
+</I>sudo: parse error in /etc/sudoers near line 26
+
+Upon checking the file, it is empty (????)
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12262&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12262&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000117.html">[Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE
+</A></li>
+	<LI>Next message: <A HREF="000119.html">[Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#118">[ date ]</a>
+              <a href="thread.html#118">[ thread ]</a>
+              <a href="subject.html#118">[ subject ]</a>
+              <a href="author.html#118">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

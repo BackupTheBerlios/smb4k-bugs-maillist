@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #14674] Russian usernames failed to login
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2314674%5D%20Russian%20usernames%20failed%20to%20login&In-Reply-To=%3C201111011458.pA1EwrPF023904%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000526.html">
+   <LINK REL="Next"  HREF="000528.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #14674] Russian usernames failed to login</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2314674%5D%20Russian%20usernames%20failed%20to%20login&In-Reply-To=%3C201111011458.pA1EwrPF023904%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #14674] Russian usernames failed to login">admin at berlios.de
+       </A><BR>
+    <I>Tue Nov  1 15:58:53 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000526.html">[Smb4K-bugs] [Bug #14217] Bookmark a share from the Mounted Shares	view
+</A></li>
+        <LI>Next message: <A HREF="000528.html">[Smb4K-bugs] [Bug #15798] smb4k crashes accessing a public samba	share
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#527">[ date ]</a>
+              <a href="thread.html#527">[ thread ]</a>
+              <a href="subject.html#527">[ subject ]</a>
+              <a href="author.html#527">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #14674, was updated on 2008-Oct-13 20:08
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Closed
+Resolution: None
+Bug Group: translation
+Priority: 5
+Submitted by: diaron
+Assigned to : none
+Summary: Russian usernames failed to login
+
+Details: Hello
+Summary:
+
+dron-hm dron # uname -a
+Linux dron-hm 2.6.26-gentoo-r1Dr #5 SMP Thu Oct 9 17:01:17 EEST 2008 i686 AMD Sempron(tm) Processor 2600+ AuthenticAMD GNU/Linux
+
+KDE - 3.5.10
+
+Smb4k - 0.9.7
+
+dron-hm bin # locale
+LANG=ru_RU.UTF-8
+LC_CTYPE=&quot;ru_RU.UTF-8&quot;
+LC_NUMERIC=C
+LC_TIME=&quot;ru_RU.UTF-8&quot;
+LC_COLLATE=&quot;ru_RU.UTF-8&quot;
+LC_MONETARY=&quot;ru_RU.UTF-8&quot;
+LC_MESSAGES=&quot;ru_RU.UTF-8&quot;
+LC_PAPER=&quot;ru_RU.UTF-8&quot;
+LC_NAME=&quot;ru_RU.UTF-8&quot;
+LC_ADDRESS=&quot;ru_RU.UTF-8&quot;
+LC_TELEPHONE=&quot;ru_RU.UTF-8&quot;
+LC_MEASUREMENT=&quot;ru_RU.UTF-8&quot;
+LC_IDENTIFICATION=&quot;ru_RU.UTF-8&quot;
+LC_ALL=
+
+In my smb.conf I have:
+dos charset = cp866
+unix charset = utf8
+display charset = utf8
+
+In Smb4k Client charset is utf8 (also tried default, koi8-r, cp1251)
+
+When I try to mount share with username in russian such as &quot;&#192;&#228;&#236;&#232;&#237;&#232;&#241;&#242;&#240;&#224;&#242;&#238;&#240;&quot;
+I have an error: &quot;mount error 22 = invalid argument&quot;
+
+In error log I have next:
+Oct 13 21:03:21 dron-hm sudo:     dron : TTY=unknown ; PWD=/etc/samba ; USER=root ; COMMAND=/usr/bin/smb4k_mount
+-s -t cifs -o netbiosname=DRON-HM,uid=1000,gid=1000,port=139,iocharset=utf8,rw,file_mode=0755,dir_mode=0755,perm,
+nosetuids,noserverino,mapchars,domain=LIZAR,ip=192.168.111.7,user=&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194;&#180;&#195;.&#194;.&#195;.&#194;&#188;&#195;.&#194;.&#195;.&#194;&#184;&#195;.&#194;.&#195;.&#194;&#189;&#195;.&#194;.&#195;.&#194;
+&#184;&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194;&#176;&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194;&#190;&#195;.&#194;.&#195;.&#194;. -- //NB-7419/G$ /home/dron/smb4k/NB-7419/G$
+Oct 13 21:03:21 dron-hm sudo: pam_unix(sudo:session): session opened for user root by (uid=0)
+Oct 13 21:03:21 dron-hm sudo: pam_unix(sudo:session): session closed for user root
+Oct 13 21:03:21 dron-hm CIFS: username too long
+Oct 13 21:03:21 dron-hm CIFS VFS: cifs_mount failed w/return code = -22
+
+So username &quot;&#192;&#228;&#236;&#232;&#237;&#232;&#241;&#242;&#240;&#224;&#242;&#238;&#240;&quot; translated as &quot;&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194; &#195;.&#194;.&#195;.&#194;&#188;&#195;.&#194;.&#195;.&#194;&#184;&#195;.&#194;.&#195;.&#194;&#189;&#195;.&#194;.&#195;.&#194;
+&#184;&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194;&#176;&#195;.&#194;.&#195;.&#194;.&#195;.&#194;.&#195;.&#194;&#190;&#195;.&#194;.&#195;.&#194;.&quot;
+
+Konqueror opens shares with any troubles...
+
+What can I do to fix this problem or its an Smb4k trouble?
+
+Follow-Ups:
+
+Date: 2011-Nov-01 15:58
+By: dustpuppy
+
+Comment:
+Migrated bug report to Sourceforge.
+-------------------------------------------------------
+
+Date: 2008-Oct-15 20:43
+By: dustpuppy
+
+Comment:
+I'll look into this problem. At the moment I do not have a solution for you.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14674&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14674&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000526.html">[Smb4K-bugs] [Bug #14217] Bookmark a share from the Mounted Shares	view
+</A></li>
+	<LI>Next message: <A HREF="000528.html">[Smb4K-bugs] [Bug #15798] smb4k crashes accessing a public samba	share
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#527">[ date ]</a>
+              <a href="thread.html#527">[ thread ]</a>
+              <a href="subject.html#527">[ subject ]</a>
+              <a href="author.html#527">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

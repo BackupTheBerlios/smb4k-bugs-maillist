@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #13217] check also for remounting shares if	server was down
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2313217%5D%20check%20also%20for%20remounting%20shares%20if%0A%09server%20was%20down&In-Reply-To=%3C200802262134.m1QLYjfw028677%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000157.html">
+   <LINK REL="Next"  HREF="000159.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #13217] check also for remounting shares if	server was down</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2313217%5D%20check%20also%20for%20remounting%20shares%20if%0A%09server%20was%20down&In-Reply-To=%3C200802262134.m1QLYjfw028677%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #13217] check also for remounting shares if	server was down">admin at berlios.de
+       </A><BR>
+    <I>Tue Feb 26 22:34:45 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000157.html">[Smb4K-bugs] [Bug #13191] iocharset=utf8
+</A></li>
+        <LI>Next message: <A HREF="000159.html">[Smb4K-bugs] [Bug #13218] Let smb4k become a mainstream program
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#158">[ date ]</a>
+              <a href="thread.html#158">[ thread ]</a>
+              <a href="subject.html#158">[ subject ]</a>
+              <a href="author.html#158">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #13217, was updated on 2008-Feb-26 22:34
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: wishlist
+Priority: 5
+Submitted by: sspr
+Assigned to : none
+Summary: check also for remounting shares if server was down
+
+Details: In case you have the 'Remount recently used shares on program start' enabled, and the smb server is not available when smb4k starts, smb4k will not check if the server comes online lateron.
+
+I'd like to have smb4k check for the shares I mounted previously, even if it was not available during program start, or even a whole week. When the server comes back online, the shares get automatically mounted.
+
+1. I've looked at the CVS code (smb4kmounter.cpp) and saw that the Remount task could be scheduled in the timer loop. Minor modifications would be needed in remount() such that setRemount( false ); would only be done if the share mounted succesfully, otherwise, the mount is tried the next time remount() is called and so on.
+
+2. For having older shares show up as well, the slotShutdown() should be adapted as well such that also older shares are still tracked for remount next time... Now if a share did not get mounted, it is just droped...
+
+What do you think of this idea ? Patch for 1. looks trivial, 2. is a bit harder but possible... comments ?
+
+Peter
+
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=13217&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=13217&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000157.html">[Smb4K-bugs] [Bug #13191] iocharset=utf8
+</A></li>
+	<LI>Next message: <A HREF="000159.html">[Smb4K-bugs] [Bug #13218] Let smb4k become a mainstream program
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#158">[ date ]</a>
+              <a href="thread.html#158">[ thread ]</a>
+              <a href="subject.html#158">[ subject ]</a>
+              <a href="author.html#158">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

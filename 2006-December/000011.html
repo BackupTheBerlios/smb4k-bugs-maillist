@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #9630] security: weaknesses in	smb4k/core/smb4kfileio.cpp
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2006-December/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%239630%5D%20security%3A%20weaknesses%20in%0A%09smb4k/core/smb4kfileio.cpp&In-Reply-To=%3C200612070845.kB78j6DP025218%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000010.html">
+   <LINK REL="Next"  HREF="000012.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #9630] security: weaknesses in	smb4k/core/smb4kfileio.cpp</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%239630%5D%20security%3A%20weaknesses%20in%0A%09smb4k/core/smb4kfileio.cpp&In-Reply-To=%3C200612070845.kB78j6DP025218%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #9630] security: weaknesses in	smb4k/core/smb4kfileio.cpp">admin at berlios.de
+       </A><BR>
+    <I>Thu Dec  7 09:45:06 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000010.html">[Smb4K-bugs] [Bug #9631] security: weaknesses in	utilities/smb4k_*.cpp
+</A></li>
+        <LI>Next message: <A HREF="000012.html">[Smb4K-bugs] [Bug #9630] security: weaknesses in	smb4k/core/smb4kfileio.cpp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#11">[ date ]</a>
+              <a href="thread.html#11">[ thread ]</a>
+              <a href="subject.html#11">[ subject ]</a>
+              <a href="author.html#11">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #9630, was updated on 2006-Dec-05 21:16
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: kees
+Assigned to : none
+Summary: security: weaknesses in smb4k/core/smb4kfileio.cpp
+
+Details: Hi!  While doing a general audit of smb4k, I found a number of issues that could use some attention in smb4kfileio.cpp:
+
+priv escalation: writeFile uses mktemp, allowing a difficult race on sudoers file writing.  If an attacker were able to replace this file between mktemp and the open, they could inject additional lines into the sudoers file.  (I recommend never using mktemp, and only using mkstemp.)
+
+information leak: writeFile stores the contents of sudoers without     enforcing strict permissions, allowing world-readable contents.  Normally the sudoers file is not world-readable, but making changes to it via smb4k allows for it.  (Adding a mask on open would solve this.)
+
+data destruction: remove_lock_file race allows arbitrary user-owned files to be mucked with.  The lock file used by smb4k can easily be raced and allow for manipulation of user-owned files by an attack.
+
+Thanks!
+
+Follow-Ups:
+
+Date: 2006-Dec-07 09:45
+By: dustpuppy
+
+Comment:
+If I understand correctly, the problem is, that some time elapses between the check and the moment the file is opened. So, would the following approach fix the issue?
+
+if ( S_ISREG( file_stat.st_mode ) &amp;&amp; !S_ISFIFO( file_stat.st_mode ) &amp;&amp; !S_ISLNK( file_stat.st_mode ) &amp;&amp; file.open( IO_ReadWrite ) )
+{
+  ...
+}
+else
+{
+  if ( S_ISFIFO( file_stat.st_mode ) || S_ISLNK( file_stat.st_mode ) )
+  {
+    Smb4KError::error( ERROR_LOCK_FILE_IS_SYMLINK, file.name() );
+    return ok;
+  }
+  else
+  {
+    // Opening the file failed
+    Smb4KError::error( ERROR_OPENING_FILE, file.name() );
+    return ok;
+  }
+}
+
+Besides, I'm aware of the problem of a system-wide lock file in /tmp, but I have no better idea at the moment . If you have any idea...
+-------------------------------------------------------
+
+Date: 2006-Dec-06 18:57
+By: kees
+
+Comment:
+That's great news, thanks!  (Yes, with mkstemp, the file is now protected from reading.)
+
+I'm not sure of a good way to deal with the lock file.  Generally it's unsafe to have a system-wide lock file in /tmp.  The race is mostly in code like this:
+
+    if ( S_ISREG( file_stat.st_mode ) &amp;&amp; !S_ISFIFO( file_stat.st_mode ) &amp;&amp; !S_ISLNK( file_stat.st_mode ) )
+    {
+     /* bad guy can replace file with symlink here */ 
+     if ( file.open( IO_ReadWrite ) )
+
+
+-------------------------------------------------------
+
+Date: 2006-Dec-06 07:47
+By: dustpuppy
+
+Comment:
+Thank you for the report.
+
+For the upcoming version of Smb4K I rewrote Smb4KFileIO compeletely and writeFile() now indeed uses mkstemp instead of mktemp. Since mkstemp() is now used and because we restore the original permissions, I guess the second issue has also already been addressed. remove_lock_file() has been replaced with removeLockFile() which has some better file handling included, but I don't know whether it fixes the issue you reported.
+
+May I ask you to also review our upcoming version? 
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=9630&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=9630&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000010.html">[Smb4K-bugs] [Bug #9631] security: weaknesses in	utilities/smb4k_*.cpp
+</A></li>
+	<LI>Next message: <A HREF="000012.html">[Smb4K-bugs] [Bug #9630] security: weaknesses in	smb4k/core/smb4kfileio.cpp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#11">[ date ]</a>
+              <a href="thread.html#11">[ thread ]</a>
+              <a href="subject.html#11">[ subject ]</a>
+              <a href="author.html#11">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

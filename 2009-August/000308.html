@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #15970] smb4k crashes upon trying to log into a	samba share
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2315970%5D%20smb4k%20crashes%20upon%20trying%20to%20log%20into%20a%0A%09samba%20share&In-Reply-To=%3C200908151519.n7FFJgpU028761%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000307.html">
+   <LINK REL="Next"  HREF="000309.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #15970] smb4k crashes upon trying to log into a	samba share</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2315970%5D%20smb4k%20crashes%20upon%20trying%20to%20log%20into%20a%0A%09samba%20share&In-Reply-To=%3C200908151519.n7FFJgpU028761%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #15970] smb4k crashes upon trying to log into a	samba share">admin at berlios.de
+       </A><BR>
+    <I>Sat Aug 15 17:19:42 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000307.html">[Smb4K-bugs] [Bug #16140] Unable to mount shares from bookmarks
+</A></li>
+        <LI>Next message: <A HREF="000309.html">[Smb4K-bugs] [Bug #16169] smb4k crash
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#308">[ date ]</a>
+              <a href="thread.html#308">[ thread ]</a>
+              <a href="subject.html#308">[ subject ]</a>
+              <a href="author.html#308">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #15970, was updated on 2009-Jul-05 21:50
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: Works For Me
+Bug Group: None
+Priority: 5
+Submitted by: sglafata
+Assigned to : none
+Summary: smb4k crashes upon trying to log into a samba share
+
+Details: I am running Mandriva 2009.1 on a eMachines W4605 laptop.
+
+I access smb4k.  I click Network, Mount Manually.... and enter my share information.  I check Add This Share To The Bookmarks.  I click OK....
+
+And smb4k crashes.  Once this occurs, I am no longer able to access smb4k unless I delete the ~/.kde4/share/apps/smb4k folder.  Then I can start smb4k and repeat the above with the same crash.
+
+Below is the smb4k.kcrash report generated from debug:
+
+Application: Smb4K (smb4k), signal SIGSEGV
+[Current thread is 1 (Thread 0xb7fb26d0 (LWP 13228))]
+
+Thread 2 (Thread 0xb674bb90 (LWP 13241)):
+#0  0xffffe424 in __kernel_vsyscall ()
+#1  0x4cdeb4c1 in select () from /lib/i686/libc.so.6
+#2  0x41b1430c in ?? () from /usr/lib/libQtCore.so.4
+#3  0x41a3b8e3 in ?? () from /usr/lib/libQtCore.so.4
+#4  0x4ce9f315 in start_thread () from /lib/i686/libpthread.so.0
+#5  0x4cdf325e in clone () from /lib/i686/libc.so.6
+
+Thread 1 (Thread 0xb7fb26d0 (LWP 13228)):
+[KCrash Handler]
+#6  0x41a85572 in QString::operator= () from /usr/lib/libQtCore.so.4
+#7  0x08058b41 in Smb4KSystemTray::slotSetupBookmarksMenu (this=0x86a7ca8) at /usr/src/debug/smb4k-0.10.2/smb4k/smb4ksystemtray.cpp:337
+#8  0x080591f0 in Smb4KSystemTray::qt_metacall (this=0x86a7ca8, _c=QMetaObject::InvokeMetaMethod, _id=20, _a=0xbffdad18) at /usr/src/debug/smb4k-0.10.2/build/smb4k/smb4ksystemtray.moc:91
+#9  0x41b4dd95 in QMetaObject::activate () from /usr/lib/libQtCore.so.4
+#10 0x41b4ea95 in QMetaObject::activate () from /usr/lib/libQtCore.so.4
+#11 0x41c470b5 in Smb4KBookmarkHandler::updated (this=) at /usr/src/debug/smb4k-0.10.2/build/core/smb4kbookmarkhandler.moc:77
+#12 0x41c47e33 in Smb4KBookmarkHandler::writeBookmarkList (this=) at /usr/src/debug/smb4k-0.10.2/core/smb4kbookmarkhandler.cpp:254
+#13 0x41c48f2b in Smb4KBookmarkHandler::addBookmark (this=) at /usr/src/debug/smb4k-0.10.2/core/smb4kbookmarkhandler.cpp:160
+#14 0x41cd8442 in Smb4KMountDialog::slotOkClicked (this=) at /usr/src/debug/smb4k-0.10.2/smb4k/dialogs/smb4kmountdialog.cpp:147
+#15 0x41cd8654 in Smb4KMountDialog::qt_metacall (this=) at /usr/src/debug/smb4k-0.10.2/build/smb4k/dialogs/smb4kmountdialog.moc:72
+#16 0x41b4dd95 in QMetaObject::activate () from /usr/lib/libQtCore.so.4
+#17 0x41b4ea95 in QMetaObject::activate () from /usr/lib/libQtCore.so.4
+#18 0x42ceb4c5 in KDialog::okClicked () from /usr/lib/libkdeui.so.5
+#19 0x42cee1e0 in KDialog::slotButtonClicked () from /usr/lib/libkdeui.so.5
+#20 0x42cef647 in KDialog::qt_metacall () from /usr/lib/libkdeui.so.5
+#21 0x41cd85f2 in Smb4KMountDialog::qt_metacall (this=) at /usr/src/debug/smb4k-0.10.2/build/smb4k/dialogs/smb4kmountdialog.moc:67
+#22 0x41b4dd95 in QMetaObject::activate () from /usr/lib/libQtCore.so.4
+#23 0x41b4ea95 in QMetaObject::activate () from /usr/lib/libQtCore.so.4
+#24 0x41b51875 in QSignalMapper::mapped () from /usr/lib/libQtCore.so.4
+#25 0x41b5216b in QSignalMapper::map () from /usr/lib/libQtCore.so.4
+#26 0x41b5233e in QSignalMapper::map () from /usr/lib/libQtCore.so.4
+#27 0x41b52c84 in QSignalMapper::qt_metacall () from /usr/lib/libQtCore.so.4
+#28 0x41b4dd95 in QMetaObject::activate () from /usr/lib/libQtCore.so.4
+#29 0x41b4e1fb in QMetaObject::activate () from /usr/lib/libQtCore.so.4
+#30 0x417f1e45 in QAbstractButton::clicked () from /usr/lib/libQtGui.so.4
+#31 0x4150108d in ?? () from /usr/lib/libQtGui.so.4
+#32 0x41502deb in ?? () from /usr/lib/libQtGui.so.4
+#33 0x41503086 in QAbstractButton::mouseReleaseEvent () from /usr/lib/libQtGui.so.4
+#34 0x411812fd in QWidget::event () from /usr/lib/libQtGui.so.4
+#35 0x41500f10 in QAbstractButton::event () from /usr/lib/libQtGui.so.4
+#36 0x415b0733 in QPushButton::event () from /usr/lib/libQtGui.so.4
+#37 0x41127f3c in QApplicationPrivate::notify_helper () from /usr/lib/libQtGui.so.4
+#38 0x411311e2 in QApplication::notify () from /usr/lib/libQtGui.so.4
+#39 0x42d854e1 in KApplication::notify () from /usr/lib/libkdeui.so.5
+#40 0x41b37f9e in QCoreApplication::notifyInternal () from /usr/lib/libQtCore.so.4
+#41 0x41130011 in QApplicationPrivate::sendMouseEvent () from /usr/lib/libQtGui.so.4
+#42 0x411a3ced in ?? () from /usr/lib/libQtGui.so.4
+#43 0x411a316a in QApplication::x11ProcessEvent () from /usr/lib/libQtGui.so.4
+#44 0x411cd554 in ?? () from /usr/lib/libQtGui.so.4
+#45 0x4d0a7cea in g_main_context_dispatch () from /usr/lib/libglib-2.0.so.0
+#46 0x4d0ab354 in ?? () from /usr/lib/libglib-2.0.so.0
+#47 0x4d0ab4df in g_main_context_iteration () from /usr/lib/libglib-2.0.so.0
+#48 0x41b64bda in QEventDispatcherGlib::processEvents () from /usr/lib/libQtCore.so.4
+#49 0x411cccaa in ?? () from /usr/lib/libQtGui.so.4
+#50 0x41b36563 in QEventLoop::processEvents () from /usr/lib/libQtCore.so.4
+#51 0x41b369bd in QEventLoop::exec () from /usr/lib/libQtCore.so.4
+#52 0x41b38f16 in QCoreApplication::exec () from /usr/lib/libQtCore.so.4
+#53 0x41127da4 in QApplication::exec () from /usr/lib/libQtGui.so.4
+#54 0x080512e2 in main (argc=-1073883820, argv=0xbffdd480) at /usr/src/debug/smb4k-0.10.2/smb4k/main.cpp:243
+
+
+
+Follow-Ups:
+
+Date: 2009-Jul-07 13:14
+By: dustpuppy
+
+Comment:
+I tried to reproduce your problem on my Debian system but I was not successful. If I can get access to a computer running the latest Mandriva version, I'll try again.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15970&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15970&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000307.html">[Smb4K-bugs] [Bug #16140] Unable to mount shares from bookmarks
+</A></li>
+	<LI>Next message: <A HREF="000309.html">[Smb4K-bugs] [Bug #16169] smb4k crash
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#308">[ date ]</a>
+              <a href="thread.html#308">[ thread ]</a>
+              <a href="subject.html#308">[ subject ]</a>
+              <a href="author.html#308">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

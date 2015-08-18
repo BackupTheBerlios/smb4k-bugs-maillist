@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #13342] Same share mounted to different mount	points shown twice
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2313342%5D%20Same%20share%20mounted%20to%20different%20mount%0A%09points%20shown%20twice&In-Reply-To=%3C200804040735.m347ZNNp018996%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000189.html">
+   <LINK REL="Next"  HREF="000191.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #13342] Same share mounted to different mount	points shown twice</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2313342%5D%20Same%20share%20mounted%20to%20different%20mount%0A%09points%20shown%20twice&In-Reply-To=%3C200804040735.m347ZNNp018996%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #13342] Same share mounted to different mount	points shown twice">admin at berlios.de
+       </A><BR>
+    <I>Fri Apr  4 09:35:23 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000189.html">[Smb4K-bugs] [Bug #13342] Same share mounted to different mount	points shown twice
+</A></li>
+        <LI>Next message: <A HREF="000191.html">[Smb4K-bugs] [Bug #12707] SMB4K hangs on starting automatically	with KDE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#190">[ date ]</a>
+              <a href="thread.html#190">[ thread ]</a>
+              <a href="subject.html#190">[ subject ]</a>
+              <a href="author.html#190">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #13342, was updated on 2008-Mar-12 10:23
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: normal
+Priority: 5
+Submitted by: rkrell
+Assigned to : none
+Summary: Same share mounted to different mount points shown twice
+
+Details: Version: 0.9.3 KDE 3.5.9 &quot;release 53.3&quot;, openSUSE
+OS: Linux (i686) release 2.6.22.17-0.1-default
+Compiler: Target: i586-suse-linux
+
+I use smb4k parallely to automounter on my system. If I mount one and the same share //computer/share parallely by automounter for instance to /mnt/cifs/computer/share and by smb4k to $HOME/smb4k/computer/share the share is shown twice in the share viewer in smb4k.
+The one from the automounter is greyed out in the viewer, and on opening it I get the contents of the directory /mnt in a file browser.
+I guess, this is not the desired behaviour.
+
+Follow-Ups:
+
+Date: 2008-Apr-04 09:35
+By: rkrell
+
+Comment:
+Ok, this works for me in 0.9.4pre2.
+
+By the way, a nice feature to show non-Smb4K Samba mounts in the viewer, too.
+
+For the future, it could make sense to make this turnable on/off in a configuration option, for those who lose control over many mounts used on their system. But this is only an idea.
+-------------------------------------------------------
+
+Date: 2008-Apr-04 09:18
+By: rkrell
+
+Comment:
+Ok, thank you. Got it and will test it together with issue #12707 -- <A HREF="https://developer.berlios.de/bugs/?func=detailbug&amp;group_id=769&amp;bug_id=12707">https://developer.berlios.de/bugs/?func=detailbug&amp;group_id=769&amp;bug_id=12707</A>
+-------------------------------------------------------
+
+Date: 2008-Apr-04 08:23
+By: dustpuppy
+
+Comment:
+The wrong path problem is fixed in the pre-release I uploaded to our FTP server: <A HREF="ftp://ftp.berlios.de/pub/smb4k/pre-releases/smb4k-0.9.4pre2.tar.bz2.">ftp://ftp.berlios.de/pub/smb4k/pre-releases/smb4k-0.9.4pre2.tar.bz2.</A> Could you please test it?
+-------------------------------------------------------
+
+Date: 2008-Mar-21 22:03
+By: dustpuppy
+
+Comment:
+That each mount is shown is desired behavior. That it is greyed out is in this case also OK, because Smb4K recognises it as a &quot;foreign&quot; mount, because it is neither mounted under your home directory nor under the default mount prefix. I have to admit that Smb4K could try harder to figure out whether the mount is indeed owned by a different user.
+
+That a wrong path is opened in Konqueror is undesired. A fix will be delivered with version 0.9.4.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=13342&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=13342&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000189.html">[Smb4K-bugs] [Bug #13342] Same share mounted to different mount	points shown twice
+</A></li>
+	<LI>Next message: <A HREF="000191.html">[Smb4K-bugs] [Bug #12707] SMB4K hangs on starting automatically	with KDE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#190">[ date ]</a>
+              <a href="thread.html#190">[ thread ]</a>
+              <a href="subject.html#190">[ subject ]</a>
+              <a href="author.html#190">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] Bug Report
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20Bug%20Report&In-Reply-To=%3C201001172241.29160.alexander.reinholdt%40t-online.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000357.html">
+   <LINK REL="Next"  HREF="000361.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] Bug Report</H1>
+    <B>Alexander Reinholdt</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20Bug%20Report&In-Reply-To=%3C201001172241.29160.alexander.reinholdt%40t-online.de%3E"
+       TITLE="[Smb4K-bugs] Bug Report">alexander.reinholdt at t-online.de
+       </A><BR>
+    <I>Sun Jan 17 22:41:29 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000357.html">[Smb4K-bugs] Bug Report
+</A></li>
+        <LI>Next message: <A HREF="000361.html">[Smb4K-bugs] smb4k bug scanning windows 7 ultimate shares
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#358">[ date ]</a>
+              <a href="thread.html#358">[ thread ]</a>
+              <a href="subject.html#358">[ subject ]</a>
+              <a href="author.html#358">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello!
+
+Thank you for reporting this issue. However, it has already been fixed in 
+version 0.10.4 that is available from our home page. Please upgrade.
+
+Best regards
+Alexander
+
+
+Am Samstag, 16. Januar 2010 schrieb Etienne:
+&gt;<i> Application that crashed: smb4k
+</I>&gt;<i> 
+</I>&gt;<i> Version of the application: 0.10.2
+</I>&gt;<i> 
+</I>&gt;<i> KDE Version: 4.3.2 (KDE 4.3.2)
+</I>&gt;<i> 
+</I>&gt;<i> Qt Version: 4.5.2
+</I>&gt;<i> 
+</I>&gt;<i> Operating System: Linux 2.6.31-17-generic i686
+</I>&gt;<i> 
+</I>&gt;<i> Distribution: Ubuntu 9.10
+</I>&gt;<i> 
+</I>&gt;<i> What I was doing when the application crashed:
+</I>&gt;<i> 
+</I>&gt;<i> &lt;Indiquez-nous en d&#233;tails ce que vous faisiez lors du plantage de
+</I>&gt;<i> l'application.&gt;
+</I>&gt;<i> 
+</I>&gt;<i> -- Backtrace:
+</I>&gt;<i> 
+</I>&gt;<i> Application: Smb4K (smb4k), signal: Segmentation fault
+</I>&gt;<i> 
+</I>&gt;<i> [KCrash Handler]
+</I>&gt;<i> 
+</I>&gt;<i> #5 0x02d18aca in QString::operator=(QString const&amp;) () from
+</I>&gt;<i> /usr/lib/libQtCore.so.4
+</I>&gt;<i> 
+</I>&gt;<i> #6 0x0063de95 in Smb4KAuthInfo::unc(int) const () from
+</I>&gt;<i> /usr/lib/libsmb4kcore.so.3
+</I>&gt;<i> 
+</I>&gt;<i> #7 0x0068a326 in Smb4KWalletManager::readAuthInfo(Smb4KAuthInfo*) ()
+</I>&gt;<i> from /usr/lib/libsmb4kcore.so.3
+</I>&gt;<i> 
+</I>&gt;<i> #8 0x00659650 in Smb4KMounter::mount(Smb4KShare const&amp;) () from
+</I>&gt;<i> /usr/lib/libsmb4kcore.so.3
+</I>&gt;<i> 
+</I>&gt;<i> #9 0x0065aab0 in Smb4KMounter::timerEvent(QTimerEvent*) () from
+</I>&gt;<i> /usr/lib/libsmb4kcore.so.3
+</I>&gt;<i> 
+</I>&gt;<i> #10 0x02dd33bf in QObject::event(QEvent*) () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> 
+</I>&gt;<i> #11 0x01103f54 in QApplicationPrivate::notify_helper(QObject*, QEvent*)
+</I>&gt;<i> () from /usr/lib/libQtGui.so.4
+</I>&gt;<i> 
+</I>&gt;<i> #12 0x0110b67c in QApplication::notify(QObject*, QEvent*) () from
+</I>&gt;<i> /usr/lib/libQtGui.so.4
+</I>&gt;<i> 
+</I>&gt;<i> #13 0x00998bfa in KApplication::notify(QObject*, QEvent*) () from
+</I>&gt;<i> /usr/lib/libkdeui.so.5
+</I>&gt;<i> 
+</I>&gt;<i> #14 0x02dc36cb in QCoreApplication::notifyInternal(QObject*, QEvent*) ()
+</I>&gt;<i> from /usr/lib/libQtCore.so.4
+</I>&gt;<i> 
+</I>&gt;<i> #15 0x02df07ce in ?? () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> 
+</I>&gt;<i> #16 0x02dee0e0 in ?? () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> 
+</I>&gt;<i> #17 0x0613ae88 in g_main_context_dispatch () from /lib/libglib-2.0.so.0
+</I>&gt;<i> 
+</I>&gt;<i> #18 0x0613e730 in ?? () from /lib/libglib-2.0.so.0
+</I>&gt;<i> 
+</I>&gt;<i> #19 0x0613e863 in g_main_context_iteration () from /lib/libglib-2.0.so.0
+</I>&gt;<i> 
+</I>&gt;<i> #20 0x02dee02c in
+</I>&gt;<i> QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+</I>&gt;<i> () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> 
+</I>&gt;<i> #21 0x011a4be5 in ?? () from /usr/lib/libQtGui.so.4
+</I>&gt;<i> 
+</I>&gt;<i> #22 0x02dc1c79 in
+</I>&gt;<i> QEventLoop::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) () from
+</I>&gt;<i> /usr/lib/libQtCore.so.4
+</I>&gt;<i> 
+</I>&gt;<i> #23 0x02dc20ca in
+</I>&gt;<i> QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) () from
+</I>&gt;<i> /usr/lib/libQtCore.so.4
+</I>&gt;<i> 
+</I>&gt;<i> #24 0x02dc453f in QCoreApplication::exec() () from /usr/lib/libQtCore.so.4
+</I>&gt;<i> 
+</I>&gt;<i> #25 0x01103dd7 in QApplication::exec() () from /usr/lib/libQtGui.so.4
+</I>&gt;<i> 
+</I>&gt;<i> #26 0x08051e34 in _start ()
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Smb4K-bugs mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">Smb4K-bugs at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">https://lists.berlios.de/mailman/listinfo/smb4k-bugs</A>
+</I>&gt;<i> 
+</I>
+
+-- 
+&quot;Never argue with idiots. They drag you down to their level and beat you with 
+experience...&quot; (unknown)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000357.html">[Smb4K-bugs] Bug Report
+</A></li>
+	<LI>Next message: <A HREF="000361.html">[Smb4K-bugs] smb4k bug scanning windows 7 ultimate shares
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#358">[ date ]</a>
+              <a href="thread.html#358">[ thread ]</a>
+              <a href="subject.html#358">[ subject ]</a>
+              <a href="author.html#358">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

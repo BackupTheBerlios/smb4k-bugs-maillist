@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #15898] When not using kwallet for auth,	mount shares always errors
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2315898%5D%20When%20not%20using%20kwallet%20for%20auth%2C%0A%09mount%20shares%20always%20errors&In-Reply-To=%3C201001270657.o0R6vJmJ028774%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000366.html">
+   <LINK REL="Next"  HREF="000368.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #15898] When not using kwallet for auth,	mount shares always errors</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2315898%5D%20When%20not%20using%20kwallet%20for%20auth%2C%0A%09mount%20shares%20always%20errors&In-Reply-To=%3C201001270657.o0R6vJmJ028774%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #15898] When not using kwallet for auth,	mount shares always errors">admin at berlios.de
+       </A><BR>
+    <I>Wed Jan 27 07:57:19 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000366.html">[Smb4K-bugs] [Bug #16140] Unable to mount shares from bookmarks
+</A></li>
+        <LI>Next message: <A HREF="000368.html">[Smb4K-bugs] [Bug #16402] smb4k crashes when denying access to	kwallet
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#367">[ date ]</a>
+              <a href="thread.html#367">[ thread ]</a>
+              <a href="subject.html#367">[ subject ]</a>
+              <a href="author.html#367">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #15898, was updated on 2009-Jun-22 03:03
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: normal
+Priority: 6
+Submitted by: cleary
+Assigned to : none
+Summary: When not using kwallet for auth, mount shares always errors
+
+Details: Hi,
+First up, apologies for the inaccurate summary (there's a char limit)
+
+Secondly: system info below[1]
+
+The issue I'm experiencing is: 
+When I first start smb4k, disable kwallet usage, then browse servers/shares via the Network Neighborhood, all the shares on multiple different types of servers (windows and linux) appear in the browse dialog without issue, however when I click on the share to mount it, it ALWAYS fails to mount with the error: 
+&quot;mount error(13): Permission denied
+Refer to the mount.cifs(8) manual page&quot;
+
+I then have to right click, choose &quot;Authentication&quot; and enter my details. The shares will mount after this (except those I am not authorised for, in which case I get the same error above).
+
+Version 0.9.x of smb4k would pop up an authentication dialog when clicking on the host - I'd like to see this functionality return -
+
+Also, if possible it would be ideal if you could add a &quot;Reauthenticate&quot; button to the &quot;permission denied&quot; error dialog, so for users who are working on a kiosk type machine (of which we have several in boardrooms around the company) the error does not seem &quot;fatal&quot; (ie at the moment it does not suggest any further course of action eg trying to reauthenticate, how to authenticate etc). 
+
+Regards, 
+Bernie
+
+ps I wasn't sure whether this should've been submitted to Debian bug tracker or here, I hope here is ok.
+
+==================
+
+[1]:
+Package: smb4k
+Version: 0.10.2-3
+Severity: normal 
+
+-- System Information:
+Debian Release: squeeze/sid
+  APT prefers unstable     
+  APT policy: (500, 'unstable'), (1, 'experimental')
+Architecture: amd64 (x86_64)                        
+
+Kernel: Linux 2.6.30-0.slh.2-sidux-amd64 (SMP w/2 CPU cores; PREEMPT)
+Locale: LANG=en_US.UTF-8, LC_CTYPE=en_US.UTF-8 (charmap=UTF-8)
+Shell: /bin/sh linked to /bin/dash
+
+Versions of packages smb4k depends on:
+ii  kdebase-runtime               4:4.2.4-1  runtime components from the offici
+ii  kdelibs5                      4:4.2.4-1  core libraries for all KDE 4 appli
+ii  libc6                         2.9-13     GNU C Library: Shared libraries
+ii  libgcc1                       1:4.4.0-6  GCC support library
+ii  libqt4-dbus                   4.5.1-2    Qt 4 D-Bus module
+ii  libqt4-network                4.5.1-2    Qt 4 network module
+ii  libqt4-svg                    4.5.1-2    Qt 4 SVG module
+ii  libqt4-xml                    4.5.1-2    Qt 4 XML module
+ii  libqtcore4                    4.5.1-2    Qt 4 core module
+ii  libqtgui4                     4.5.1-2    Qt 4 GUI module
+ii  libstdc++6                    4.4.0-6    The GNU Standard C++ Library v3
+ii  samba-common                  2:3.3.4-2  common files used by both the Samb
+ii  smbclient                     2:3.3.4-2  command-line SMB/CIFS clients for
+ii  smbfs                         2:3.3.4-2  Samba file system utilities
+
+Versions of packages smb4k recommends:
+ii  sudo                          1.7.0-1    Provide limited super user privile
+
+Versions of packages smb4k suggests:
+ii  kwalletmanager                4:4.2.4-1  secure password wallet manager for
+
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15898&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15898&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000366.html">[Smb4K-bugs] [Bug #16140] Unable to mount shares from bookmarks
+</A></li>
+	<LI>Next message: <A HREF="000368.html">[Smb4K-bugs] [Bug #16402] smb4k crashes when denying access to	kwallet
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#367">[ date ]</a>
+              <a href="thread.html#367">[ thread ]</a>
+              <a href="subject.html#367">[ subject ]</a>
+              <a href="author.html#367">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

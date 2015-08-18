@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] wallet support disabled automatically when wallet	inaccessible
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20wallet%20support%20disabled%20automatically%20when%20wallet%0A%09inaccessible&In-Reply-To=%3C20080228102927.46C0829F52C%40mail.kewbee.home%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000161.html">
+   <LINK REL="Next"  HREF="000163.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] wallet support disabled automatically when wallet	inaccessible</H1>
+    <B>Alexander Blum</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20wallet%20support%20disabled%20automatically%20when%20wallet%0A%09inaccessible&In-Reply-To=%3C20080228102927.46C0829F52C%40mail.kewbee.home%3E"
+       TITLE="[Smb4K-bugs] wallet support disabled automatically when wallet	inaccessible">Alexander.Blum at kewbee.de
+       </A><BR>
+    <I>Thu Feb 28 11:29:27 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000161.html">[Smb4K-bugs] [Bug #13218] Let smb4k become a mainstream program
+</A></li>
+        <LI>Next message: <A HREF="000163.html">[Smb4K-bugs] wallet support disabled automatically when wallet	inaccessible
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#162">[ date ]</a>
+              <a href="thread.html#162">[ thread ]</a>
+              <a href="subject.html#162">[ subject ]</a>
+              <a href="author.html#162">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: smb4k
+Version: 0.8.4 3.5.8, Kubuntu (gutsy) 4:3.5.8-0ubuntu3.3
+Severity: normal
+Compiler: Target: i486-linux-gnu
+OS: Linux 2.6.15.7 i686 (Kubuntu (gutsy) 4:3.5.8-0ubuntu3.3)
+
+I have smb4k in my session, so it starts once I log in. The passwords for my samba shares are stored in kdewallet. Every time there is a problem accessing kdewalled (e.g. wrong password or some other problem) smb4k falls back to asking me for passwords for all my shares. While being able to access my shares with a disfunctional/non responding/closed wallet is good, the option in the settings dialog is reset as well which is bad. Because the next time you log in the wallet problem should be fixed and smb4k should again try to use the wallet. If it is still broken, then it can fall back to asking for passwords. But the option should never change without user intervention.
+
+I admit that my wallet problems may be due to misconfiguration on my side, and smb4k has to handle such problems (which it does). But resetting an option I specifically set without asking or at least telling me, is not very nice.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000161.html">[Smb4K-bugs] [Bug #13218] Let smb4k become a mainstream program
+</A></li>
+	<LI>Next message: <A HREF="000163.html">[Smb4K-bugs] wallet support disabled automatically when wallet	inaccessible
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#162">[ date ]</a>
+              <a href="thread.html#162">[ thread ]</a>
+              <a href="subject.html#162">[ subject ]</a>
+              <a href="author.html#162">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

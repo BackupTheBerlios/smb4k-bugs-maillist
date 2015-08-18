@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #10111] 0.8.0: Crash on mounting
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2310111%5D%200.8.0%3A%20Crash%20on%20mounting&In-Reply-To=%3C200705041304.l44D4CkC004906%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000075.html">
+   <LINK REL="Next"  HREF="000078.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #10111] 0.8.0: Crash on mounting</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2310111%5D%200.8.0%3A%20Crash%20on%20mounting&In-Reply-To=%3C200705041304.l44D4CkC004906%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #10111] 0.8.0: Crash on mounting">admin at berlios.de
+       </A><BR>
+    <I>Fri May  4 15:04:12 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000075.html">[Smb4K-bugs] [Bug #10111] 0.8.0: Crash on mounting
+</A></li>
+        <LI>Next message: <A HREF="000078.html">[Smb4K-bugs] [Bug #10111] 0.8.0: Crash on mounting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#76">[ date ]</a>
+              <a href="thread.html#76">[ thread ]</a>
+              <a href="subject.html#76">[ subject ]</a>
+              <a href="author.html#76">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #10111, was updated on 2007-Jan-24 10:01
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: normal
+Priority: 5
+Submitted by: rkrell
+Assigned to : none
+Summary: 0.8.0: Crash on mounting
+
+Details: Version: 0.8.0 3.5.5 &quot;release 50.1&quot;, openSUSE
+OS: Linux (i686) release 2.6.18.5-157-default
+Compiler: i586-suse-linux
+
+If I try to mount a (CIFS) share smb4k crashes with the backtrace see below. If it was important to you: Before the crash, the mount entry disappears after approximately one second, as if the mount failed.
+
+Backtrace:
+-------------
+
+System configuration startup check disabled.
+
+Using host libthread_db library &quot;/lib/libthread_db.so.1&quot;.
+[Thread debugging using libthread_db enabled]
+[New Thread -1232161072 (LWP 18015)]
+[KCrash handler]
+#9  0xb7f17410 in ?? ()
+#10 0xbfc8c7ac in ?? ()
+#11 0x00000006 in ?? ()
+#12 0x0000465f in ?? ()
+#13 0xb7015060 in raise () from /lib/libc.so.6
+#14 0xb7016801 in abort () from /lib/libc.so.6
+#15 0xb704aabb in __libc_message () from /lib/libc.so.6
+#16 0xb70506e1 in malloc_printerr () from /lib/libc.so.6
+#17 0xb7051d79 in free () from /lib/libc.so.6
+#18 0xb71c8f81 in operator delete () from /usr/lib/libstdc++.so.6
+#19 0xb7e5ded7 in Smb4KMounter::import () from /opt/kde3/lib/libsmb4kcore.so.1
+#20 0xb7e600b8 in Smb4KMounter::init () from /opt/kde3/lib/libsmb4kcore.so.1
+#21 0xb7e60359 in Smb4KMounter::qt_invoke ()
+   from /opt/kde3/lib/libsmb4kcore.so.1
+#22 0xb74993cd in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#23 0xb749a00d in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#24 0xb77d52b9 in QTimer::timeout () from /usr/lib/qt3/lib/libqt-mt.so.3
+#25 0xb74bcbdf in QTimer::event () from /usr/lib/qt3/lib/libqt-mt.so.3
+#26 0xb743a647 in QApplication::internalNotify ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#27 0xb743b4f9 in QApplication::notify () from /usr/lib/qt3/lib/libqt-mt.so.3
+#28 0xb7ac41f2 in KApplication::notify () from /opt/kde3/lib/libkdecore.so.4
+#29 0xb742f663 in QEventLoop::activateTimers ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#30 0xb73e9bd0 in QEventLoop::processEvents ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#31 0xb74510e0 in QEventLoop::enterLoop () from /usr/lib/qt3/lib/libqt-mt.so.3
+#32 0xb7450f76 in QEventLoop::exec () from /usr/lib/qt3/lib/libqt-mt.so.3
+#33 0xb743a00f in QApplication::exec () from /usr/lib/qt3/lib/libqt-mt.so.3
+#34 0x08054161 in main ()
+
+
+Follow-Ups:
+
+Date: 2007-May-04 15:04
+By: rkrell
+
+Comment:
+I cannot see any hints that this package uses QT4.
+
+I tried to get the information you need.
+
+First, I recompiled the package
+<A HREF="http://software.opensuse.org/download/KDE:/Backports/openSUSE_10.2/src/smb4k-0.8.3-2.1.src.rpm">http://software.opensuse.org/download/KDE:/Backports/openSUSE_10.2/src/smb4k-0.8.3-2.1.src.rpm</A>
+to see what happens.
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000075.html">[Smb4K-bugs] [Bug #10111] 0.8.0: Crash on mounting
+</A></li>
+	<LI>Next message: <A HREF="000078.html">[Smb4K-bugs] [Bug #10111] 0.8.0: Crash on mounting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#76">[ date ]</a>
+              <a href="thread.html#76">[ thread ]</a>
+              <a href="subject.html#76">[ subject ]</a>
+              <a href="author.html#76">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

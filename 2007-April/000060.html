@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #10804] Should use CIFS by default
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2310804%5D%20Should%20use%20CIFS%20by%20default&In-Reply-To=%3C200704040750.l347odAN028677%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000059.html">
+   <LINK REL="Next"  HREF="000061.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #10804] Should use CIFS by default</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2310804%5D%20Should%20use%20CIFS%20by%20default&In-Reply-To=%3C200704040750.l347odAN028677%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #10804] Should use CIFS by default">admin at berlios.de
+       </A><BR>
+    <I>Wed Apr  4 09:50:39 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000059.html">[Smb4K-bugs] [Bug #10805] Should detect local charset
+</A></li>
+        <LI>Next message: <A HREF="000061.html">[Smb4K-bugs] [Bug #10805] Should detect local charset
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#60">[ date ]</a>
+              <a href="thread.html#60">[ thread ]</a>
+              <a href="subject.html#60">[ subject ]</a>
+              <a href="author.html#60">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #10804, was updated on 2007-Apr-03 20:50
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: Fixed
+Bug Group: normal
+Priority: 5
+Submitted by: fhimpe
+Assigned to : none
+Summary: Should use CIFS by default
+
+Details: smb4k still uses SMBFS by default. This should be changed to CIFS, because SMBFS is unmaintained in the Linux kernel, and use of SMBFS is higly discouraged already for some time: <A HREF="http://lwn.net/Articles/183693/">http://lwn.net/Articles/183693/</A>
+
+Follow-Ups:
+
+Date: 2007-Apr-04 09:50
+By: dustpuppy
+
+Comment:
+Since this was easy to do I just implemented this feature in Smb4K 0.8.1 which will be released within the next days.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10804&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10804&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000059.html">[Smb4K-bugs] [Bug #10805] Should detect local charset
+</A></li>
+	<LI>Next message: <A HREF="000061.html">[Smb4K-bugs] [Bug #10805] Should detect local charset
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#60">[ date ]</a>
+              <a href="thread.html#60">[ thread ]</a>
+              <a href="subject.html#60">[ subject ]</a>
+              <a href="author.html#60">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

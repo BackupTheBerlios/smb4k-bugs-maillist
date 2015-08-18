@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #14101] smb4k 0.10-alpha fails retrieving	workgroups and domains
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2314101%5D%20smb4k%200.10-alpha%20fails%20retrieving%0A%09workgroups%20and%20domains&In-Reply-To=%3C200806301543.m5UFhMwa002820%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000206.html">
+   <LINK REL="Next"  HREF="000208.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #14101] smb4k 0.10-alpha fails retrieving	workgroups and domains</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2314101%5D%20smb4k%200.10-alpha%20fails%20retrieving%0A%09workgroups%20and%20domains&In-Reply-To=%3C200806301543.m5UFhMwa002820%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #14101] smb4k 0.10-alpha fails retrieving	workgroups and domains">admin at berlios.de
+       </A><BR>
+    <I>Mon Jun 30 17:43:22 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000206.html">[Smb4K-bugs] [Bug #14101] smb4k 0.10-alpha fails retrieving	workgroups and domains
+</A></li>
+        <LI>Next message: <A HREF="000208.html">[Smb4K-bugs] [Bug #14101] smb4k 0.10-alpha fails retrieving	workgroups and domains
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#207">[ date ]</a>
+              <a href="thread.html#207">[ thread ]</a>
+              <a href="subject.html#207">[ subject ]</a>
+              <a href="author.html#207">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #14101, was updated on 2008-Jun-27 16:47
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: normal
+Priority: 5
+Submitted by: rkrell
+Assigned to : none
+Summary: smb4k 0.10-alpha fails retrieving workgroups and domains
+
+Details: Immediately after starting the freshly compiled smb4k 0.10 alpha a popup occurs:
+---
+The list of workgroups and domains could not be retrieved. Read the error message under &quot;Details&quot; to find out more.
+Details:
+Usage: [-?] [-?fMRSTrAV] [-?fMRSTrAV] [-?|--help] [--usage] [-B|--broadcast BROADCAST-ADDRESS] [-f|--flags] [-U|--unicast STRING] [-M|--master-browser] [-R|--recursion] [-S|--status] [-T|--translate] [-r|--root-port] [-A|--lookup-by-ip] [-d|--debuglevel DEBUGLEVEL] [-s|--configfile CONFIGFILE] [-l|--log-basename LOGFILEBASE] [-V|--version] [-O|--socket-options SOCKETOPTIONS] [-n|--netbiosname NETBIOSNAME] [-W|--workgroup WORKGROUP] [-i|--scope SCOPE] ...
+---
+
+- OpenSUSE 11.0, KDE 4.1 Beta 2, repository KDE 4 Desktop Unstable
+- Compiler: gcc 4.3.1
+- Samba-Version: 3.2
+
+Follow-Ups:
+
+Date: 2008-Jun-30 17:43
+By: dustpuppy
+
+Comment:
+The error message was caused by an incomplete xargs command that was used when looking up workgroups or domains. This bug only occurred when no browse list could be retrieved, otherwise it could not be noticed.
+
+I fixed the problem in CVS HEAD. Thanks for reporting this issue.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14101&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14101&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000206.html">[Smb4K-bugs] [Bug #14101] smb4k 0.10-alpha fails retrieving	workgroups and domains
+</A></li>
+	<LI>Next message: <A HREF="000208.html">[Smb4K-bugs] [Bug #14101] smb4k 0.10-alpha fails retrieving	workgroups and domains
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#207">[ date ]</a>
+              <a href="thread.html#207">[ thread ]</a>
+              <a href="subject.html#207">[ subject ]</a>
+              <a href="author.html#207">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

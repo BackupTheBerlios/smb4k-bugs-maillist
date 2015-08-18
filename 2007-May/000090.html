@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #11189] smb4k hangs during session startup -	waiting for dcop respon
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2311189%5D%20smb4k%20hangs%20during%20session%20startup%20-%0A%09waiting%20for%20dcop%20respon&In-Reply-To=%3C200705260621.l4Q6Las2002371%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000089.html">
+   <LINK REL="Next"  HREF="000091.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #11189] smb4k hangs during session startup -	waiting for dcop respon</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2311189%5D%20smb4k%20hangs%20during%20session%20startup%20-%0A%09waiting%20for%20dcop%20respon&In-Reply-To=%3C200705260621.l4Q6Las2002371%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #11189] smb4k hangs during session startup -	waiting for dcop respon">admin at berlios.de
+       </A><BR>
+    <I>Sat May 26 08:21:36 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000089.html">[Smb4K-bugs] [Bug #2256] NT_STATUS_ACCOUNT_LOCKED_OUT error
+</A></li>
+        <LI>Next message: <A HREF="000091.html">[Smb4K-bugs] [Bug #11189] smb4k hangs during session startup -	waiting for dcop respon
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#90">[ date ]</a>
+              <a href="thread.html#90">[ thread ]</a>
+              <a href="subject.html#90">[ subject ]</a>
+              <a href="author.html#90">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #11189, was updated on 2007-May-26 01:21
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: nixternal
+Assigned to : none
+Summary: smb4k hangs during session startup - waiting for dcop respon
+
+Details: The following is quoted from but #90548 in Ubuntu's Malone Bug Tracker - <A HREF="https://bugs.launchpad.net/ubuntu/+source/smb4k/+bug/90548">https://bugs.launchpad.net/ubuntu/+source/smb4k/+bug/90548</A>
+
+I created an updated package based on 0.8.3 for him to try and he stated it didn't fix his problem. Can you look into this and let me(us) know if the issues lies within smb4k or is it something else. Thank you.
+
+---------------------
+Binary package hint: smb4k
+During login to my KDE session I have smb4k restarted automatically by the session support. During that time I am prompted that 'DCOPServer' wants to access the KDE wallet, and for my password.
+This access is really due to smb4k; I have verified that no other software started in the session asks for wallet access.
+Anyway, smb4k hangs waiting for the response from a DCOP call during this time, and fails to mount any of my shares.
+I captured a backtrace with a reasonable level of debug information; the hang is in the X ICE library, waiting for a DCOP response:
+#0 0xb7fd1410 in __kernel_vsyscall ()
+ #1 0x4125f163 in __read_nocancel () from /lib/tls/i686/cmov/libpthread.so.0
+ #2 0x433141ce in _kde_IceTransSocketRead (ciptr=0x80eaa50,
+     buf=0x80eab40 &quot;\002\001&quot;, size=8)
+     at /build/buildd/kdelibs-3.5.6/./dcop/KDE-ICE/Xtranssock.c:1710
+ #3 0x43313e7f in _kde_IceTransRead (ciptr=0x80eaa50, buf=0x80eab40 &quot;\002\001&quot;,
+     size=8) at /build/buildd/kdelibs-3.5.6/./dcop/KDE-ICE/Xtrans.c:845
+ #4 0x4330dcff in _kde_IceRead (iceConn=0x80ea9d8, nbytes=8,
+     ptr=0x80eab40 &quot;\002\001&quot;)
+     at /build/buildd/kdelibs-3.5.6/./dcop/KDE-ICE/misc.c:249
+ #5 0x433124ef in KDE_IceProcessMessages (iceConn=0x80ea9d8, replyWait=0xbfc6bf58,
+     replyReadyRet=0xbfc6bfa8)
+     at /build/buildd/kdelibs-3.5.6/./dcop/KDE-ICE/process.c:153
+ #6 0x432fdc49 in DCOPClient::callInternal (this=0x80e9690, remApp=@0xbfc6c1f4,
+     remObjId=@0xbfc6c1fc, remFun=@0xbfc6c0e4, data=@0xbfc6c258,
+     replyStruct=0xbfc6c004, useEventLoop=false, timeout=-1, minor_opcode=2)
+     at /build/buildd/kdelibs-3.5.6/./dcop/dcopclient.cpp:1931
+ #7 0x432fdf2d in DCOPClient::callInternal (this=0x80e9690, remApp=@0xbfc6c1f4,
+     remObjId=@0xbfc6c1fc, remFun=@0xbfc6c0e4, data=@0xbfc6c258,
+     replyType=@0xbfc6c250, replyData=@0xbfc6c248, useEventLoop=false, timeout=-1,
+     minor_opcode=2) at /build/buildd/kdelibs-3.5.6/./dcop/dcopclient.cpp:1821
+ #8 0x43302977 in DCOPClient::call (this=0x80e9690, remApp=@0xbfc6c1f4,
+     remObjId=@0xbfc6c1fc, remFun=@0xbfc6c0e4, data=@0xbfc6c258,
+     replyType=@0xbfc6c250, replyData=@0xbfc6c248, useEventLoop=false, timeout=-1)
+     at /build/buildd/kdelibs-3.5.6/./dcop/dcopclient.cpp:1765
+ #9 0x43305866 in DCOPRef::callInternal (this=0xbfc6c1f4, fun=@0xbfc6c2a0,
+     args=@0xbfc6c260, data=@0xbfc6c258, useEventLoop=NoEventLoop, timeout=-1)
+     at /build/buildd/kdelibs-3.5.6/./dcop/dcopref.cpp:77
+ #10 0x4330597e in DCOPRef::callInternal (this=0xbfc6c1f4, fun=@0xbfc6c2a0,
+     args=@0xbfc6c260, data=@0xbfc6c258)
+     at /build/buildd/kdelibs-3.5.6/./dcop/dcopref.cpp:52
+ #11 0x4388cd4f in KWallet::Wallet::openWallet (name=@0xbfc6c328, w=0,
+     ot=KWallet::Wallet::Synchronous)
+     at /build/buildd/kdelibs-3.5.6/./dcop/dcopref.h:523
+ #12 0x43ccdb77 in Smb4KPasswordHandler::open_close_wallet ()
+    from /usr/lib/libsmb4kcore.so.1
+ #13 0x43ccec58 in Smb4KPasswordHandler::readAuth () from /usr/lib/libsmb4kcore.so.1
+ #14 0x43cc5de3 in Smb4KMounter::mount () from /usr/lib/libsmb4kcore.so.1
+ #15 0x43cca5b9 in Smb4KMounter::init () from /usr/lib/libsmb4kcore.so.1
+ #16 0x43cca939 in Smb4KMounter::qt_invoke () from /usr/lib/libsmb4kcore.so.1
+ #17 0x4970bf00 in QObject::activate_signal () from /usr/lib/libqt-mt.so.3
+ #18 0x4970c878 in QObject::activate_signal () from /usr/lib/libqt-mt.so.3
+ #19 0x49a99fa2 in QTimer::timeout () from /usr/lib/libqt-mt.so.3
+ #20 0x49733ade in QTimer::event () from /usr/lib/libqt-mt.so.3
+ #21 0x496a2fa8 in QApplication::internalNotify () from /usr/lib/libqt-mt.so.3
+ #22 0x496a4dd7 in QApplication::notify () from /usr/lib/libqt-mt.so.3
+ #23 0x434ece82 in KApplication::notify (this=0xbfc6cdf4, receiver=0x80e72d8,
+     event=0xbfc6cb38) at /build/buildd/kdelibs-3.5.6/./kdecore/kapplication.cpp:550
+ #24 0x496357a9 in QApplication::sendEvent () from /usr/lib/libqt-mt.so.3
+ #25 0x496959f3 in QEventLoop::activateTimers () from /usr/lib/libqt-mt.so.3
+ #26 0x4964a2e5 in QEventLoop::processEvents () from /usr/lib/libqt-mt.so.3
+ #27 0x496bd67e in QEventLoop::enterLoop () from /usr/lib/libqt-mt.so.3
+ #28 0x496bd48e in QEventLoop::exec () from /usr/lib/libqt-mt.so.3
+ #29 0x496a4b51 in QApplication::exec () from /usr/lib/libqt-mt.so.3
+ #30 0x08054c6f in ?? ()
+ #31 0xbfc6cdf4 in ?? ()
+ #32 0x08055e80 in ?? ()
+ #33 0x00000000 in ?? ()
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=11189&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=11189&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000089.html">[Smb4K-bugs] [Bug #2256] NT_STATUS_ACCOUNT_LOCKED_OUT error
+</A></li>
+	<LI>Next message: <A HREF="000091.html">[Smb4K-bugs] [Bug #11189] smb4k hangs during session startup -	waiting for dcop respon
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#90">[ date ]</a>
+              <a href="thread.html#90">[ thread ]</a>
+              <a href="subject.html#90">[ subject ]</a>
+              <a href="author.html#90">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

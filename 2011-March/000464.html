@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] Crash by sel lower tab network search then clickng	scan network
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20Crash%20by%20sel%20lower%20tab%20network%20search%20then%20clickng%0A%09scan%20network&In-Reply-To=%3C20110316134440.yuhwy5880kg88og0%40webmail.vmsol.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000465.html">
+   <LINK REL="Next"  HREF="000466.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] Crash by sel lower tab network search then clickng	scan network</H1>
+    <B>Victor Asuncion</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20Crash%20by%20sel%20lower%20tab%20network%20search%20then%20clickng%0A%09scan%20network&In-Reply-To=%3C20110316134440.yuhwy5880kg88og0%40webmail.vmsol.com%3E"
+       TITLE="[Smb4K-bugs] Crash by sel lower tab network search then clickng	scan network">victor at gotjesus.net
+       </A><BR>
+    <I>Wed Mar 16 18:44:40 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000465.html">[Smb4K-bugs] Crash SMB4K
+</A></li>
+        <LI>Next message: <A HREF="000466.html">[Smb4K-bugs] Fw: Re:  Crash SMB4K
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#464">[ date ]</a>
+              <a href="thread.html#464">[ thread ]</a>
+              <a href="subject.html#464">[ subject ]</a>
+              <a href="author.html#464">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Application that crashed: smb4k
+Version of the application: 0.10.2
+KDE Version: 4.3.2 (KDE 4.3.2)
+Qt Version: 4.5.2
+Operating System: Linux 2.6.31-15-generic-pae i686
+Distribution: Ubuntu 9.10
+
+What I was doing when the application crashed:
+
+-- Backtrace:
+Application: Smb4K (smb4k), signal: Segmentation fault
+[KCrash Handler]
+#6  0xb611faca in QString::operator=(QString const&amp;) () from /usr/lib/libQtCore.so.4
+#7  0xb74fdef5 in Smb4KAuthInfo::unc(int) const () from /usr/lib/libsmb4kcore.so.3
+#8  0xb754a364 in Smb4KWalletManager::readAuthInfo(Smb4KAuthInfo*) () from /usr/lib/libsmb4kcore.so.3
+#9  0xb7535568 in Smb4KScanner::scanForShares(Smb4KHost const&amp;) () from /usr/lib/libsmb4kcore.so.3
+#10 0xb753a40b in Smb4KScanner::timerEvent(QTimerEvent*) () from /usr/lib/libsmb4kcore.so.3
+#11 0xb61da3bf in QObject::event(QEvent*) () from /usr/lib/libQtCore.so.4
+#12 0xb6450f54 in QApplicationPrivate::notify_helper(QObject*, QEvent*) () from /usr/lib/libQtGui.so.4
+#13 0xb645867c in QApplication::notify(QObject*, QEvent*) () from /usr/lib/libQtGui.so.4
+#14 0xb730dbfa in KApplication::notify(QObject*, QEvent*) () from /usr/lib/libkdeui.so.5
+#15 0xb61ca6cb in QCoreApplication::notifyInternal(QObject*, QEvent*) () from /usr/lib/libQtCore.so.4
+#16 0xb61f77ce in ?? () from /usr/lib/libQtCore.so.4
+#17 0xb61f50e0 in ?? () from /usr/lib/libQtCore.so.4
+#18 0xb59c4e78 in g_main_context_dispatch () from /lib/libglib-2.0.so.0
+#19 0xb59c8720 in ?? () from /lib/libglib-2.0.so.0
+#20 0xb59c8853 in g_main_context_iteration () from /lib/libglib-2.0.so.0
+#21 0xb61f502c in QEventDispatcherGlib::processEvents(QFlags) () from /usr/lib/libQtCore.so.4
+#22 0xb64f1be5 in ?? () from /usr/lib/libQtGui.so.4
+#23 0xb61c8c79 in QEventLoop::processEvents(QFlags) () from /usr/lib/libQtCore.so.4
+#24 0xb61c90ca in QEventLoop::exec(QFlags) () from /usr/lib/libQtCore.so.4
+#25 0xb61cb53f in QCoreApplication::exec() () from /usr/lib/libQtCore.so.4
+#26 0xb6450dd7 in QApplication::exec() () from /usr/lib/libQtGui.so.4
+#27 0x08051e34 in _start ()
+
+Report to <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">smb4k-bugs at lists.berlios.de</A>
+
+ --
+In Service for HIM,
+
+ vic
+
+ Witness without saying a WORD! Contact us now @ www.gotJESUS.net  Find out how you can participate in what GOD has been doing for thousands of years.  Philippians 2:9-11 (KJV)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/smb4k-bugs/attachments/20110316/e4b0971e/attachment.html">https://lists.berlios.de/pipermail/smb4k-bugs/attachments/20110316/e4b0971e/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000465.html">[Smb4K-bugs] Crash SMB4K
+</A></li>
+	<LI>Next message: <A HREF="000466.html">[Smb4K-bugs] Fw: Re:  Crash SMB4K
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#464">[ date ]</a>
+              <a href="thread.html#464">[ thread ]</a>
+              <a href="subject.html#464">[ subject ]</a>
+              <a href="author.html#464">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] smb4k crash on mounting share
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20smb4k%20crash%20on%20mounting%20share&In-Reply-To=%3C20120630202519.148090%40gmx.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] smb4k crash on mounting share</H1>
+    <B>capichois at gmx.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20smb4k%20crash%20on%20mounting%20share&In-Reply-To=%3C20120630202519.148090%40gmx.net%3E"
+       TITLE="[Smb4K-bugs] smb4k crash on mounting share">capichois at gmx.de
+       </A><BR>
+    <I>Sat Jun 30 22:25:19 CEST 2012</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#541">[ date ]</a>
+              <a href="thread.html#541">[ thread ]</a>
+              <a href="subject.html#541">[ subject ]</a>
+              <a href="author.html#541">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hallo everybody,
+
+on my bt5 installation, smb4k always crashes if i want to mount a share.
+it is running in vmware-server environment with open vmware-tools.
+
+my be the bugreport may be helpful.
+
+best regards
+crista maier
+
+-----------------------------------
+Application: smb4k (0.10.68)
+KDE Platform Version: 4.5.3 (KDE 4.5.3)
+Qt Version: 4.7.0
+Operating System: Linux 3.2.6 x86_64
+Distribution: Ubuntu 10.04.3 LTS
+
+-- Information about the crash:
+&lt;In detail, tell us what you were doing  when the application crashed.&gt;
+
+The crash can be reproduced every time.
+
+-- Backtrace:
+Application: Smb4K (smb4k), signal: Segmentation fault
+[KCrash Handler]
+#6  QUrl::operator= (this=0x7fffbabc92f0, url=...) at io/qurl.cpp:5940
+#7  0x00007f8315f86b5b in Smb4KMounter::slotActionFinished(KAuth::ActionReply) () from /usr/lib/libsmb4kcore.so.4
+#8  0x00007f8315f896a9 in Smb4KMounter::qt_metacall(QMetaObject::Call, int, void**) () from /usr/lib/libsmb4kcore.so.4
+#9  0x00007f8314205da7 in QMetaObject::activate (sender=0x1212c80, m=&lt;value optimized out&gt;, local_signal_index=&lt;value optimized out&gt;, argv=0xfffffffffff61018) at kernel/qobject.cpp:3280
+#10 0x00007f831636c0b5 in KAuth::ActionWatcher::actionPerformed(KAuth::ActionReply const&amp;) () from /usr/lib/libkdecore.so.5
+#11 0x00007f831636c406 in KAuth::ActionWatcher::qt_metacall(QMetaObject::Call, int, void**) () from /usr/lib/libkdecore.so.5
+#12 0x00007f8314205da7 in QMetaObject::activate (sender=0x1382db0, m=&lt;value optimized out&gt;, local_signal_index=&lt;value optimized out&gt;, argv=0xfffffffffff61018) at kernel/qobject.cpp:3280
+#13 0x00007f82f6d705fa in ?? () from /usr/lib/kde4/plugins/kauth/helper/kauth_helper_plugin.so
+#14 0x00007f82f6d7137a in ?? () from /usr/lib/kde4/plugins/kauth/helper/kauth_helper_plugin.so
+#15 0x00007f82f6d707b6 in ?? () from /usr/lib/kde4/plugins/kauth/helper/kauth_helper_plugin.so
+#16 0x00007f831454495e in QDBusConnectionPrivate::deliverCall (this=&lt;value optimized out&gt;, object=&lt;value optimized out&gt;, msg=&lt;value optimized out&gt;, metaTypes=..., slotIdx=&lt;value optimized out&gt;)
+    at qdbusintegrator.cpp:919
+#17 0x00007f831454f82f in QDBusCallDeliveryEvent::placeMetaCall (this=0x0, object=0x0) at qdbusintegrator_p.h:103
+#18 0x00007f83141ffe7e in QObject::event (this=0x1382db0, e=0x7fffbabc92f0) at kernel/qobject.cpp:1219
+#19 0x00007f83130e06ec in QApplicationPrivate::notify_helper (this=0xf234c0, receiver=0x1382db0, e=0x13985c0) at kernel/qapplication.cpp:4396
+#20 0x00007f83130e61dd in QApplication::notify (this=0x7fffbabccf50, receiver=0x1382db0, e=0x13985c0) at kernel/qapplication.cpp:4277
+#21 0x00007f8315903926 in KApplication::notify(QObject*, QEvent*) () from /usr/lib/libkdeui.so.5
+#22 0x00007f83141ee0ac in QCoreApplication::notifyInternal (this=0x7fffbabccf50, receiver=0x1382db0, event=0x13985c0) at kernel/qcoreapplication.cpp:732
+#23 0x00007f83141f0fd2 in QCoreApplication::sendEvent (receiver=0x0, event_type=&lt;value optimized out&gt;, data=0xeffc90) at ../../include/QtCore/../../src/corelib/kernel/qcoreapplication.h:215
+#24 QCoreApplicationPrivate::sendPostedEvents (receiver=0x0, event_type=&lt;value optimized out&gt;, data=0xeffc90) at kernel/qcoreapplication.cpp:1373
+#25 0x00007f831421a643 in QCoreApplication::sendPostedEvents (s=0xf26bc0) at ../../include/QtCore/../../src/corelib/kernel/qcoreapplication.h:220
+#26 postEventSourceDispatch (s=0xf26bc0) at kernel/qeventdispatcher_glib.cpp:277
+#27 0x00007f830ea5f8c2 in g_main_context_dispatch () from /lib/libglib-2.0.so.0
+#28 0x00007f830ea63748 in ?? () from /lib/libglib-2.0.so.0
+#29 0x00007f830ea638fc in g_main_context_iteration () from /lib/libglib-2.0.so.0
+#30 0x00007f831421a183 in QEventDispatcherGlib::processEvents (this=0xeff3e0, flags=&lt;value optimized out&gt;) at kernel/qeventdispatcher_glib.cpp:415
+#31 0x00007f831319297e in QGuiEventDispatcherGlib::processEvents (this=0x7fffbabc92f0, flags=&lt;value optimized out&gt;) at kernel/qguieventdispatcher_glib.cpp:204
+#32 0x00007f83141ecdd2 in QEventLoop::processEvents (this=&lt;value optimized out&gt;, flags=) at kernel/qeventloop.cpp:149
+#33 0x00007f83141ed1bc in QEventLoop::exec (this=0x7fffbabcaa90, flags=) at kernel/qeventloop.cpp:201
+#34 0x00007f82f6d72c2c in ?? () from /usr/lib/kde4/plugins/kauth/helper/kauth_helper_plugin.so
+#35 0x00007f831636a8dd in KAuth::Action::execute(QString const&amp;) const () from /usr/lib/libkdecore.so.5
+#36 0x00007f831636a92e in KAuth::Action::execute() const () from /usr/lib/libkdecore.so.5
+#37 0x00007f8315f82f1d in Smb4KMounter::mountShare(Smb4KShare*) () from /usr/lib/libsmb4kcore.so.4
+#38 0x00007f82fe333f91 in Smb4KNetworkBrowserPart::qt_metacall(QMetaObject::Call, int, void**) () from /usr/lib/kde4/smb4knetworkbrowser.so
+#39 0x00007f8314205da7 in QMetaObject::activate (sender=0x11768d0, m=&lt;value optimized out&gt;, local_signal_index=&lt;value optimized out&gt;, argv=0xfffffffffff61018) at kernel/qobject.cpp:3280
+#40 0x00007f82fe33473d in Smb4KNetworkBrowser::itemExecuted(QTreeWidgetItem*, int) () from /usr/lib/kde4/smb4knetworkbrowser.so
+#41 0x00007f82fe3352e9 in Smb4KNetworkBrowser::qt_metacall(QMetaObject::Call, int, void**) () from /usr/lib/kde4/smb4knetworkbrowser.so
+#42 0x00007f8314205da7 in QMetaObject::activate (sender=0x11768d0, m=&lt;value optimized out&gt;, local_signal_index=&lt;value optimized out&gt;, argv=0xfffffffffff61018) at kernel/qobject.cpp:3280
+#43 0x00007f83136a5070 in QTreeWidget::itemClicked (this=0x7fffbabc92f0, _t1=0x138cd50, _t2=0) at .moc/release-shared/moc_qtreewidget.cpp:207
+#44 0x00007f83136ac2e8 in QTreeWidget::qt_metacall (this=0x11768d0, _c=QMetaObject::InvokeMetaMethod, _id=&lt;value optimized out&gt;, _a=0x7fffbabcb3e0) at .moc/release-shared/moc_qtreewidget.cpp:150
+#45 0x00007f82fe335250 in Smb4KNetworkBrowser::qt_metacall(QMetaObject::Call, int, void**) () from /usr/lib/kde4/smb4knetworkbrowser.so
+#46 0x00007f8314205da7 in QMetaObject::activate (sender=0x11768d0, m=&lt;value optimized out&gt;, local_signal_index=&lt;value optimized out&gt;, argv=0xfffffffffff61018) at kernel/qobject.cpp:3280
+#47 0x00007f83136247f5 in QAbstractItemView::clicked (this=0x7fffbabc92f0, _t1=&lt;value optimized out&gt;) at .moc/release-shared/moc_qabstractitemview.cpp:331
+#48 0x00007f8313633df4 in QAbstractItemView::mouseReleaseEvent (this=0x11768d0, event=0x7fffbabcc250) at itemviews/qabstractitemview.cpp:1789
+#49 0x00007f831313648e in QWidget::event (this=0x11768d0, event=0x7fffbabcc250) at kernel/qwidget.cpp:8187
+#50 0x00007f83134fce76 in QFrame::event (this=0x11768d0, e=0x7fffbabcc250) at widgets/qframe.cpp:557
+#51 0x00007f8313634abb in QAbstractItemView::viewportEvent (this=0x11768d0, event=0x7fffbabcc250) at itemviews/qabstractitemview.cpp:1619
+#52 0x00007f83136728f5 in QTreeView::viewportEvent (this=0x11768d0, event=0x7fffbabcc250) at itemviews/qtreeview.cpp:1256
+#53 0x00007f83141ed8d7 in QCoreApplicationPrivate::sendThroughObjectEventFilters (this=&lt;value optimized out&gt;, receiver=0x116a5f0, event=0x7fffbabcc250) at kernel/qcoreapplication.cpp:847
+#54 0x00007f83130e06bc in QApplicationPrivate::notify_helper (this=0xf234c0, receiver=0x116a5f0, e=0x7fffbabcc250) at kernel/qapplication.cpp:4392
+#55 0x00007f83130e69fe in QApplication::notify (this=0x7fffbabccf50, receiver=0x116a5f0, e=0x7fffbabcc250) at kernel/qapplication.cpp:3959
+#56 0x00007f8315903926 in KApplication::notify(QObject*, QEvent*) () from /usr/lib/libkdeui.so.5
+#57 0x00007f83141ee0ac in QCoreApplication::notifyInternal (this=0x7fffbabccf50, receiver=0x116a5f0, event=0x7fffbabcc250) at kernel/qcoreapplication.cpp:732
+#58 0x00007f83130e54ae in QCoreApplication::sendEvent (receiver=0x116a5f0, event=0x7fffbabcc250, alienWidget=0x116a5f0, nativeWidget=0x1113ae0, buttonDown=&lt;value optimized out&gt;, 
+    lastMouseReceiver=&lt;value optimized out&gt;, spontaneous=true) at ../../include/QtCore/../../src/corelib/kernel/qcoreapplication.h:215
+#59 QApplicationPrivate::sendMouseEvent (receiver=0x116a5f0, event=0x7fffbabcc250, alienWidget=0x116a5f0, nativeWidget=0x1113ae0, buttonDown=&lt;value optimized out&gt;, 
+    lastMouseReceiver=&lt;value optimized out&gt;, spontaneous=true) at kernel/qapplication.cpp:3058
+#60 0x00007f83131684a5 in QETWidget::translateMouseEvent (this=0x1113ae0, event=&lt;value optimized out&gt;) at kernel/qapplication_x11.cpp:4403
+#61 0x00007f8313166ddc in QApplication::x11ProcessEvent (this=&lt;value optimized out&gt;, event=0x7fffbabccb70) at kernel/qapplication_x11.cpp:3536
+#62 0x00007f8313193012 in x11EventSourceDispatch (s=0xf26de0, callback=&lt;value optimized out&gt;, user_data=&lt;value optimized out&gt;) at kernel/qguieventdispatcher_glib.cpp:146
+#63 0x00007f830ea5f8c2 in g_main_context_dispatch () from /lib/libglib-2.0.so.0
+#64 0x00007f830ea63748 in ?? () from /lib/libglib-2.0.so.0
+#65 0x00007f830ea638fc in g_main_context_iteration () from /lib/libglib-2.0.so.0
+#66 0x00007f831421a183 in QEventDispatcherGlib::processEvents (this=0xeff3e0, flags=&lt;value optimized out&gt;) at kernel/qeventdispatcher_glib.cpp:415
+#67 0x00007f831319297e in QGuiEventDispatcherGlib::processEvents (this=0x7fffbabc92f0, flags=&lt;value optimized out&gt;) at kernel/qguieventdispatcher_glib.cpp:204
+#68 0x00007f83141ecdd2 in QEventLoop::processEvents (this=&lt;value optimized out&gt;, flags=) at kernel/qeventloop.cpp:149
+#69 0x00007f83141ed1bc in QEventLoop::exec (this=0x7fffbabccea0, flags=) at kernel/qeventloop.cpp:201
+#70 0x00007f83141f126b in QCoreApplication::exec () at kernel/qcoreapplication.cpp:1009
+#71 0x000000000040af73 in main ()
+
+Report to <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">smb4k-bugs at lists.berlios.de</A>
+-- 
+Empfehlen Sie GMX DSL Ihren Freunden und Bekannten und wir
+belohnen Sie mit bis zu 50,- Euro! <A HREF="https://freundschaftswerbung.gmx.de">https://freundschaftswerbung.gmx.de</A>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#541">[ date ]</a>
+              <a href="thread.html#541">[ thread ]</a>
+              <a href="subject.html#541">[ subject ]</a>
+              <a href="author.html#541">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

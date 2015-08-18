@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #4929] DCOP error on SuSE 9.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%234929%5D%20DCOP%20error%20on%20SuSE%209.1&In-Reply-To=%3C200809101601.m8AG1XOe024977%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000235.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #4929] DCOP error on SuSE 9.1</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%234929%5D%20DCOP%20error%20on%20SuSE%209.1&In-Reply-To=%3C200809101601.m8AG1XOe024977%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #4929] DCOP error on SuSE 9.1">admin at berlios.de
+       </A><BR>
+    <I>Wed Sep 10 18:01:33 CEST 2008</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000235.html">[Smb4K-bugs] [Bug #2320] Can preview but not mount
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#234">[ date ]</a>
+              <a href="thread.html#234">[ thread ]</a>
+              <a href="subject.html#234">[ subject ]</a>
+              <a href="author.html#234">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #4929, was updated on 2005-Aug-30 17:15
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Closed
+Resolution: Works For Me
+Bug Group: crash
+Priority: 5
+Submitted by: def
+Assigned to : none
+Summary: DCOP error on SuSE 9.1
+
+Details: Hi,
+
+I've sucessfully compiled smb4k 0.6.2 from source on SuSE 9.1. All steps complete successfully. However when I try and launch smb4k from within KDE, &quot;nothing happens&quot;. I try the same from a shell and see the following:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">def at wolverine</A>:~&gt; /opt/kde3/bin/smb4k &amp;
+[1] 21841
+<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">def at wolverine</A>:~&gt; DCOPClient::attachInternal. Attach failed Could not open network socket
+DCOPClient::attachInternal. Attach failed Could not open network socket
+---------------------------------
+It looks like dcopserver is already running. If you are sure
+that it is not already running, remove /home/def/.DCOPserver_wolverine__0
+and start dcopserver again.
+---------------------------------
+
+DCOPClient::attachInternal. Attach failed Could not open network socket
+DCOPClient::attachInternal. Attach failed Could not open network socket
+WARNING: DCOP communication problem!
+kdeinit: Communication error with launcher. Exiting!
+DCOPClient::attachInternal. Attach failed Could not open network socket
+DCOPClient::attachInternal. Attach failed Could not open network socket
+smb4k: ERROR: KUniqueApplication: Can't setup DCOP communication.
+
+[1]+  Exit 255                /opt/kde3/bin/smb4k
+
+
+Thanks!
+
+Follow-Ups:
+
+Date: 2008-Sep-10 18:01
+By: dustpuppy
+
+Comment:
+No reaction of the reporter for more than three years. I guess the problem has been fixed in the meantime. Feel free to reopen.
+-------------------------------------------------------
+
+Date: 2005-Nov-04 10:07
+By: dustpuppy
+
+Comment:
+Does this error still happen this the newest version of Smb4K?
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=4929&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=4929&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000235.html">[Smb4K-bugs] [Bug #2320] Can preview but not mount
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#234">[ date ]</a>
+              <a href="thread.html#234">[ thread ]</a>
+              <a href="subject.html#234">[ subject ]</a>
+              <a href="author.html#234">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] smb4k crashes when trying to manually mount windows	share
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20smb4k%20crashes%20when%20trying%20to%20manually%20mount%20windows%0A%09share&In-Reply-To=%3Cb5abe8171002040449p3c441fbel12cf3fbfba07b564%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000370.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] smb4k crashes when trying to manually mount windows	share</H1>
+    <B>Oleg Fajans</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20smb4k%20crashes%20when%20trying%20to%20manually%20mount%20windows%0A%09share&In-Reply-To=%3Cb5abe8171002040449p3c441fbel12cf3fbfba07b564%40mail.gmail.com%3E"
+       TITLE="[Smb4K-bugs] smb4k crashes when trying to manually mount windows	share">ofajans at gmail.com
+       </A><BR>
+    <I>Thu Feb  4 13:49:50 CET 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000370.html">[Smb4K-bugs] smb4k crashes when trying to manually mount	windows share
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#369">[ date ]</a>
+              <a href="thread.html#369">[ thread ]</a>
+              <a href="subject.html#369">[ subject ]</a>
+              <a href="author.html#369">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Application that crashed: smb4k
+Version of the application: 0.10.2
+KDE Version: 4.3.2 (KDE 4.3.2)
+Qt Version: 4.5.2
+Operating System: Linux 2.6.31-17-generic x86_64
+Distribution: Ubuntu 9.10
+
+What I was doing when the application crashed:
+I authenticated at the remote windows host,  using my domain account.
+Retrieved the list of shares. Tried to manually mount one of the
+shares on this host.
+
+This crach is reproduced each time I try to do this.
+The domain, this host was in is a standard windows domain, implemented
+using windows server 2003 (I guess)
+
+ -- Backtrace:
+Application: Smb4K (smb4k), signal: Segmentation fault
+[KCrash Handler]
+#5  0x00007fdd47531770 in QString::operator=(QString const&amp;) () from
+/usr/lib/libQtCore.so.4
+#6  0x00007fdd49e0ec78 in Smb4KAuthInfo::unc(int) const () from
+/usr/lib/libsmb4kcore.so.3
+#7  0x00007fdd49e54b86 in
+Smb4KWalletManager::readAuthInfo(Smb4KAuthInfo*) () from
+/usr/lib/libsmb4kcore.so.3
+#8  0x00007fdd49e2821d in Smb4KMounter::mount(Smb4KShare const&amp;) ()
+from /usr/lib/libsmb4kcore.so.3
+#9  0x00007fdd49e294c1 in Smb4KMounter::timerEvent(QTimerEvent*) ()
+from /usr/lib/libsmb4kcore.so.3
+#10 0x00007fdd475e3d83 in QObject::event(QEvent*) () from
+/usr/lib/libQtCore.so.4
+#11 0x00007fdd47cd8efc in QApplicationPrivate::notify_helper(QObject*,
+QEvent*) () from /usr/lib/libQtGui.so.4
+#12 0x00007fdd47ce01ce in QApplication::notify(QObject*, QEvent*) ()
+from /usr/lib/libQtGui.so.4
+#13 0x00007fdd497deab6 in KApplication::notify(QObject*, QEvent*) ()
+from /usr/lib/libkdeui.so.5
+#14 0x00007fdd475d4c2c in QCoreApplication::notifyInternal(QObject*,
+QEvent*) () from /usr/lib/libQtCore.so.4
+#15 0x00007fdd475ff862 in ?? () from /usr/lib/libQtCore.so.4
+#16 0x00007fdd475fd25d in ?? () from /usr/lib/libQtCore.so.4
+#17 0x00007fdd43aecbce in g_main_context_dispatch () from /lib/libglib-2.0.so.0
+#18 0x00007fdd43af0598 in ?? () from /lib/libglib-2.0.so.0
+#19 0x00007fdd43af06c0 in g_main_context_iteration () from /lib/libglib-2.0.so.0
+#20 0x00007fdd475fd1a6 in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+() from /usr/lib/libQtCore.so.4
+#21 0x00007fdd47d6d4be in ?? () from /usr/lib/libQtGui.so.4
+#22 0x00007fdd475d3532 in
+QEventLoop::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) ()
+from /usr/lib/libQtCore.so.4
+#23 0x00007fdd475d3904 in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) () from
+/usr/lib/libQtCore.so.4
+#24 0x00007fdd475d5ab9 in QCoreApplication::exec() () from
+/usr/lib/libQtCore.so.4
+#25 0x000000000040bdd4 in _start ()
+
+Report to <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">smb4k-bugs at lists.berlios.de</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000370.html">[Smb4K-bugs] smb4k crashes when trying to manually mount	windows share
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#369">[ date ]</a>
+              <a href="thread.html#369">[ thread ]</a>
+              <a href="subject.html#369">[ subject ]</a>
+              <a href="author.html#369">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

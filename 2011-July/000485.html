@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #18231] smb4k crashes when double clicking to	open domain share
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2318231%5D%20smb4k%20crashes%20when%20double%20clicking%20to%0A%09open%20domain%20share&In-Reply-To=%3C201107160714.p6G7E0hm001782%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000484.html">
+   <LINK REL="Next"  HREF="000486.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #18231] smb4k crashes when double clicking to	open domain share</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2318231%5D%20smb4k%20crashes%20when%20double%20clicking%20to%0A%09open%20domain%20share&In-Reply-To=%3C201107160714.p6G7E0hm001782%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #18231] smb4k crashes when double clicking to	open domain share">admin at berlios.de
+       </A><BR>
+    <I>Sat Jul 16 09:14:00 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000484.html">[Smb4K-bugs] [Bug #18231] smb4k crashes when double clicking to	open domain share
+</A></li>
+        <LI>Next message: <A HREF="000486.html">[Smb4K-bugs] [Bug #18231] smb4k crashes when double clicking to	open domain share
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#485">[ date ]</a>
+              <a href="thread.html#485">[ thread ]</a>
+              <a href="subject.html#485">[ subject ]</a>
+              <a href="author.html#485">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #18231, was updated on 2011-Jul-12 21:18
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: crash
+Priority: 5
+Submitted by: ronaldvr
+Assigned to : none
+Summary: smb4k crashes when double clicking to open domain share
+
+Details: (Oddly enough I downloaded 10.70 in file smb4k-0.10.70, but both the about and the crash window report 10.69)
+
+This behaviour has been occurring intermittently, I was able to reset it a few times by resetting all options to default, but not any more now. (I even deleted all files from ~/.kde/share/apps/smb4k)
+
+When I open the Network Neighbourhood, and browse to my server, as soon as I click the server name, smb4k crashes. Trace:
+
+Application: smb4k (0.10.69)
+KDE Platform Version: 4.5.3 (KDE 4.5.3)
+Qt Version: 4.7.0
+Operating System: Linux 2.6.32-33-generic x86_64
+Distribution: Ubuntu 10.04.2 LTS
+
+-- Information about the crash:
+&lt;In detail, tell us what you were doing  when the application crashed.&gt;
+
+The crash can be reproduced every time.
+
+-- Backtrace:
+Application: Smb4K (smb4k), signal: Aborted
+[Current thread is 1 (Thread 0x7f83ae1bc760 (LWP 16639))]
+
+Thread 2 (Thread 0x7f839cfb4700 (LWP 16646)):
+#0  0x00007f83a9cd1f93 in *__GI___poll (fds=&lt;value optimized out&gt;, nfds=&lt;value optimized out&gt;, timeout=-1) at ../sysdeps/unix/sysv/linux/poll.c:87
+#1  0x00007f83a65734a9 in ?? () from /lib/libglib-2.0.so.0
+#2  0x00007f83a65738fc in g_main_context_iteration () from /lib/libglib-2.0.so.0
+#3  0x00007f83abd2a1d6 in QEventDispatcherGlib::processEvents (this=0x1511770, flags=&lt;value optimized out&gt;) at kernel/qeventdispatcher_glib.cpp:417
+#4  0x00007f83abcfcdd2 in QEventLoop::processEvents (this=&lt;value optimized out&gt;, flags=) at kernel/qeventloop.cpp:149
+#5  0x00007f83abcfd1bc in QEventLoop::exec (this=0x7f839cfb3db0, flags=) at kernel/qeventloop.cpp:201
+#6  0x00007f83abc0836d in QThread::exec (this=&lt;value optimized out&gt;) at thread/qthread.cpp:490
+#7  0x00007f83abcdcb48 in QInotifyFileSystemWatcherEngine::run (this=0x176eef0) at io/qfilesystemwatcher_inotify.cpp:248
+#8  0x00007f83abc0b2ee in QThreadPrivate::start (arg=0x176eef0) at thread/qthread_unix.cpp:266
+#9  0x00007f83ab9799ca in start_thread (arg=&lt;value optimized out&gt;) at pthread_create.c:300
+#10 0x00007f83a9cde70d in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:112
+#11 0x0000000000000000 in ?? ()
+
+Thread 1 (Thread 0x7f83ae1bc760 (LWP 16639)):
+[KCrash Handler]
+#6  0x00007f83a9c2ba75 in *__GI_raise (sig=&lt;value optimized out&gt;) at ../nptl/sysdeps/unix/sysv/linux/raise.c:64
+#7  0x00007f83a9c2f5c0 in *__GI_abort () at abort.c:92
+#8  0x00007f83abc028e4 in qt_message_output (msgType=QtFatalMsg, buf=&lt;value optimized out&gt;) at global/qglobal.cpp:2259
+#9  0x00007f83abc02ac2 in qt_message (msgType=QtFatalMsg, msg=0x7f83abd63dd8 &quot;ASSERT failure in %s: \&quot;%s\&quot;, file %s, line %d&quot;, ap=0x7fffce2a2fc0) at global/qglobal.cpp:2305
+#10 0x00007f83abc02c75 in qFatal (msg=0x40ff &lt;Address 0x40ff out of bounds&gt;) at global/qglobal.cpp:2488
+#11 0x00007f83ad86119f in QList&lt;Smb4KShare*&gt;::at (this=0x7fffce2a3220, i=1) at /usr/include/qt4/QtCore/qlist.h:455
+#12 0x00007f83ad897ebb in Smb4KScanner::slotShares (this=&lt;value optimized out&gt;, host=&lt;value optimized out&gt;, shares_list=&lt;value optimized out&gt;)
+    at /tmp/smb4k-0.10.70/smb4k-0.10.70/core/smb4kscanner.cpp:1192
+#13 0x00007f83ad899fc6 in Smb4KScanner::qt_metacall (this=0x15b3e20, _c=QMetaObject::InvokeMetaMethod, _id=&lt;value optimized out&gt;, _a=0x7fffce2a33c0)
+    at /tmp/smb4k-0.10.70/smb4k-0.10.70/core/smb4kscanner.moc:150
+#14 0x00007f83abd15da7 in QMetaObject::activate (sender=0x17429a0, m=&lt;value optimized out&gt;, local_signal_index=&lt;value optimized out&gt;, argv=0xffffffffffffffff) at kernel/qobject.cpp:3280
+#15 0x00007f83ad89bb87 in Smb4KLookupSharesJob::shares (this=0x40ff, _t1=0x17429c0, _t2=&lt;value optimized out&gt;) at /tmp/smb4k-0.10.70/smb4k-0.10.70/core/smb4kscanner_p.moc:527
+#16 0x00007f83ad8a02ba in Smb4KLookupSharesJob::processShares (this=0x17429a0) at /tmp/smb4k-0.10.70/smb4k-0.10.70/core/smb4kscanner_p.cpp:1916
+#17 0x00007f83ad8a0425 in Smb4KLookupSharesJob::slotProcessFinished (this=0x17429a0, exitStatus=6) at /tmp/smb4k-0.10.70/smb4k-0.10.70/core/smb4kscanner_p.cpp:2161
+#18 0x00007f83ad8a056a in Smb4KLookupSharesJob::qt_metacall (this=0x17429a0, _c=QMetaObject::InvokeMetaMethod, _id=&lt;value optimized out&gt;, _a=0x7fffce2a3cc0)
+    at /tmp/smb4k-0.10.70/smb4k-0.10.70/core/smb4kscanner_p.moc:501
+#19 0x00007f83abd15da7 in QMetaObject::activate (sender=0x1b896a0, m=&lt;value optimized out&gt;, local_signal_index=&lt;value optimized out&gt;, argv=0xffffffffffffffff) at kernel/qobject.cpp:3280
+#20 0x00007f83abc9723f in QProcess::finished (this=0x40ff, _t1=0, _t2=QProcess::NormalExit) at .moc/release-shared/moc_qprocess.cpp:142
+#21 0x00007f83abc9bf87 in QProcessPrivate::_q_processDied (this=0x18a7950) at io/qprocess.cpp:1051
+#22 0x00007f83abc9c509 in QProcess::qt_metacall (this=0x1b896a0, _c=QMetaObject::InvokeMetaMethod, _id=&lt;value optimized out&gt;, _a=0x7fffce2a3e70) at .moc/release-shared/moc_qprocess.cpp:115
+#23 0x00007f83adc187a8 in KProcess::qt_metacall (this=0x40ff, _c=16639, _id=6, _a=0xffffffffffffffff) at ./kprocess.moc:69
+#24 0x00007f83abd15da7 in QMetaObject::activate (sender=0x19c1910, m=&lt;value optimized out&gt;, local_signal_index=&lt;value optimized out&gt;, argv=0xffffffffffffffff) at kernel/qobject.cpp:3280
+#25 0x00007f83abd6184e in QSocketNotifier::activated (this=0x40ff, _t1=25) at .moc/release-shared/moc_qsocketnotifier.cpp:89
+#26 0x00007f83abd1a8d3 in QSocketNotifier::event (this=0x19c1910, e=0x7fffce2a4520) at kernel/qsocketnotifier.cpp:317
+#27 0x00007f83aabf06ec in QApplicationPrivate::notify_helper (this=0x13d7740, receiver=0x19c1910, e=0x7fffce2a4520) at kernel/qapplication.cpp:4396
+#28 0x00007f83aabf61dd in QApplication::notify (this=0x7fffce2a4810, receiver=0x19c1910, e=0x7fffce2a4520) at kernel/qapplication.cpp:4277
+#29 0x00007f83ad413926 in KApplication::notify (this=0x7fffce2a4810, receiver=0x19c1910, event=0x7fffce2a4520) at ../../kdeui/kernel/kapplication.cpp:310
+#30 0x00007f83abcfe0ac in QCoreApplication::notifyInternal (this=0x7fffce2a4810, receiver=0x19c1910, event=0x7fffce2a4520) at kernel/qcoreapplication.cpp:732
+#31 0x00007f83abd2a53a in QCoreApplication::sendEvent (source=0x13db120) at ../../include/QtCore/../../src/corelib/kernel/qcoreapplication.h:215
+#32 socketNotifierSourceDispatch (source=0x13db120) at kernel/qeventdispatcher_glib.cpp:110
+#33 0x00007f83a656f8c2 in g_main_context_dispatch () from /lib/libglib-2.0.so.0
+#34 0x00007f83a6573748 in ?? () from /lib/libglib-2.0.so.0
+#35 0x00007f83a65738fc in g_main_context_iteration () from /lib/libglib-2.0.so.0
+#36 0x00007f83abd2a183 in QEventDispatcherGlib::processEvents (this=0x13b33e0, flags=&lt;value optimized out&gt;) at kernel/qeventdispatcher_glib.cpp:415
+#37 0x00007f83aaca297e in QGuiEventDispatcherGlib::processEvents (this=0x40ff, flags=&lt;value optimized out&gt;) at kernel/qguieventdispatcher_glib.cpp:204
+#38 0x00007f83abcfcdd2 in QEventLoop::processEvents (this=&lt;value optimized out&gt;, flags=) at kernel/qeventloop.cpp:149
+#39 0x00007f83abcfd1bc in QEventLoop::exec (this=0x7fffce2a4780, flags=) at kernel/qeventloop.cpp:201
+#40 0x00007f83abd0126b in QCoreApplication::exec () at kernel/qcoreapplication.cpp:1009
+#41 0x000000000040b912 in _start ()
+
+
+
+Follow-Ups:
+
+Date: 2011-Jul-16 09:13
+By: ronaldvr
+
+Comment:
+After resetting all settings to default and a reboot, I was able to get it to work again: It obviously is connected to changing some setting. I think it may be the&quot;client character set&quot; in Samba (I set it to UTF8, and my $lang says en_US.UTF-8 so should work...), then again it may be due to changing any setting: I just tried it again, and now it again keeps on crashing...
+-------------------------------------------------------
+
+Date: 2011-Jul-15 08:29
+By: dustpuppy
+
+Comment:
+I just check and obviously I forgot to switch the version number before making Smb4K 0.10.70 available. So, it indeed reports version 0.10.69...
+
+I'm currently investigating the problem. It seems that there is an issue with null pointer access or similar.
+
+Thank you for reporting this issue.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18231&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18231&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000484.html">[Smb4K-bugs] [Bug #18231] smb4k crashes when double clicking to	open domain share
+</A></li>
+	<LI>Next message: <A HREF="000486.html">[Smb4K-bugs] [Bug #18231] smb4k crashes when double clicking to	open domain share
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#485">[ date ]</a>
+              <a href="thread.html#485">[ thread ]</a>
+              <a href="subject.html#485">[ subject ]</a>
+              <a href="author.html#485">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

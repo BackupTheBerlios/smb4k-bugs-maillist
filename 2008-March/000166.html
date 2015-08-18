@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] Bug bei Version 0.9.3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20Bug%20bei%20Version%200.9.3&In-Reply-To=%3C200803021029.37963.alexander.reinholdt%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000167.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] Bug bei Version 0.9.3</H1>
+    <B>Alexander Reinholdt</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20Bug%20bei%20Version%200.9.3&In-Reply-To=%3C200803021029.37963.alexander.reinholdt%40web.de%3E"
+       TITLE="[Smb4K-bugs] Bug bei Version 0.9.3">alexander.reinholdt at web.de
+       </A><BR>
+    <I>Sun Mar  2 10:29:37 CET 2008</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000167.html">[Smb4K-bugs] [Bug #12707] SMB4K hangs on starting automatically	with KDE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#166">[ date ]</a>
+              <a href="thread.html#166">[ thread ]</a>
+              <a href="subject.html#166">[ subject ]</a>
+              <a href="author.html#166">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>--- German version (English below) ---
+
+Hallo!
+
+Ich gehe davon aus, dass Sie die Quellen selbst &#252;bersetzt haben. 
+
+Der Fehler, den Sie erhalten, entsteht dann, wenn die Bibliotheken nicht 
+unterhalb des in der Variable KDEDIR definierten Verzeichnisses installiert 
+sind. Benutzen Sie f&#252;r Smb4K ein anderes als das Standardverzeichnis? Sollte 
+das so sein, dann empfehle ich Ihnen, entweder in der Datei ~/.bashrc die 
+KDEDIRS Variable zu setzen
+
+export KDEDIRS=$KDEDIR:&lt;Basisverzeichnis in dem Smb4K liegt&gt;
+
+oder die Quellen direkt mit dem Standardpfad zu konfigurieren
+
+$ ./configure --prefix=`kde-config --prefix` ...
+
+Sollten Sie bereits das Standardverzeichnis nutzen, k&#246;nnten Sie mir dann bitte 
+sagen, welche Distribution Sie benutzen?
+
+Das Problem der ruinierten /etc/sudoers ist bekannt und sollte seit Version 
+0.8.7 beseitigt sein. Sollten Sie diesen Fehler immernoch vorfinden, dann 
+schicken Sie mir doch bitte eine (von geheimen Daten bereinigte) Kopie 
+der /etc/sudoers, damit ich das Problem identifizieren und entfernen kann.
+
+Smb4K hat bisher noch keine Notebookunterst&#252;tzung, sie wird aber in absehbarer 
+Zeit hinzugef&#252;gt.
+
+Viele Gr&#252;&#223;e
+Alexander Reinholdt
+
+
+--- English version ---
+
+Hello!
+
+I assume you compiled the source yourself.
+
+The error message you received occurrs when the libraries are not located 
+under the prefix that is defined by the KDEDIR environment variable. Do you 
+use a different directory for Smb4K? If so, I suggest that you either set the 
+KDEDIRS environment variable in your ~/.bashrc file
+
+export KDEDIRS=$KDEDIR:&lt;prefix under which Smb4K is located&gt;
+
+or compile the source code with KDE's prefix directly
+
+$ ./configure --prefix=`kde-config --prefix` ...
+
+If you already use the default prefix, could you please tell me the 
+distribution you are using?
+
+The problem of the corrupted /etc/sudoers file is known and should be fixed 
+since version 0.8.7. If you still experience this bug, could you please send 
+me a (sanitized) copy of your /etc/sudoers so that I can identify and fix the 
+problem.
+
+Smb4K does not have laptop support at the moment, but it will be included in 
+the near future.
+
+Best regards
+Alexander Reinholdt
+
+Am Freitag 29 Februar 2008 schrieb Dr. A. Willand:
+&gt;<i> Hallo,
+</I>&gt;<i>
+</I>&gt;<i> I guess you understand German, if not, please protest...
+</I>&gt;<i>
+</I>&gt;<i> Ich habe die am 24.2.2008 ver&#246;ffentlichte Version 0.9.3 runtergeladen,
+</I>&gt;<i> kompiliert und installiert. Sie funktioniert auch, aber man kommt nicht
+</I>&gt;<i> mehr an die Einstellungen / smb4k einrichten heran:
+</I>&gt;<i>
+</I>&gt;<i> &#187;Bibliotheksdateien libsmb4kconfigdialog.la sind nicht in den Pfaden
+</I>&gt;<i> auffindbar.&#171;
+</I>&gt;<i>
+</I>&gt;<i> Das bleibt so auch nach einem reboot.
+</I>&gt;<i>
+</I>&gt;<i> &#220;brigens hat smb4k schon &#246;fters meine /etc/sudoers -- Datei durch
+</I>&gt;<i> eingef&#252;gte Zeilenumbr&#252;che ruiniert. Ach ja, und man muss f&#252;r jeden Namen,
+</I>&gt;<i> den mein Notebook in irgendwelchen Netzen bekommt, den Namen in der sudoers
+</I>&gt;<i> - Datei eintragen (am besten per Hand, sonst muss man die Umbr&#252;che
+</I>&gt;<i> reparieren...).
+</I>&gt;<i>
+</I>&gt;<i> Ansonsten vielen Dank f&#252;r das sch&#246;ne und f&#252;r mich konkurrenzlose Programm,
+</I>&gt;<i>
+</I>&gt;<i> Gru&#223;,
+</I>&gt;<i> A. Willand
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Smb4K-bugs mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">Smb4K-bugs at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">https://lists.berlios.de/mailman/listinfo/smb4k-bugs</A>
+</I>
+
+
+-- 
+&quot;Never argue with idiots. They drag you down to their level and beat you with
+experience...&quot; (unknown)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000167.html">[Smb4K-bugs] [Bug #12707] SMB4K hangs on starting automatically	with KDE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#166">[ date ]</a>
+              <a href="thread.html#166">[ thread ]</a>
+              <a href="subject.html#166">[ subject ]</a>
+              <a href="author.html#166">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

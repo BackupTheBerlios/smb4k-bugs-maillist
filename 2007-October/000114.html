@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2007-October/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2312262%5D%20Breaks%20sudo%20in%20openSUSE&In-Reply-To=%3C200710232132.l9NLWjU7028120%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000113.html">
+   <LINK REL="Next"  HREF="000115.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2312262%5D%20Breaks%20sudo%20in%20openSUSE&In-Reply-To=%3C200710232132.l9NLWjU7028120%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE">admin at berlios.de
+       </A><BR>
+    <I>Tue Oct 23 23:32:45 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000113.html">[Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE
+</A></li>
+        <LI>Next message: <A HREF="000115.html">[Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#114">[ date ]</a>
+              <a href="thread.html#114">[ thread ]</a>
+              <a href="subject.html#114">[ subject ]</a>
+              <a href="author.html#114">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #12262, was updated on 2007-Oct-23 13:14
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: fingerprint64
+Assigned to : none
+Summary: Breaks sudo in openSUSE
+
+Details: I use smb4k to mount my NAS drive. I'm just installed openSUSE 10.3 on a test machine. Under settings, the sudo is selected and I also check the &quot;Use super user privileges to mount and unmount shares&quot; option.
+
+Once this has been set, I enter all required passwords. From that point onwards, sudo no longer works giving me the following error: &quot;su return with an error&quot; every time I launch a programme that requires the root password. the su command still works from the console.
+
+When I type sudo from in console, a message informing me that the sudoers file is out of sync. I have also opened the file and it is blank.
+
+The only way I can find to get sudo to work again is by doing a repair-install.
+
+Follow-Ups:
+
+Date: 2007-Oct-23 13:32
+By: fingerprint64
+
+Comment:
+Found the error when running the sudo command from console:
+&gt;&gt;&gt;<i> sudoers file: syntax error, line 26 &lt;&lt;&lt;
+</I>sudo: parse error in /etc/sudoers near line 26
+
+Upon checking the file, it is empty (????)
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12262&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12262&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000113.html">[Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE
+</A></li>
+	<LI>Next message: <A HREF="000115.html">[Smb4K-bugs] [Bug #12262] Breaks sudo in openSUSE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#114">[ date ]</a>
+              <a href="thread.html#114">[ thread ]</a>
+              <a href="subject.html#114">[ subject ]</a>
+              <a href="author.html#114">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

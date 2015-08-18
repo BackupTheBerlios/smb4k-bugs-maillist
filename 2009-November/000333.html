@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] smb4k bug report
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20smb4k%20bug%20report&In-Reply-To=%3C4AFC540F.2080008%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000332.html">
+   <LINK REL="Next"  HREF="000334.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] smb4k bug report</H1>
+    <B>Edino Moniz</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20smb4k%20bug%20report&In-Reply-To=%3C4AFC540F.2080008%40gmail.com%3E"
+       TITLE="[Smb4K-bugs] smb4k bug report">edinomoniz at gmail.com
+       </A><BR>
+    <I>Thu Nov 12 19:29:35 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000332.html">[Smb4K-bugs] [Bug #16402] smb4k crashes when denying access to	kwallet
+</A></li>
+        <LI>Next message: <A HREF="000334.html">[Smb4K-bugs] smb4k bug report
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#333">[ date ]</a>
+              <a href="thread.html#333">[ thread ]</a>
+              <a href="subject.html#333">[ subject ]</a>
+              <a href="author.html#333">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Application that crashed: smb4k
+Version of the application: 0.10.2
+KDE Version: 4.3.2 (KDE 4.3.2)
+Qt Version: 4.5.2
+Operating System: Linux 2.6.31-14-generic x86_64
+Distribution: Ubuntu 9.10
+
+What I was doing when the application crashed:
+&lt;In detail, tell us what you were doing  when the application crashed.&gt;
+
+ -- Backtrace:
+Application: Smb4K (smb4k), signal: Segmentation fault
+[KCrash Handler]
+#5  QBasicAtomicInt::deref (this=0x1c17338, other=...) at
+../../include/QtCore/../../src/corelib/arch/qatomic_x86_64.h:133
+#6  QString::operator= (this=0x1c17338, other=...) at tools/qstring.cpp:1132
+#7  0x00007f161915bc78 in Smb4KAuthInfo::unc(int) const () from
+/usr/lib/libsmb4kcore.so.3
+#8  0x00007f16191a1ba7 in
+Smb4KWalletManager::readAuthInfo(Smb4KAuthInfo*) () from
+/usr/lib/libsmb4kcore.so.3
+#9  0x00007f161918ef9b in Smb4KScanner::scanForShares(Smb4KHost const&amp;)
+() from /usr/lib/libsmb4kcore.so.3
+#10 0x00007f16191936ea in Smb4KScanner::timerEvent(QTimerEvent*) () from
+/usr/lib/libsmb4kcore.so.3
+#11 0x00007f1616930d83 in QObject::event (this=0x1f3c170,
+e=0x7fff58798020) at kernel/qobject.cpp:1075
+#12 0x00007f1617025efc in QApplicationPrivate::notify_helper
+(this=0x1bcb290, receiver=0x1f3c170, e=0x7fff58798d90) at
+kernel/qapplication.cpp:4056
+#13 0x00007f161702d1ce in QApplication::notify (this=0x7fff587990e0,
+receiver=0x1f3c170, e=0x7fff58798d90) at kernel/qapplication.cpp:4021
+#14 0x00007f1618b2bab6 in KApplication::notify (this=0x7fff587990e0,
+receiver=0x1f3c170, event=0x7fff58798d90) at
+../../kdeui/kernel/kapplication.cpp:302
+#15 0x00007f1616921c2c in QCoreApplication::notifyInternal
+(this=0x7fff587990e0, receiver=0x1f3c170, event=0x7fff58798d90) at
+kernel/qcoreapplication.cpp:610
+#16 0x00007f161694c862 in QCoreApplication::sendEvent (this=0x1bc57c0)
+at ../../include/QtCore/../../src/corelib/kernel/qcoreapplication.h:213
+#17 QTimerInfoList::activateTimers (this=0x1bc57c0) at
+kernel/qeventdispatcher_unix.cpp:572
+#18 0x00007f161694a25d in timerSourceDispatch (source=&lt;value optimized
+out&gt;) at kernel/qeventdispatcher_glib.cpp:165
+#19 0x00007f1612e39bbe in g_main_context_dispatch () from
+/lib/libglib-2.0.so.0
+#20 0x00007f1612e3d588 in ?? () from /lib/libglib-2.0.so.0
+#21 0x00007f1612e3d6b0 in g_main_context_iteration () from
+/lib/libglib-2.0.so.0
+#22 0x00007f161694a1a6 in QEventDispatcherGlib::processEvents
+(this=0x1b99d20, flags=&lt;value optimized out&gt;) at
+kernel/qeventdispatcher_glib.cpp:327
+#23 0x00007f16170ba4be in QGuiEventDispatcherGlib::processEvents
+(this=0x1c17338, flags=&lt;value optimized out&gt;) at
+kernel/qguieventdispatcher_glib.cpp:202
+#24 0x00007f1616920532 in QEventLoop::processEvents (this=&lt;value
+optimized out&gt;, flags=) at kernel/qeventloop.cpp:149
+#25 0x00007f1616920904 in QEventLoop::exec (this=0x7fff58799030, flags=)
+at kernel/qeventloop.cpp:201
+#26 0x00007f1616922ab9 in QCoreApplication::exec () at
+kernel/qcoreapplication.cpp:888
+#27 0x000000000040bdd4 in _start ()
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (GNU/Linux)
+Comment: Using GnuPG with Mozilla - <A HREF="http://enigmail.mozdev.org">http://enigmail.mozdev.org</A>
+
+iEYEARECAAYFAkr8VA8ACgkQM6GH2/BVGpdLuACfT7k6htJzxT3upCCzwNdBK81m
+MsIAn1bkMPiD5Bs8gB85UND2nejLz1WF
+=qhnT
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000332.html">[Smb4K-bugs] [Bug #16402] smb4k crashes when denying access to	kwallet
+</A></li>
+	<LI>Next message: <A HREF="000334.html">[Smb4K-bugs] smb4k bug report
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#333">[ date ]</a>
+              <a href="thread.html#333">[ thread ]</a>
+              <a href="subject.html#333">[ subject ]</a>
+              <a href="author.html#333">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

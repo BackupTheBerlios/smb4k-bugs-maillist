@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] smb4k
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20smb4k&In-Reply-To=%3C200809142038.09286.alexander.reinholdt%40t-online.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000236.html">
+   <LINK REL="Next"  HREF="000238.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] smb4k</H1>
+    <B>Alexander Reinholdt</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20smb4k&In-Reply-To=%3C200809142038.09286.alexander.reinholdt%40t-online.de%3E"
+       TITLE="[Smb4K-bugs] smb4k">alexander.reinholdt at t-online.de
+       </A><BR>
+    <I>Sun Sep 14 20:38:09 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000236.html">[Smb4K-bugs] smb4k
+</A></li>
+        <LI>Next message: <A HREF="000238.html">[Smb4K-bugs] Grave bug
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#237">[ date ]</a>
+              <a href="thread.html#237">[ thread ]</a>
+              <a href="subject.html#237">[ subject ]</a>
+              <a href="author.html#237">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello!
+
+First the easy part: Smb4K is a KDE program, but it works also within GNOME. 
+However, it will use KDE applications e.g. to show the contents of the 
+shares, etc.
+
+Now to your problem: I never experienced the error message you reported, so I 
+had to google for an answer. I found several threads that discuss the 
+problem. As far as I can see, the error message NT_STATUS_DUPLICATE_NAME 
+might be caused either because you have two servers with the same name or one 
+server with two IP addresses. Is that the case?
+
+Here are two threads that might be of some help:
+<A HREF="http://www.linuxquestions.org/questions/linux-networking-3/smbclient-cannot-connect-200970/">http://www.linuxquestions.org/questions/linux-networking-3/smbclient-cannot-connect-200970/</A>
+<A HREF="http://www.backupcentral.com/phpBB2/two-way-mirrors-of-external-mailing-lists-3/backuppc-21/new-member-92158/">http://www.backupcentral.com/phpBB2/two-way-mirrors-of-external-mailing-lists-3/backuppc-21/new-member-92158/</A>
+
+By the way, have you configured Samba?
+
+Best regards,
+Alexander
+
+Am Sunday 14 September 2008 05:00:18 schrieb Hidetomi Mimura:
+&gt;<i> Hi,
+</I>&gt;<i> &#160;
+</I>&gt;<i> I'm new to Linux and am trying to lean it.&#160;Since I'm running Windows file
+</I>&gt;<i> server, I would like to share files between Windows and Linux.&#160; I googled
+</I>&gt;<i> it and found that your SMB4K fits my interest and installed it on Fedora 9.
+</I>&gt;<i> 
+</I>&gt;<i> I&#160;got an error from&#160;smb4k, version 0.9.6 3/5/916.fc9 Fedor, Fedora release
+</I>&gt;<i> 9 (Sulphur), OS Linux (i686) release 2.6.25.14-108.fc9.i686. 
+</I>&gt;<i> After successfully install&#160;it, I brought up SMB4K GUI,&#160; I clicked WORKGROUP
+</I>&gt;<i> to get my Windows shares to show up.&#160; Instead of getting share names, I got
+</I>&gt;<i> a opo-up error window, and it says &quot;Could not connect to server IS-COAST&quot;
+</I>&gt;<i> and &quot;Connection failed: NT_STATUS_DUPLICATE_NAME&quot;.&#160; COAST is my Windows
+</I>&gt;<i> 2000 file server, and there are 11 Windows shares that are advertised. 
+</I>&gt;<i> First question is that does SMB4K works with GNOME since your ABOUT page
+</I>&gt;<i> references KDE desktop? 
+</I>&gt;<i> Second question is how to resolve the problem so that I can map the Windows
+</I>&gt;<i> shares. 
+</I>&gt;<i> Thank you,
+</I>&gt;<i> Hide Mimura
+</I>
+
+
+-- 
+&quot;Never argue with idiots. They drag you down to their level and beat you with 
+experience...&quot; (unknown)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000236.html">[Smb4K-bugs] smb4k
+</A></li>
+	<LI>Next message: <A HREF="000238.html">[Smb4K-bugs] Grave bug
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#237">[ date ]</a>
+              <a href="thread.html#237">[ thread ]</a>
+              <a href="subject.html#237">[ subject ]</a>
+              <a href="author.html#237">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #16402] smb4k crashes when denying access to	kwallet
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2316402%5D%20smb4k%20crashes%20when%20denying%20access%20to%0A%09kwallet&In-Reply-To=%3C201001310652.o0V6qcJf026190%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000367.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #16402] smb4k crashes when denying access to	kwallet</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2316402%5D%20smb4k%20crashes%20when%20denying%20access%20to%0A%09kwallet&In-Reply-To=%3C201001310652.o0V6qcJf026190%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #16402] smb4k crashes when denying access to	kwallet">admin at berlios.de
+       </A><BR>
+    <I>Sun Jan 31 07:52:38 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000367.html">[Smb4K-bugs] [Bug #15898] When not using kwallet for auth,	mount shares always errors
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#368">[ date ]</a>
+              <a href="thread.html#368">[ thread ]</a>
+              <a href="subject.html#368">[ subject ]</a>
+              <a href="author.html#368">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #16402, was updated on 2009-Nov-03 21:49
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Closed
+Resolution: Fixed
+Bug Group: crash
+Priority: 5
+Submitted by: piovisqui
+Assigned to : none
+Summary: smb4k crashes when denying access to kwallet
+
+Details: Hi.
+
+The program crashes when I deny it's access to kwallet. Also, I can not login with domain account, since even using domain\username the server deny my access. There is no option to specify a domain at login.
+
+Well, I'm posting the link to the bug at launchpad because Kubuntu made a 14MB backtrace from the crash automatically. Please forgive me for not reposting it full here.
+
+<A HREF="https://bugs.launchpad.net/ubuntu/+source/smb4k/+bug/473309">https://bugs.launchpad.net/ubuntu/+source/smb4k/+bug/473309</A>
+
+Follow-Ups:
+
+Date: 2010-Jan-31 07:52
+By: dustpuppy
+
+Comment:
+I just noticed from the backtrace on launchpad that this is the well known crash in Smb4KAuthInfo::unc() that was fixed in Smb4K 0.10.3/0.10.4. Thus, I close this bug. Please reopen if this issue persists.
+-------------------------------------------------------
+
+Date: 2010-Jan-27 07:53
+By: dustpuppy
+
+Comment:
+Any news? Is Smb4K still crashing?
+-------------------------------------------------------
+
+Date: 2009-Nov-04 14:49
+By: dustpuppy
+
+Comment:
+Please install the kdelibs5-dev package. It contains the missing file.
+-------------------------------------------------------
+
+Date: 2009-Nov-04 13:44
+By: piovisqui
+
+Comment:
+I'm trying to compile the source, but I have this error:
+
+CMake Error at /usr/share/cmake-2.6/Modules/FindKDE4.cmake:84 (MESSAGE):
+  ERROR: cmake/modules/FindKDE4Internal.cmake not found in
+  /home/filipe/.kde/share/apps;/usr/share/kubuntu-default-settings/kde4-profile/default/share/apps;/usr/share/kde4/apps
+Call Stack (most recent call first):
+  CMakeLists.txt:10 (find_package)
+
+
+Maybe some library missing??
+-------------------------------------------------------
+
+Date: 2009-Nov-04 07:33
+By: dustpuppy
+
+Comment:
+The crash in Smb4KWalletManager was fixed in Smb4K 0.10.4, that is available from your home page: <A HREF="http://smb4k.berlios.de.">http://smb4k.berlios.de.</A> Could you please try it and report if your issue still persists?
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16402&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16402&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000367.html">[Smb4K-bugs] [Bug #15898] When not using kwallet for auth,	mount shares always errors
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#368">[ date ]</a>
+              <a href="thread.html#368">[ thread ]</a>
+              <a href="subject.html#368">[ subject ]</a>
+              <a href="author.html#368">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

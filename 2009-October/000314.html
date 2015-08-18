@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #16312] smb4k crash during launch
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2316312%5D%20smb4k%20crash%20during%20launch&In-Reply-To=%3C200910011303.53499.alexander.reinholdt%40t-online.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000313.html">
+   <LINK REL="Next"  HREF="000315.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #16312] smb4k crash during launch</H1>
+    <B>Alexander Reinholdt</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2316312%5D%20smb4k%20crash%20during%20launch&In-Reply-To=%3C200910011303.53499.alexander.reinholdt%40t-online.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #16312] smb4k crash during launch">alexander.reinholdt at t-online.de
+       </A><BR>
+    <I>Thu Oct  1 13:03:53 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000313.html">[Smb4K-bugs] [Bug #16312] smb4k crash during launch
+</A></li>
+        <LI>Next message: <A HREF="000315.html">[Smb4K-bugs] [Bug #16312] smb4k crash during launch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#314">[ date ]</a>
+              <a href="thread.html#314">[ thread ]</a>
+              <a href="subject.html#314">[ subject ]</a>
+              <a href="author.html#314">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thank youfor reporting this issue.
+
+Could you please rebuild Smb4K with debug symbols (-DCMAKE_BUILD_TYPE=Debug) 
+and resend the backtrace.
+
+Best regards
+Alexander
+
+
+Am Donnerstag 01 Oktober 2009 12:40:20 schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">admin at berlios.de</A>:
+&gt;<i> Bug #16312, was updated on 2009-Oct-01 02:40
+</I>&gt;<i> Here is a current snapshot of the bug.
+</I>&gt;<i> 
+</I>&gt;<i> Project: Smb4K
+</I>&gt;<i> Category: None
+</I>&gt;<i> Status: Open
+</I>&gt;<i> Resolution: None
+</I>&gt;<i> Bug Group: crash
+</I>&gt;<i> Priority: 5
+</I>&gt;<i> Submitted by: madcatx
+</I>&gt;<i> Assigned to : none
+</I>&gt;<i> Summary: smb4k crash during launch
+</I>&gt;<i> 
+</I>&gt;<i> Details: I have installed smb4k 0.10.3 on my Arch 64. I tried the package
+</I>&gt;<i>  form the repository and compile smb4k myslef, but it always crashes when
+</I>&gt;<i>  launching.
+</I>&gt;<i> 
+</I>&gt;<i> This is the debug info I get when I run smb4k through valgrind:
+</I>&gt;<i> 
+</I>&gt;<i> Invalid read of size 8
+</I>&gt;<i> at 0x7697E38: QAction::setEnabled(bool) (in /usr/lib/libQtGui.so.4.5.2)
+</I>&gt;<i> by 0x40DC38: Smb4KMainWindow::slotBookmarksUpdated() (in /usr/bin/smb4k)
+</I>&gt;<i> by 0x40DFD3: Smb4KMainWindow::setupBookmarksMenu() (in /usr/bin/smb4k)
+</I>&gt;<i> ==8050==    by 0x410A6E: Smb4KMainWindow::Smb4KMainWindow() (in
+</I>&gt;<i>  /usr/bin/smb4k) by 0x40BC61: main (in /usr/bin/smb4k)
+</I>&gt;<i> Address 0x8 is not stack'd, malloc'd or (recently) free'd
+</I>&gt;<i> 
+</I>&gt;<i> smb4k prints this to the console:
+</I>&gt;<i> &lt;unknown program name&gt;(8164)/: Communication problem with  &quot;smb4k&quot; , it
+</I>&gt;<i>  probably crashed. Error message was:  &quot;org.freedesktop.DBus.Error.NoReply&quot;
+</I>&gt;<i>  : &quot; &quot;Message did not receive a reply (timeout by message bus)&quot; &quot;
+</I>&gt;<i> 
+</I>&gt;<i> It happens every time i try to launch smb4k. Version 0.10.2 seemed to work
+</I>&gt;<i>  fine on my system.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> For detailed info, follow this link:
+</I>&gt;<i> <A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16312&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16312&amp;group_id=769</A>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Smb4K-bugs mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">Smb4K-bugs at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">https://lists.berlios.de/mailman/listinfo/smb4k-bugs</A>
+</I>&gt;<i> 
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000313.html">[Smb4K-bugs] [Bug #16312] smb4k crash during launch
+</A></li>
+	<LI>Next message: <A HREF="000315.html">[Smb4K-bugs] [Bug #16312] smb4k crash during launch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#314">[ date ]</a>
+              <a href="thread.html#314">[ thread ]</a>
+              <a href="subject.html#314">[ subject ]</a>
+              <a href="author.html#314">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

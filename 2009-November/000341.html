@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] smb4k crash Ubuntu 9.10 Linux 2.6.31-14-generic x86_64 - Executable: smb4k PID: 5684 Signal: 11 (Segmentation fault)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20smb4k%20crash%20Ubuntu%209.10%20Linux%202.6.31-14-generic%20x86_64%0A%20-%20Executable%3A%20smb4k%20PID%3A%205684%20Signal%3A%2011%20%28Segmentation%20fault%29&In-Reply-To=%3C4B0BF608.6070909%40unm.edu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000340.html">
+   <LINK REL="Next"  HREF="000342.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] smb4k crash Ubuntu 9.10 Linux 2.6.31-14-generic x86_64 - Executable: smb4k PID: 5684 Signal: 11 (Segmentation fault)</H1>
+    <B>John Vande Castle</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20smb4k%20crash%20Ubuntu%209.10%20Linux%202.6.31-14-generic%20x86_64%0A%20-%20Executable%3A%20smb4k%20PID%3A%205684%20Signal%3A%2011%20%28Segmentation%20fault%29&In-Reply-To=%3C4B0BF608.6070909%40unm.edu%3E"
+       TITLE="[Smb4K-bugs] smb4k crash Ubuntu 9.10 Linux 2.6.31-14-generic x86_64 - Executable: smb4k PID: 5684 Signal: 11 (Segmentation fault)">jvc at unm.edu
+       </A><BR>
+    <I>Tue Nov 24 16:04:40 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000340.html">[Smb4K-bugs] Application: Smb4K (smb4k),	signal: Segmentation fault
+</A></li>
+        <LI>Next message: <A HREF="000342.html">[Smb4K-bugs] smb4k crash Ubuntu 9.10 Linux 2.6.31-14-generic	x86_64 - Executable: smb4k PID: 5684 Signal: 11 (Segmentation fault)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#341">[ date ]</a>
+              <a href="thread.html#341">[ thread ]</a>
+              <a href="subject.html#341">[ subject ]</a>
+              <a href="author.html#341">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Application that crashed: smb4k
+Version of the application: 0.10.2
+KDE Version: 4.3.2 (KDE 4.3.2)
+Qt Version: 4.5.2
+Operating System: Linux 2.6.31-14-generic x86_64
+Distribution: Ubuntu 9.10
+
+What I was doing when the application crashed:
+smb4k ALWAYS crashes when attempting to mount any share after
+authenticating.  It is unable to mount any samba because it crashes first.
+
+ -jvc
+
+
+ -- Backtrace:
+Application: Smb4K (smb4k), signal: Segmentation fault
+[KCrash Handler]
+#5  0x00007ffef1eb7770 in QString::operator=(QString const&amp;) () from
+/usr/lib/libQtCore.so.4
+#6  0x00007ffef4794c78 in Smb4KAuthInfo::unc(int) const () from
+/usr/lib/libsmb4kcore.so.3
+#7  0x00007ffef47dab86 in
+Smb4KWalletManager::readAuthInfo(Smb4KAuthInfo*) () from
+/usr/lib/libsmb4kcore.so.3
+#8  0x00007ffef47ae21d in Smb4KMounter::mount(Smb4KShare const&amp;) () from
+/usr/lib/libsmb4kcore.so.3
+#9  0x00007ffef47af4c1 in Smb4KMounter::timerEvent(QTimerEvent*) () from
+/usr/lib/libsmb4kcore.so.3
+#10 0x00007ffef1f69d83 in QObject::event(QEvent*) () from
+/usr/lib/libQtCore.so.4
+#11 0x00007ffef265eefc in QApplicationPrivate::notify_helper(QObject*,
+QEvent*) () from /usr/lib/libQtGui.so.4
+#12 0x00007ffef26661ce in QApplication::notify(QObject*, QEvent*) ()
+from /usr/lib/libQtGui.so.4
+#13 0x00007ffef4164ab6 in KApplication::notify(QObject*, QEvent*) ()
+from /usr/lib/libkdeui.so.5
+#14 0x00007ffef1f5ac2c in QCoreApplication::notifyInternal(QObject*,
+QEvent*) () from /usr/lib/libQtCore.so.4
+#15 0x00007ffef1f85862 in ?? () from /usr/lib/libQtCore.so.4
+#16 0x00007ffef1f8325d in ?? () from /usr/lib/libQtCore.so.4
+#17 0x00007ffeee472bbe in g_main_context_dispatch () from
+/lib/libglib-2.0.so.0
+#18 0x00007ffeee476588 in ?? () from /lib/libglib-2.0.so.0
+#19 0x00007ffeee4766b0 in g_main_context_iteration () from
+/lib/libglib-2.0.so.0
+#20 0x00007ffef1f831a6 in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+() from /usr/lib/libQtCore.so.4
+#21 0x00007ffef26f34be in ?? () from /usr/lib/libQtGui.so.4
+#22 0x00007ffef1f59532 in
+QEventLoop::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) () from
+/usr/lib/libQtCore.so.4
+#23 0x00007ffef1f59904 in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) () from
+/usr/lib/libQtCore.so.4
+#24 0x00007ffef1f5bab9 in QCoreApplication::exec() () from
+/usr/lib/libQtCore.so.4
+#25 0x000000000040bdd4 in _start ()
+
+Report to <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">smb4k-bugs at lists.berlios.de</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000340.html">[Smb4K-bugs] Application: Smb4K (smb4k),	signal: Segmentation fault
+</A></li>
+	<LI>Next message: <A HREF="000342.html">[Smb4K-bugs] smb4k crash Ubuntu 9.10 Linux 2.6.31-14-generic	x86_64 - Executable: smb4k PID: 5684 Signal: 11 (Segmentation fault)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#341">[ date ]</a>
+              <a href="thread.html#341">[ thread ]</a>
+              <a href="subject.html#341">[ subject ]</a>
+              <a href="author.html#341">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

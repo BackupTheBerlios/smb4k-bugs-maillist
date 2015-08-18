@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #12830] shares are not displayed (v0.9.0)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2312830%5D%20shares%20are%20not%20displayed%20%28v0.9.0%29&In-Reply-To=%3C200804021223.m32CNAYQ018657%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000179.html">
+   <LINK REL="Next"  HREF="000182.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #12830] shares are not displayed (v0.9.0)</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2312830%5D%20shares%20are%20not%20displayed%20%28v0.9.0%29&In-Reply-To=%3C200804021223.m32CNAYQ018657%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #12830] shares are not displayed (v0.9.0)">admin at berlios.de
+       </A><BR>
+    <I>Wed Apr  2 14:23:10 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000179.html">[Smb4K-bugs] [Bug #12830] shares are not displayed (v0.9.0)
+</A></li>
+        <LI>Next message: <A HREF="000182.html">[Smb4K-bugs] [Bug #12830] shares are not displayed (v0.9.0)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#181">[ date ]</a>
+              <a href="thread.html#181">[ thread ]</a>
+              <a href="subject.html#181">[ subject ]</a>
+              <a href="author.html#181">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #12830, was updated on 2008-Jan-02 14:13
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: normal
+Priority: 5
+Submitted by: mancide
+Assigned to : none
+Summary: shares are not displayed (v0.9.0)
+
+Details: I've added my comments to bug #011799, but I get no response, so I'll submit it as a seperate bug...
+
+Follow-Ups:
+
+Date: 2008-Apr-02 14:23
+By: dustpuppy
+
+Comment:
+When I said Samba 3.0.28 would fix the problem, I was referring to the client, not the server. I don't know if it matters which version is installed on the server (your synology disk). Is it possible to upgrade the Samba version to 3.0.28 on your computer?
+
+Since you suspect an authentication issue being the cause of your problem, have you tried to explicitly define the login and password for your server? Does this solve your problem? If it does not work, please send me the output of the following shell commands:
+
+(1) for anonymous (guest) login:
+$ net rpc share -l -W &lt;your workgroup&gt; -w &lt;remote workgroup&gt; -S &lt;remote host&gt; -I &lt;remote IP address&gt; -U guest%
+
+(2) for user login:
+$ PASSWD=&lt;password&gt; net rpc share -l -W &lt;your workgroup&gt; -w &lt;remote workgroup&gt; -S &lt;remote host&gt; -I &lt;remote IP address&gt; -U &lt;user&gt;
+
+Please replace the &lt;...&gt; entries with the respective values. If you have trouble with the RPC protocol, please also send me the output of the same commands but with the 'rap' protocol definition.
+
+One final question: Does manual mounting (i.e. with the &quot;Mount Manually&quot; action) work?
+-------------------------------------------------------
+
+Date: 2008-Apr-02 02:11
+By: mancide
+
+Comment:
+Sorry this took so long to reply.
+
+As you told me you can't reproce it with samba 3.0.28, I kind of gave up on getting this problem fixed...
+
+But at this moment I really need a working version of smb4k.
+I need a tool that is able to mount a share locally after the network (wifi) is established.
+
+My samba server is a synology DS107+. This is a small network server running linux&amp;samba.
+The current version is samba 3.0.20b.
+
+An user must be authenticated in order to get the list of shares. 
+That's what the problem is here I think. My SuSE 10.3 is trying to connect with a guest account and I don't get the shares list...
+
+I don't think it is possible to upgrade the samba server on my synology disk...
+-------------------------------------------------------
+
+Date: 2008-Jan-27 19:58
+By: dustpuppy
+
+Comment:
+I investigated this problem further and it seems it only occurs with certain versions of Samba. I cannot reproduce it anymore with Samba 3.0.28. So, this seems not to be an Smb4K bug but an issue with Samba that's unfortunately affecting the performance of Smb4K...
+
+What's your Samba version? Can you upgrade to a newer version and check if the bug persists?
+-------------------------------------------------------
+
+Date: 2008-Jan-02 17:04
+By: mancide
+
+Comment:
+As I wrote on bug #011799:
+I've selected rap instead of autodetecting in the option&gt;samba&gt;net&gt;protocol hint
+
+now I get my share names, but 1 is still missing &quot;Gentse Dolfijnen&quot; which XP warned me could be to o long (more than 12 characters).
+
+I've not tried with RPC yet.
+-------------------------------------------------------
+
+Date: 2008-Jan-02 15:52
+By: dustpuppy
+
+Comment:
+Sorry, I must have overlooked your post...
+
+Have you tried to set the protocol hint in the configuration dialog to &quot;RAP&quot; instead of &quot;Automatic Detection&quot; (see handbook, trouble shooting section)? Especially in AD environments with Windows servers this fixes the issue in most cases. However, with the RAP protocol you are not able to see long share names. 
+
+If &quot;RAP&quot; works you might also want to try to switch to &quot;RPC&quot;. If that works as well, I would be pleased if you could report it.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12830&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12830&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000179.html">[Smb4K-bugs] [Bug #12830] shares are not displayed (v0.9.0)
+</A></li>
+	<LI>Next message: <A HREF="000182.html">[Smb4K-bugs] [Bug #12830] shares are not displayed (v0.9.0)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#181">[ date ]</a>
+              <a href="thread.html#181">[ thread ]</a>
+              <a href="subject.html#181">[ subject ]</a>
+              <a href="author.html#181">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

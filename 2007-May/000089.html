@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #2256] NT_STATUS_ACCOUNT_LOCKED_OUT error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%232256%5D%20NT_STATUS_ACCOUNT_LOCKED_OUT%20error&In-Reply-To=%3C200705110915.l4B9Fuhd015669%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000088.html">
+   <LINK REL="Next"  HREF="000090.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #2256] NT_STATUS_ACCOUNT_LOCKED_OUT error</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%232256%5D%20NT_STATUS_ACCOUNT_LOCKED_OUT%20error&In-Reply-To=%3C200705110915.l4B9Fuhd015669%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #2256] NT_STATUS_ACCOUNT_LOCKED_OUT error">admin at berlios.de
+       </A><BR>
+    <I>Fri May 11 11:15:56 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000088.html">[Smb4K-bugs] [Bug #9499] GRAVE/Serious problem mounting share points
+</A></li>
+        <LI>Next message: <A HREF="000090.html">[Smb4K-bugs] [Bug #11189] smb4k hangs during session startup -	waiting for dcop respon
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#89">[ date ]</a>
+              <a href="thread.html#89">[ thread ]</a>
+              <a href="subject.html#89">[ subject ]</a>
+              <a href="author.html#89">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #2256, was updated on 2004-Aug-15 23:47
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Closed
+Resolution: Works For Me
+Bug Group: normal
+Priority: 5
+Submitted by: none
+Assigned to : dustpuppy
+Summary: NT_STATUS_ACCOUNT_LOCKED_OUT error
+
+Details: When I first access a share using smb4k, after entering a user name and password I receive the above error message in a dialogue box and I am unable to proceed.    Indeed,  for the next five minutes (roughly) I'm locked out of the NT domain completely.   When I try to access a Linux server  (which authenticates via the Active Directory kerberos server) using ssh or the samba server during this time period, here's what I see in the logs:
+
+Aug  9 15:32:01 leibniz smbd[23816]:   domain_client_validate: unable to validate password for user aleahy in domain KNOX to Domain controller \\PUGSLY. Error was NT_STATUS_ACCOUNT_LOCKED_OUT.
+
+Then after a few minutes, the error will miraculously clear up.  I've talked to the people who control the NT domain and they haven't seen anything in their logs.  On subsequent attempts to connect to the share, I don't have any problems.
+
+
+Follow-Ups:
+
+Date: 2007-May-11 11:15
+By: dustpuppy
+
+Comment:
+I never could reproduce this bug. Thus, I'm closing it. Please feel free to reopen it if you have further information.
+-------------------------------------------------------
+
+Date: 2004-Oct-29 17:25
+By: dustpuppy
+
+Comment:
+So, there seems to be a connection to Smb4K after all. I'm reactivating this bug and will try to figure out a solution.
+-------------------------------------------------------
+
+Date: 2004-Oct-29 15:47
+By: none
+
+Comment:
+One further observation:  this error occurs only when a system on the network neighborhood is 'opened up' by double-clicking on the system name.   That is, if I try to look at the list of network shares on a system by double-clicking on the system, the error will occur.  However, if I look at the shares by clicking only once on the &quot;+&quot; in front of the system's name I am able to avoid the error.
+-------------------------------------------------------
+
+Date: 2004-Aug-17 13:30
+By: dustpuppy
+
+Comment:
+This does not seem to be an Smb4K bug, but rather a Samba issue. Searching for the string &quot;+NT_STATUS_ACCOUNT_LOCKED_OUT +Samba +3.0&quot; in Google will give you some hints. Please also consult the Samba docs.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=2256&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=2256&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000088.html">[Smb4K-bugs] [Bug #9499] GRAVE/Serious problem mounting share points
+</A></li>
+	<LI>Next message: <A HREF="000090.html">[Smb4K-bugs] [Bug #11189] smb4k hangs during session startup -	waiting for dcop respon
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#89">[ date ]</a>
+              <a href="thread.html#89">[ thread ]</a>
+              <a href="subject.html#89">[ subject ]</a>
+              <a href="author.html#89">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #14703] Hang during KDE start,	starts ok afterwards
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2314703%5D%20Hang%20during%20KDE%20start%2C%0A%09starts%20ok%20afterwards&In-Reply-To=%3C200811231659.mANGxPlX018677%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000260.html">
+   <LINK REL="Next"  HREF="000262.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #14703] Hang during KDE start,	starts ok afterwards</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2314703%5D%20Hang%20during%20KDE%20start%2C%0A%09starts%20ok%20afterwards&In-Reply-To=%3C200811231659.mANGxPlX018677%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #14703] Hang during KDE start,	starts ok afterwards">admin at berlios.de
+       </A><BR>
+    <I>Sun Nov 23 17:59:25 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000260.html">[Smb4K-bugs] [Bug #14703] Hang during KDE start,	starts ok afterwards
+</A></li>
+        <LI>Next message: <A HREF="000262.html">[Smb4K-bugs] [Bug #14703] Hang during KDE start,	starts ok afterwards
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#261">[ date ]</a>
+              <a href="thread.html#261">[ thread ]</a>
+              <a href="subject.html#261">[ subject ]</a>
+              <a href="author.html#261">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #14703, was updated on 2008-Oct-20 10:56
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: normal
+Priority: 5
+Submitted by: arkascha
+Assigned to : none
+Summary: Hang during KDE start, starts ok afterwards
+
+Details: Our old bug about smb4k hanging during session startup when starting along with kde is back :-)
+
+I upgraded to smb4k-0.9.8-3.1 under opsneuse-10.2 @ x86-64. 
+smb4k is started with the kde startup via the kde session configuration. I get an empty space in the panel where smb4k is meant to be. A hovering mouse at that point shows a &quot;busy cursor&quot; and the shares are _not_ mounted. 
+
+If I do a  &quot;killall smb4k&quot; and restart it everything works fine. So it appears like smb4k hangs when it is started during kde startup. Probably because the ressource (kwallet??) it requires it not _yet_ present. 
+
+Follow-Ups:
+
+Date: 2008-Nov-23 17:59
+By: dustpuppy
+
+Comment:
+I have the suspicion that I searched for the problem that causes the hanging of Smb4K in the wrong places:  
+
+While rewriting some parts of the scanner in CVS HEAD I experienced the hanging of Smb4K because the scanner was invoked to early during program start-up. I fixed this problem and backported the changes to the 0.9 branch.
+
+Would you be willing to test again? You can download the new version from here: <A HREF="ftp://ftp.berlios.de/pub/smb4k/pre-releases/smb4k-0.9.10.tar.bz2">ftp://ftp.berlios.de/pub/smb4k/pre-releases/smb4k-0.9.10.tar.bz2</A>
+-------------------------------------------------------
+
+Date: 2008-Nov-21 16:33
+By: arkascha
+
+Comment:
+This is an extract from a 'pstree' command right after login. Situation: smb4k hangs as described, busy cursor and gap in the dock area. No smbek visible, no menus upon mouse clicks. I do NOT see 100%CPU  this time. 
+Maybe this helps a little. You can see that smb4k has spawned a shell, is started AFTER kwalletmanager, but BEFORE smbd. 
+
+[...]
+     &#9500;&#9472;kwalletmanager
+     &#9500;&#9472;kxkb
+     &#9500;&#9472;master&#9472;&#9516;&#9472;pickup
+     &#9474;        &#9492;&#9472;qmgr
+     &#9500;&#9472;migration/0
+     &#9500;&#9472;migration/1
+     &#9500;&#9472;6*[mingetty]
+     &#9500;&#9472;mysqld_safe&#9472;&#9472;&#9472;mysqld&#9472;&#9472;&#9472;8*[{mysqld}]
+     &#9500;&#9472;nmbd
+     &#9500;&#9472;ntpd
+     &#9500;&#9472;oooqs
+     &#9500;&#9472;polkitd
+     &#9500;&#9472;portmap
+     &#9500;&#9472;powersaved
+     &#9500;&#9472;resmgrd
+     &#9500;&#9472;smb4k&#9472;&#9472;&#9472;sh
+     &#9500;&#9472;smbd&#9472;&#9472;&#9472;smbd
+[...]
+
+I'd be happy to proved additional information or test results, if that helps. 
+-------------------------------------------------------
+
+Date: 2008-Nov-20 18:09
+By: dustpuppy
+
+Comment:
+*sigh*
+
+Reopening report.
+-------------------------------------------------------
+
+Date: 2008-Nov-20 08:41
+By: arkascha
+
+Comment:
+What shoud I say ? 
+I am sorry to report that I gave a false positive on your fix that made it into version 0.9.9. 
+I still do encounter the reported issue: smb4k hanging at startup, using 100% CPU, no icon but an empty space visible in the kicker dock areea and a hovering cursor turned into an hourglas. 
+Killing smb4k and restarting it always works, and it does not hand every single time. It appears to me like some sort of race condition. 
+Sorry again, great application otherwise, so thanks !
+-------------------------------------------------------
+
+Date: 2008-Nov-05 19:04
+By: dustpuppy
+
+Comment:
+Just released version 0.9.9 which apparently fixes this bug. Thank you for reporting this issue.
+-------------------------------------------------------
+
+Date: 2008-Nov-04 15:45
+By: arkascha
+
+Comment:
+Apparently fixed for me with smb4k-0.9.9. 
+Thanks again for the turbo-fast reaction !
+-------------------------------------------------------
+
+Date: 2008-Oct-31 16:42
+By: dustpuppy
+
+Comment:
+I just uploaded the tarball to <A HREF="ftp://ftp.berlios.de/pub/smb4k/pre-releases/smb4k-0.9.9.tar.bz2.">ftp://ftp.berlios.de/pub/smb4k/pre-releases/smb4k-0.9.9.tar.bz2.</A> 
+
+If you want to checkout the development version of Smb4K 0.9, use the BRANCH_0_9 branch by add '-r BRANCH_0_9' to the CVS command.
+-------------------------------------------------------
+
+Date: 2008-Oct-31 16:22
+By: arkascha
+
+Comment:
+I'd be absolutely happy to give it a try. 
+Where do I get the source from ? I can only see Version 10.x via cvs with is, as mentioned, unsuitable for me...
+-------------------------------------------------------
+
+Date: 2008-Oct-31 16:13
+By: dustpuppy
+
+Comment:
+I modified the code of the mounter so that it waits until the application has fully started up before it tries to remount and import shares. I tested this with openSUSE 11.0 and Debian Lenny and it seems to work on KDE start-up without hanging.
+
+Would you be willing to test the new version?
+-------------------------------------------------------
+
+Date: 2008-Oct-28 08:16
+By: arkascha
+
+Comment:
+Actually, when mentioning that smb4k did hang after being woken up from hibernation I was more than unclear. I did see that, BUT: 
+_usually_ I have no problems after waking up my system in the morning. Right now I COULD access the shares, amongst those one mounted by smb4k, several mounted via /etc/samba/smbfstab. After wake up I see smb4k shuffling around for a second or two and it's fine. Might be interesting to sniff its conversation with the servers, though. 
+This shows once more that your app is a fine gem that comes in handy at daily work. Thanks !
+-------------------------------------------------------
+
+Date: 2008-Oct-27 22:35
+By: dustpuppy
+
+Comment:
+So, the fix I implemented previously does not work as expected. That's bad and I have to look for another solution...
+
+Smb4K has no support for suspend or hibernation in 0.9, so it is likely that it hangs after your system has woken up. In the next major version will support suspend and hibernation through Solid. The only way to avoid the hanging in 0.9 is to manually unmount the shares before you suspend your computer.
+
+I can understand that you stick with KDE 3.5. It is very stable and feature-rich. KDE 4.x still lacks several applications that a user wants to have.
+-------------------------------------------------------
+
+Date: 2008-Oct-27 09:24
+By: arkascha
+
+Comment:
+I have kdeutils3-3.5.10 installed, that packages provides kwalletmanager. I DO use kwallet to store passwords for smb4k. 
+The wallet works ok, other applications can open and use it on system startup. 
+
+Today I realized that smb4k also hangs when the system is being woken up from a syspend-to-disk. Same symptoms. 
+
+I have NOT tried smb4k-0.10.x since I assume it relies on kde-4.x. I use kde-3.5.10 since I use it for daily work. No way and no interest for me to upgrade my kde. 
+-------------------------------------------------------
+
+Date: 2008-Oct-26 00:17
+By: dustpuppy
+
+Comment:
+Is kwalletmanager installed? There are indications that your problem might occur when it isn't... 
+
+Have you tried Smb4K 0.10.x by any chance?
+-------------------------------------------------------
+
+Date: 2008-Oct-24 14:13
+By: dustpuppy
+
+Comment:
+This bug is really persistent and annoying... I'll have a look at this.
+
+
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14703&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14703&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000260.html">[Smb4K-bugs] [Bug #14703] Hang during KDE start,	starts ok afterwards
+</A></li>
+	<LI>Next message: <A HREF="000262.html">[Smb4K-bugs] [Bug #14703] Hang during KDE start,	starts ok afterwards
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#261">[ date ]</a>
+              <a href="thread.html#261">[ thread ]</a>
+              <a href="subject.html#261">[ subject ]</a>
+              <a href="author.html#261">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

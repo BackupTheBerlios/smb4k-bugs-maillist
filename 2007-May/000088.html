@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #9499] GRAVE/Serious problem mounting share points
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%239499%5D%20GRAVE/Serious%20problem%20mounting%20share%20points&In-Reply-To=%3C200705110911.l4B9BsNk009017%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000086.html">
+   <LINK REL="Next"  HREF="000089.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #9499] GRAVE/Serious problem mounting share points</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%239499%5D%20GRAVE/Serious%20problem%20mounting%20share%20points&In-Reply-To=%3C200705110911.l4B9BsNk009017%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #9499] GRAVE/Serious problem mounting share points">admin at berlios.de
+       </A><BR>
+    <I>Fri May 11 11:11:54 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000086.html">[Smb4K-bugs] [Bug #10111] 0.8.0: Crash on mounting
+</A></li>
+        <LI>Next message: <A HREF="000089.html">[Smb4K-bugs] [Bug #2256] NT_STATUS_ACCOUNT_LOCKED_OUT error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#88">[ date ]</a>
+              <a href="thread.html#88">[ thread ]</a>
+              <a href="subject.html#88">[ subject ]</a>
+              <a href="author.html#88">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #9499, was updated on 2006-Nov-19 00:31
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Closed
+Resolution: Invalid
+Bug Group: None
+Priority: 5
+Submitted by: mmodem
+Assigned to : none
+Summary: GRAVE/Serious problem mounting share points
+
+Details: i was looking to /etc/samba/smb.conf and then i runned kcontrol and entered &quot;Internet &amp; Network-&gt;File sharing&quot;, then clicked to edit a share point, checked the options and clicked OK, and with this action in the file smb.conf were addeded some entries, please see this diff that show what was added:
+
+--- -	2006-11-18 23:02:36.636259000 +0000
++++ /etc/samba/smb.conf	2006-11-18 23:02:32.000000000 +0000
+@@ -436,7 +436,9 @@
+ comment = Home Directories
+ 
+ [EXT3]
+-path = /mnt/ext3
++path = /mnt/ext3/
+ guest ok = yes
+ read only = no
+-
++case sensitive = no
++strict locking = no
++msdfs proxy = no
+
+
+Then i entered smb4k and clicked to mount EXT3 in wich i got this error message:
+
+&quot;An error ocurred when trying to mount a share.
+
+Details
+4763: tree conect failed: ERRDOS _ ERRnosuchshare (You specified an invalid share)
+
+SMB conection failed&quot;
+
+
+So i entered again smb.conf and just removed the last entries added after editing the share in kcontrol-&gt;Internet &amp; Network-&gt;File sharing:
+
++case sensitive = no
++strict locking = no
++msdfs proxy = no
+
+So i removed these entries and voila the mount point EXT3 was smoothly mounted, weird huh...
+
+I dont know if this is the correct place to warn about this GRAVE problem, if not tell me to where to report.
+
+Follow-Ups:
+
+Date: 2007-May-11 11:11
+By: dustpuppy
+
+Comment:
+There are no further indications that this bug is related to Smb4K, so I close this report.
+-------------------------------------------------------
+
+Date: 2006-Nov-19 15:35
+By: dustpuppy
+
+Comment:
+Since Smb4K uses the Samba programs for mounting, this is not a Smb4K bug but either a Samba (because the path is not accepted) or KDE releated one (because some additional options are written that break the accessibility of the share). Please report your problem at <A HREF="https://bugzilla.samba.org/">https://bugzilla.samba.org/</A> (Samba) or/and <A HREF="http://bugs.kde.org/">http://bugs.kde.org/</A> (KDE).
+
+If it should turn out that the problem is also releated to Smb4K, please notify us. For now, mark this report 'invalid' and will close it in a few days.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=9499&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=9499&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000086.html">[Smb4K-bugs] [Bug #10111] 0.8.0: Crash on mounting
+</A></li>
+	<LI>Next message: <A HREF="000089.html">[Smb4K-bugs] [Bug #2256] NT_STATUS_ACCOUNT_LOCKED_OUT error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#88">[ date ]</a>
+              <a href="thread.html#88">[ thread ]</a>
+              <a href="subject.html#88">[ subject ]</a>
+              <a href="author.html#88">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

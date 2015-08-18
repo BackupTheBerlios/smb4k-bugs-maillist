@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #10805] Should detect local charset
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2310805%5D%20Should%20detect%20local%20charset&In-Reply-To=%3C200704040758.l347waET009672%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000060.html">
+   <LINK REL="Next"  HREF="000062.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #10805] Should detect local charset</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2310805%5D%20Should%20detect%20local%20charset&In-Reply-To=%3C200704040758.l347waET009672%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #10805] Should detect local charset">admin at berlios.de
+       </A><BR>
+    <I>Wed Apr  4 09:58:36 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000060.html">[Smb4K-bugs] [Bug #10804] Should use CIFS by default
+</A></li>
+        <LI>Next message: <A HREF="000062.html">[Smb4K-bugs] [Bug #10111] 0.8.0: Crash on mounting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#61">[ date ]</a>
+              <a href="thread.html#61">[ thread ]</a>
+              <a href="subject.html#61">[ subject ]</a>
+              <a href="author.html#61">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #10805, was updated on 2007-Apr-03 20:53
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: normal
+Priority: 5
+Submitted by: fhimpe
+Assigned to : none
+Summary: Should detect local charset
+
+Details: I have these locales on both Samba server and client:
+LANG=en_GB.UTF-8
+LC_CTYPE=en_GB.UTF-8
+LC_NUMERIC=fr_BE.UTF-8
+LC_TIME=en_GB.UTF-8
+LC_COLLATE=en_GB.UTF-8
+LC_MONETARY=fr_BE.UTF-8
+LC_MESSAGES=en_GB.UTF-8
+LC_PAPER=fr_BE.UTF-8
+LC_NAME=fr_BE.UTF-8
+LC_ADDRESS=fr_BE.UTF-8
+LC_TELEPHONE=fr_BE.UTF-8
+LC_MEASUREMENT=fr_BE.UTF-8
+LC_IDENTIFICATION=fr_BE.UTF-8
+LC_ALL=
+
+In smb.conf, I have:
+   dos charset = 850
+   unix charset = UTF-8
+
+When I mount a share on the client with above UTF-8 locales, all special characters are not shown correctly. I have to configure smb4k to also use UTF-8 charset to make them show correctly.
+
+smb4k should set the locale to use in CIFS based on the above locale variables, so this works out of the box.
+
+Follow-Ups:
+
+Date: 2007-Apr-04 09:58
+By: dustpuppy
+
+Comment:
+This feature will either be implemented in version 0.8.2 or, more likely, in 0.9.0.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10805&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10805&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000060.html">[Smb4K-bugs] [Bug #10804] Should use CIFS by default
+</A></li>
+	<LI>Next message: <A HREF="000062.html">[Smb4K-bugs] [Bug #10111] 0.8.0: Crash on mounting
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#61">[ date ]</a>
+              <a href="thread.html#61">[ thread ]</a>
+              <a href="subject.html#61">[ subject ]</a>
+              <a href="author.html#61">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

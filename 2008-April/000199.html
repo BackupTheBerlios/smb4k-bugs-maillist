@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #12707] SMB4K hangs on starting automatically	with KDE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2312707%5D%20SMB4K%20hangs%20on%20starting%20automatically%0A%09with%20KDE&In-Reply-To=%3C200804090838.m398cZBs025496%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000198.html">
+   <LINK REL="Next"  HREF="000200.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #12707] SMB4K hangs on starting automatically	with KDE</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2312707%5D%20SMB4K%20hangs%20on%20starting%20automatically%0A%09with%20KDE&In-Reply-To=%3C200804090838.m398cZBs025496%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #12707] SMB4K hangs on starting automatically	with KDE">admin at berlios.de
+       </A><BR>
+    <I>Wed Apr  9 10:38:35 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000198.html">[Smb4K-bugs] [Bug #12830] shares are not displayed (v0.9.0)
+</A></li>
+        <LI>Next message: <A HREF="000200.html">[Smb4K-bugs] [Bug #12707] SMB4K hangs on starting automatically	with KDE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#199">[ date ]</a>
+              <a href="thread.html#199">[ thread ]</a>
+              <a href="subject.html#199">[ subject ]</a>
+              <a href="author.html#199">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #12707, was updated on 2007-Dec-13 13:36
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: normal
+Priority: 5
+Submitted by: rkrell
+Assigned to : none
+Summary: SMB4K hangs on starting automatically with KDE
+
+Details: Sometimes after starting KDE with automatically launching smb4k as it run in the last session, smb4k hangs. Its icon in the system tray does not occur,there is a gray space instead of that. I f I do a 'killall smb4k' and restart smb4k again all goes fine.
+
+Follow-Ups:
+
+Date: 2008-Apr-09 10:38
+By: dustpuppy
+
+Comment:
+That's strange, because I only applied two changes to the mounter. The first one is the fix for the incorrect path of mount points where either &quot;cifs&quot; or &quot;smbfs&quot; occurs in the name, and the other one is that the mounter now uses its own timer through the startTimer()/timerEvent() combo instead of a connection to the now deprecated Smb4KGlobal::timer(). I did not touch the code of the smb4k_mount utility.
+
+In order to reproduce the freezing of your computer, I installed autofs on several Debian unstable machines. I haven't experienced anything abnormal until now, especially no freezes or kernel oopses. However, those computers do not use kernel version 2.6.22 but 2.6.24. Is it possible for you to install and test the latter one?
+-------------------------------------------------------
+
+Date: 2008-Apr-07 09:50
+By: rkrell
+
+Comment:
+The path of the automounter shares are ok.
+But the problem I mentioned occur only if I run smb4K-0.9.4pre and smb4K-0.9.4pre2. I'm sure this comes from a change you made with the mounting/unmounting code already in smb4K-0.9.4pre.
+On running smb4K-0.9.3 my system is stable, I see no need to report anything for now to the kernel mailing list at the moment. (Even though an oops should not happen anyway, I agree).
+Thanks, R.
+-------------------------------------------------------
+
+Date: 2008-Apr-07 08:12
+By: dustpuppy
+
+Comment:
+The only thing that changed between 0.9.3 and 0.9.4 is the corrected path. Smb4K now also checks the shares you mounted with the automounter if they are accessible. So, maybe you are right that the problem is caused by a conflict between Smb4K and the automounter. However, kernel oopses should not occur. Have you reported this to the kernel bug tracker?
+
+Concerning a fix or workaround for this, I need to make up my mind, what can be done. Could you please provide an exerpt from your /etc/fstab with the lines for the automounter?
+-------------------------------------------------------
+
+Date: 2008-Apr-04 16:30
+By: rkrell
+
+Comment:
+Bad news about this issue - I ran into the same problems as with 0.9.4pre. After several hours of work my system begins to hang. There are several kernel oopses in /var/log/messages from the moment I use some of the CIFS mounts actively. May be some conflict with the automounter:
+
+Apr  4 13:42:50 rkrell kernel: BUG: unable to handle kernel paging request at virtual address 414e6940
+Apr  4 13:42:50 rkrell kernel:  printing eip:
+Apr  4 13:42:50 rkrell kernel: c015408a
+Apr  4 13:42:50 rkrell kernel: *pde = 00000000
+Apr  4 13:42:50 rkrell kernel: Oops: 0000 [#1]
+Apr  4 13:42:50 rkrell kernel: SMP
+Apr  4 13:42:50 rkrell kernel: last sysfs file: /devices/pci0000:00/0000:00:1e.0/0000:01:06.0/net/eth0/carrier
+Apr  4 13:42:50 rkrell kernel: Modules linked in: nls_utf8 cifs ip6t_LOG nf_conntrack_ipv6 xt_pkttype ipt_LOG xt_limit autofs4 microcode firmware_class af_packet snd_pcm_oss snd_mixer_oss snd_seq snd_seq_device i915 drm ip6t_REJECT xt_tcpudp ipt_REJECT xt_state iptable_mangle iptable_nat nf_nat iptable_filter ip6table_mangle nf_conntrack_ipv4 nf_conntrack nfnetlink ip_tables ip6table_filter ip6_tables x_tables ipv6 apparmor fuse loop dm_mod 8139too 8139cp mii snd_intel8x0 snd_ac97_codec ac97_bus snd_pcm snd_timer parport_pc snd rtc_cmos shpchp parport iTCO_wdt sr_mod button soundcore iTCO_vendor_support rtc_core rtc_lib i2c_i801 pci_hotplug i2c_core cdrom snd_page_alloc intel_agp agpgart sg usbhid hid ff_memless sd_mod ehci_hcd uhci_hcd usbcore edd ext3 mbcache jbd fan ata_piix libata scsi_mod thermal processor
+Apr  4 13:42:50 rkrell kernel: CPU:    0
+Apr  4 13:42:50 rkrell kernel: EIP:    0060:[&lt;c015408a&gt;]    Tainted: G      N VLI
+Apr  4 13:42:50 rkrell kernel: EFLAGS: 00010093   (2.6.22.17-0.1-default #1)
+Apr  4 13:42:50 rkrell kernel: EIP is at find_get_pages_tag+0x3a/0x7a
+Apr  4 13:42:50 rkrell kernel: eax: 0000000e   ebx: 00000000   ecx: 0000000e   edx: 414e6940
+Apr  4 13:42:50 rkrell kernel: esi: f035bd08   edi: c18f5e88   ebp: c18f5ec0   esp: c18f5e2c
+Apr  4 13:42:50 rkrell kernel: ds: 007b   es: 007b   fs: 00d8  gs: 0000  ss: 0068
+Apr  4 13:42:50 rkrell kernel: Process pdflush (pid: 134, ti=c18f4000 task=dff79570 task.ti=c18f4000)
+Apr  4 13:42:50 rkrell kernel: Stack: 0000000e 00000000 c18f5ec0 c18f5e80 00000000 c18f5f74 c015a008 0000000e
+Apr  4 13:42:50 rkrell kernel:        c18f5e88 00000000 00000001 c0158dbc 00000000 0000000e c01589a0 f035bd08
+Apr  4 13:42:50 rkrell kernel:        0000000e c1946868 00000000 ffffffff 00000000 00000000 00000000 414e6940
+Apr  4 13:42:50 rkrell kernel: Call Trace:
+Apr  4 13:42:50 rkrell kernel:  [&lt;c015a008&gt;] pagevec_lookup_tag+0x24/0x2b
+Apr  4 13:42:50 rkrell kernel:  [&lt;c0158dbc&gt;] write_cache_pages+0x22d/0x271
+Apr  4 13:42:50 rkrell kernel:  [&lt;c01589a0&gt;] __writepage+0x0/0x21
+Apr  4 13:42:50 rkrell kernel:  [&lt;c0158e1f&gt;] generic_writepages+0x1f/0x26
+Apr  4 13:42:50 rkrell kernel:  [&lt;c0158e4f&gt;] do_writepages+0x29/0x30
+Apr  4 13:42:50 rkrell kernel:  [&lt;c01890af&gt;] __writeback_single_inode+0x19d/0x31c
+Apr  4 13:42:50 rkrell kernel:  [&lt;c0103fa4&gt;] __switch_to+0xaf/0x183
+Apr  4 13:42:50 rkrell kernel:  [&lt;c018950f&gt;] sync_sb_inodes+0x16a/0x225
+Apr  4 13:42:50 rkrell kernel:  [&lt;c018990c&gt;] writeback_inodes+0x6a/0xb2
+Apr  4 13:42:50 rkrell kernel:  [&lt;c0159445&gt;] wb_kupdate+0x83/0xe5
+Apr  4 13:42:50 rkrell kernel:  [&lt;c0159825&gt;] pdflush+0x123/0x1c2
+Apr  4 13:42:50 rkrell kernel:  [&lt;c01593c2&gt;] wb_kupdate+0x0/0xe5
+Apr  4 13:42:50 rkrell kernel:  [&lt;c0159702&gt;] pdflush+0x0/0x1c2
+Apr  4 13:42:50 rkrell kernel:  [&lt;c01350ee&gt;] kthread+0x38/0x5e
+Apr  4 13:42:50 rkrell kernel:  [&lt;c01350b6&gt;] kthread+0x0/0x5e
+Apr  4 13:42:50 rkrell kernel:  [&lt;c0106117&gt;] kernel_thread_helper+0x7/0x10
+Apr  4 13:42:50 rkrell kernel:  =======================
+Apr  4 13:42:50 rkrell kernel: Code: 10 8b 7c 24 20 e8 a4 22 17 00 8d 46 04 8b 54 24 1c 89 5c 24 04 31 db 89 14 24 8b 4d 00 89 fa e8 1b b3 07 00 89 c1 eb 19 8b 14 9f &lt;8b&gt; 02 25 00 40 02 00 3d 00 40 02 00 75 03 8b 52 0c 90 ff 42 04
+Apr  4 13:42:50 rkrell kernel: EIP: [&lt;c015408a&gt;] find_get_pages_tag+0x3a/0x7a SS:ESP 0068:c18f5e2c
+...
+Apr  4 13:47:43 rkrell kernel: BUG: unable to handle kernel paging request at virtual address 414e6940
+Apr  4 13:47:43 rkrell kernel:  printing eip:
+Apr  4 13:47:43 rkrell kernel: c01540e8
+Apr  4 13:47:43 rkrell kernel: *pde = 00000000
+Apr  4 13:47:43 rkrell kernel: Oops: 0000 [#2]
+Apr  4 13:47:43 rkrell kernel: SMP
+...
+
+Using the stable smb4k 0.9.3 all works fine.
+I will stay tuned for some news :-)
+-------------------------------------------------------
+
+Date: 2008-Apr-04 09:39
+By: rkrell
+
+Comment:
+Again, testing this will need a couple od days or weeks to be as much as sure for different situations and circumstances in the network. I will leave my results here, later.
+-------------------------------------------------------
+
+Date: 2008-Apr-04 09:17
+By: rkrell
+
+Comment:
+Ok, thank you. Got it and will test it together with issue #13342 -- <A HREF="https://developer.berlios.de/bugs/?func=detailbug&amp;group_id=769&amp;bug_id=13342">https://developer.berlios.de/bugs/?func=detailbug&amp;group_id=769&amp;bug_id=13342</A>
+-------------------------------------------------------
+
+Date: 2008-Apr-04 08:22
+By: dustpuppy
+
+Comment:
+I think I finally figured out how to avoid the hanging of Smb4K on start-up. I prepared another pre-release for testing purposes. You'll find it here: <A HREF="ftp://ftp.berlios.de/pub/smb4k/pre-releases/smb4k-0.9.4pre2.tar.bz2.">ftp://ftp.berlios.de/pub/smb4k/pre-releases/smb4k-0.9.4pre2.tar.bz2.</A> Could you please test it?
+-------------------------------------------------------
+
+Date: 2008-Mar-12 10:37
+By: rkrell
+
+Comment:
+The share occured in /var/log/messages before the freeze does not show directly to a DFS link, but contains a DFS link as a subdirectory. I CAN mount this share manually or from bookmarks in smb4k normally, the DFS subfolder is shown empty.
+This works in my automounter, too. Calling the automounter script results in:
+-fstype=cifs,domain=somedomain,uid=1000,gid=100,user=someuser,password=somepass ://computer/share
+as I gave it to an automounter script applying for changing to /mnt/cifs.
+We have more shares which contain DFS links in the company and no one reported freezes or crashes during mounting, except that DFS is not really supported by CIFS mounts.
+
+BTW: The hanging smb4k on startup basically discussed here occured with 0.9.3, too, as expected (since you probably didn't change anything in the appropriate components).
+
+-------------------------------------------------------
+
+Date: 2008-Mar-11 09:58
+By: dustpuppy
+
+Comment:
+Since Smb4K explicitly uses the mount.cifs command, I think this is why your Windows DFS cannot be mounted/does not work/crashes with Smb4K. Maybe you can send me the command line with which you were able to mount it.
+
+As for the freeze of your system: I don't know at the moment what might cause this. I will do some more checks to find the problem.
+
+After I applied the changes, I experienced a mount failure on start-up. I guess, I have to rewrite the password handler so that it opens the wallet asynchronly. This will be a major rewrite so it might take some time...
+-------------------------------------------------------
+
+Date: 2008-Mar-10 16:09
+By: rkrell
+
+Comment:
+I made a downgrade to the current OpenSUSE backport smb4k-0.9.3-3.1 to not destabilize my system.
+
+I would really like to tell you necessary details, but I have no idea, what... :-(
+
+I use smb4k to automatically mount 5 shares from one and the same host. The share 0.9.4pre crashed on contains a Windows DFS (Distributed File System) link as some of its subdirectories, which does not work even with standard cifs mount commands. Nevertheless, a DFS link in a standard mount (for instance by automounter over cifs) does not freeze the system, but is normally shown as an empty directory. I cannot imagine that DFS is the reason for the crash.
+-------------------------------------------------------
+
+Date: 2008-Mar-10 15:45
+By: rkrell
+
+Comment:
+Well, no good news from me: the problem discussed within this thread did not occur to this time, but using the v0.9.4pre (compiled locally from your source package as RPM package) my system freezes after a while using smb4k totally. X-Server is dead, only hard switch-off helps, and the last entry in /var/log/messages is something like:
+----------------------
+Mar 10 15:27:02 charlie sudo:   rkrell : TTY=unknown ; PWD=/usr/local/sbin ; USER=root ; COMMAND=/opt/kde3/bin/smb4k_mount -s -t cifs
+ -o netbiosname=CHARLIE,uid=1000,gid=100,port=139,rw,file_mode=0755,dir_mode=0755,perm,nosetuids,noserverino,nomapchars,ip=192.168.60
+.200,user=rkrell -- //cifs_server/tools /home/rkrell/smb4k/cifs_server/tools
+----------------------
+
+Are there any other logs to look into?
+R.
+-------------------------------------------------------
+
+Date: 2008-Mar-06 10:56
+By: rkrell
+
+Comment:
+Thanks, I have it. Unfortunately it will take me a couple of days or weeks to be as sure as possible, since this problem occured only rarely. I'll tell you results as soon as I will have some.
+-------------------------------------------------------
+
+Date: 2008-Mar-06 10:46
+By: dustpuppy
+
+Comment:
+I uploaded a snapshot to our FTP site. You'll find it here:
+<A HREF="ftp://ftp.berlios.de/pub/smb4k/pre-releases/smb4k-0.9.4pre.tar.bz2">ftp://ftp.berlios.de/pub/smb4k/pre-releases/smb4k-0.9.4pre.tar.bz2</A>
+-------------------------------------------------------
+
+Date: 2008-Mar-06 10:12
+By: rkrell
+
+Comment:
+Sorry, I was out of office the last few days.
+Yes, I can test it. I cannot access CVS from within the company network here, would you be so kind to send me a source package of the snapshot you mentioned?
+Thank you
+-------------------------------------------------------
+
+Date: 2008-Feb-29 16:27
+By: dustpuppy
+
+Comment:
+I applied some modifications to the mounter (and other core classes) and I think I could eliminate the problem you reported. The changes are currently in CVS (branch: BRANCH_0_9). Would you be willing to test it? (I can prepare a source package for you if you like.) 
+-------------------------------------------------------
+
+Date: 2008-Feb-14 08:02
+By: dustpuppy
+
+Comment:
+Smb4K waits until the requested wallet is open before it reads the authentication information and proceeds with mounting the shares. That's why this bugs is sort of weird. Also, I cannot reproduce it. My settings are similar to yours and I regularly launch Smb4K on KDE start mounting several shares automatically. There are no problems whatsoever (My wallet is password protected and I provide the passphrase immediately when the dialog pops up.). However, I'm using Debian and haven't tried the same with OpenSUSE yet. I'll do it this weekend.
+-------------------------------------------------------
+
+Date: 2008-Feb-13 10:59
+By: rkrell
+
+Comment:
+Renewal of information: The problem still occurs (not often, but it happens) even in v0.9.2, even though I made my KWalletManager starting automatically (by an empty KWallet password). May be there is some &quot;race&quot; between KWalletManager and Smb4K which sometimes Smb4K wins and does not get the share's login information. Isn't it Smb4K which shoul wait for KWalletManager some time to provide its information?
+At the moment using:
+smb4k 0.9.2 3.5.8 &quot;release 44.1&quot;, openSUSE
+kwalletmanager 1.1
+OS: Linux (i686) release 2.6.22.16-0.2-default
+Target: i586-suse-linux
+-------------------------------------------------------
+
+Date: 2007-Dec-31 08:29
+By: rkrell
+
+Comment:
+Hi dustpuppy: The answer to Your first question is: Yes, the problem definitely occurs in v0.9.0, too.
+I think this is really a problem of not entering a kwalletmanager passphrase &quot;in time&quot; (whatever &quot;in time means&quot;). Smb4k hangs in some deadlock, even if I enter the right passphrase later, while other kwallet applications work.
+Please let me know, if I can help You somehow to locate it (gathering a stacktrace or something similar).
+-------------------------------------------------------
+
+Date: 2007-Dec-20 10:50
+By: rkrell
+
+Comment:
+One thing I got to add: I think the problem discussed here occurs in conjunction with the usage of kwalletmanager, when I do not immediately enter my passphrase to open the according wallet for smb4k, but leave it several minutes closed. Is that possible?
+-------------------------------------------------------
+
+Date: 2007-Dec-20 10:47
+By: rkrell
+
+Comment:
+Today I got the new upstream version smb4k-0.9.0 from Packman for OpenSUSE 10.3. I will watch this for a while to get sure.
+-------------------------------------------------------
+
+Date: 2007-Dec-17 12:54
+By: dustpuppy
+
+Comment:
+Does this problem also occur with version 0.9.0?
+-------------------------------------------------------
+
+Date: 2007-Dec-13 13:53
+By: rkrell
+
+Comment:
+Another fact which might help to reproduce it:
+
+I have a couple of bookmarks saved which are mounted automatically each time smb4k starts. These shares belong to one and the same computer (cifs, using a Windows domain for authenticating)
+
+Some settings possibly different from defaults:
+Network:
+Browse List - Query the current workgroup master browser
+Network Search - Use nmblookup (recommended)
+Shares:
+- Unmount all shares of user ... on exit
+- Remount recebtly used shares on program start
+- Allow the unmounting of shares that are owned by other users
+Authentication:
+- Save login information in a wallet
+- If no wallet is used, remember passwords during runtime
+Samba:
+NetBIOS name: set to one
+Domain (workgroup): set to one
+Super user:
+- Use sudo
+- Use super user privileges to force the unmounting of broken shares
+- Use super user privileges to mount and unmount shares
+-------------------------------------------------------
+
+Date: 2007-Dec-13 13:39
+By: rkrell
+
+Comment:
+Sorry I forgot to add as it would be reported by the &quot;Submit a bug&quot; menu entry, which still does not work for me, I don't know why:
+
+Application: smb4k
+Version: 0.8.7 3.5.8 &quot;release 22.3&quot;, openSUSE
+OS: Linux (i686) release 2.6.22.13-0.3-default
+Compiler: Target: i586-suse-linux
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12707&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12707&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000198.html">[Smb4K-bugs] [Bug #12830] shares are not displayed (v0.9.0)
+</A></li>
+	<LI>Next message: <A HREF="000200.html">[Smb4K-bugs] [Bug #12707] SMB4K hangs on starting automatically	with KDE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#199">[ date ]</a>
+              <a href="thread.html#199">[ thread ]</a>
+              <a href="subject.html#199">[ subject ]</a>
+              <a href="author.html#199">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

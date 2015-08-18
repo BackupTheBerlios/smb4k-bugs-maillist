@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #18246] System log says: [ 1615.567431] CIFS:	Unknown mount option
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2318246%5D%20System%20log%20says%3A%20%5B%201615.567431%5D%20CIFS%3A%0A%09Unknown%20mount%20option&In-Reply-To=%3C201107191846.p6JIk2IF021195%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000498.html">
+   <LINK REL="Next"  HREF="000500.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #18246] System log says: [ 1615.567431] CIFS:	Unknown mount option</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2318246%5D%20System%20log%20says%3A%20%5B%201615.567431%5D%20CIFS%3A%0A%09Unknown%20mount%20option&In-Reply-To=%3C201107191846.p6JIk2IF021195%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #18246] System log says: [ 1615.567431] CIFS:	Unknown mount option">admin at berlios.de
+       </A><BR>
+    <I>Tue Jul 19 20:46:02 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000498.html">[Smb4K-bugs] [Bug #18247] When setting UTF8 option shares no longer	mount
+</A></li>
+        <LI>Next message: <A HREF="000500.html">[Smb4K-bugs] [Bug #18247] When setting UTF8 option shares no longer	mount
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#499">[ date ]</a>
+              <a href="thread.html#499">[ thread ]</a>
+              <a href="subject.html#499">[ subject ]</a>
+              <a href="author.html#499">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #18246, was updated on 2011-Jul-17 16:35
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Closed
+Resolution: Fixed
+Bug Group: normal
+Priority: 5
+Submitted by: ronaldvr
+Assigned to : none
+Summary: System log says: [ 1615.567431] CIFS: Unknown mount option  
+
+Details: I am not sure whether it is a bug or a configuration error, but I noticed this when I was looking in my log for something else...
+
+[ 1615.550729] CIFS: Unknown mount option  domain
+(This happens when starting my system, and the option &quot;remount previously mounted shares at startup&quot;  has been checked)
+
+(and as many times as there are shares to mount)
+
+
+Follow-Ups:
+
+Date: 2011-Jul-19 20:46
+By: dustpuppy
+
+Comment:
+After further investigation, the problem has been identified and fixed.
+
+Thanks for the report. I'm going to close it now.
+-------------------------------------------------------
+
+Date: 2011-Jul-19 08:47
+By: dustpuppy
+
+Comment:
+That will be my next step. I want to see if the error message vanishes when I change the order of the arguments. However, I suspect that also something else is wrong here...
+-------------------------------------------------------
+
+Date: 2011-Jul-18 21:24
+By: ronaldvr
+
+Comment:
+Hmm can it just be the wrong order, a comma misplaced, or a hard space character or something? (More a syntax issue I mean)
+-------------------------------------------------------
+
+Date: 2011-Jul-18 20:56
+By: dustpuppy
+
+Comment:
+I could reproduce this error. I'm currently not sure why it occurs, but I'm trying to work it out.
+-------------------------------------------------------
+
+Date: 2011-Jul-18 10:13
+By: dustpuppy
+
+Comment:
+Strange. The domain argument should be known... 
+
+Can you please tell me which kernel and mount.cifs version you are using?
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18246&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18246&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000498.html">[Smb4K-bugs] [Bug #18247] When setting UTF8 option shares no longer	mount
+</A></li>
+	<LI>Next message: <A HREF="000500.html">[Smb4K-bugs] [Bug #18247] When setting UTF8 option shares no longer	mount
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#499">[ date ]</a>
+              <a href="thread.html#499">[ thread ]</a>
+              <a href="subject.html#499">[ subject ]</a>
+              <a href="author.html#499">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

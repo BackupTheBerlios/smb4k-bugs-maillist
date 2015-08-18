@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #9631] security: weaknesses in	utilities/smb4k_*.cpp
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2006-December/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%239631%5D%20security%3A%20weaknesses%20in%0A%09utilities/smb4k_%2A.cpp&In-Reply-To=%3C200612070716.kB77GCR5017855%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000009.html">
+   <LINK REL="Next"  HREF="000011.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #9631] security: weaknesses in	utilities/smb4k_*.cpp</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%239631%5D%20security%3A%20weaknesses%20in%0A%09utilities/smb4k_%2A.cpp&In-Reply-To=%3C200612070716.kB77GCR5017855%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #9631] security: weaknesses in	utilities/smb4k_*.cpp">admin at berlios.de
+       </A><BR>
+    <I>Thu Dec  7 08:16:12 CET 2006</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000009.html">[Smb4K-bugs] [Bug #9630] security: weaknesses in	smb4k/core/smb4kfileio.cpp
+</A></li>
+        <LI>Next message: <A HREF="000011.html">[Smb4K-bugs] [Bug #9630] security: weaknesses in	smb4k/core/smb4kfileio.cpp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#10">[ date ]</a>
+              <a href="thread.html#10">[ thread ]</a>
+              <a href="subject.html#10">[ subject ]</a>
+              <a href="author.html#10">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #9631, was updated on 2006-Dec-05 21:21
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: kees
+Assigned to : none
+Summary: security: weaknesses in utilities/smb4k_*.cpp
+
+Details: Hi, another report from my audit of smb4k.  There is a design issue with smb4k_kill.  Anyone in the sudoers list for smb4k can kill any process on the system.  That could lead to all sorts of problems, but I'm not sure what the &quot;right&quot; solution might be.
+
+Additionally, when used along with the &quot;sudo&quot; configuration, all of the tools have stack overflows with args variable, as well as other strcpy uses that could be a problem in the future.  This could lead to full priv escalation for anyone in the smb4k sudoers list.  I'd recommend checking the position in the args list (25 is the current size), and using strncpy.
+
+Thanks!
+
+Follow-Ups:
+
+Date: 2006-Dec-07 08:16
+By: dustpuppy
+
+Comment:
+I implemented the use of strncpy you proposed where applicable. And &quot;k&quot; is now being check that it is not equal or greater than the size of the args array. For example:
+
+  if ( k &gt;= 25 )
+  {
+    cerr &lt;&lt; &quot;smb4k_mount: There are too many arguments&quot; &lt;&lt; endl;
+    exit( EXIT_FAILURE );      
+  }
+-------------------------------------------------------
+
+Date: 2006-Dec-06 18:44
+By: kees
+
+Comment:
+Hi!  Thanks for checking into this.  That's good news that you're using strncpy now, however I'd like to suggest a safer approach.
+
+Current you have this:
+
+  char *p = new char[100];
+  const char *prg = findprog( &quot;kill&quot; );
+  args[k] = strncpy( p, prg, strlen( prg ) + 1 );
+
+While presently &quot;findprog&quot; won't produce anything unsafe, you probably want to get into the habit of using strncpy more safely.  The above code is functionally the same as &quot;strcpy&quot; (since it limits the copy to the size of the source, not the destination).  You want to be using something like this:
+
+    args[k] = strncpy( p, prg, 99 );
+    p[99]='\0';
+
+That way, the string will be ever be longer than the allocated size (p is 100 bytes), and the final byte will always terminate the string.
+
+The current CVS still doesn't check that &quot;k&quot; is less than 25, so that is still an issue.  Imagine running 'sudo smb4k_kill 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26'.  That 26th argument will be written beyond the allocated space for &quot;args&quot;.
+
+
+-------------------------------------------------------
+
+Date: 2006-Dec-06 07:52
+By: dustpuppy
+
+Comment:
+I'm aware of the smb4k_kill problem. At the moment, however, I don't have an idea either how to fix it. I'll make up my mind.
+
+The use of the strncpy is already implemented in version 0.8.0 of Smb4K.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=9631&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=9631&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000009.html">[Smb4K-bugs] [Bug #9630] security: weaknesses in	smb4k/core/smb4kfileio.cpp
+</A></li>
+	<LI>Next message: <A HREF="000011.html">[Smb4K-bugs] [Bug #9630] security: weaknesses in	smb4k/core/smb4kfileio.cpp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#10">[ date ]</a>
+              <a href="thread.html#10">[ thread ]</a>
+              <a href="subject.html#10">[ subject ]</a>
+              <a href="author.html#10">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

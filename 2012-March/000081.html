@@ -1,0 +1,415 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> No subject
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20No%20subject&In-Reply-To=%3Cmailman.2.1331738079.11707.smb4k-bugs%40lists.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000079.html">
+   <LINK REL="Next"  HREF="000083.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>No subject</H1>
+    <B></B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20No%20subject&In-Reply-To=%3Cmailman.2.1331738079.11707.smb4k-bugs%40lists.berlios.de%3E"
+       TITLE="No subject">
+       </A><BR>
+    <I>Wed Mar 14 16:14:39 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000079.html">No subject
+</A></li>
+        <LI>Next message: <A HREF="000083.html">No subject
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#81">[ date ]</a>
+              <a href="thread.html#81">[ thread ]</a>
+              <a href="subject.html#81">[ subject ]</a>
+              <a href="author.html#81">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thus, the effective configure arguments for my local system are:
+--with-pcsc-dir=/usr --disable-rpath --enable-final --prefix=/opt/kde3 --with-qt-dir=/usr/lib/qt3 --enable-threading --enable-mt --with-xinerama --with-ssl-dir=/usr/ssl --mandir=/usr/share/man --sysconfdir=/etc --enable-new-ldflags --disable-debug --disable-final
+
+After installing the package rebuilt locally from the mentioned source rpm, I was able to mount one share and it crashed on mounting the second one with the following stacktrace:
+---
+System configuration startup check disabled.
+
+ [?1034hUsing host libthread_db library &quot;/lib/libthread_db.so.1&quot;.
+[Thread debugging using libthread_db enabled]
+[New Thread -1231812912 (LWP 32011)]
+[KCrash handler]
+#6  0xb77ab3fd in QCString::upper () from /usr/lib/qt3/lib/libqt-mt.so.3
+#7  0xb7ebefc0 in Smb4KMounter::findShareByPath (this=0x80acbe0, 
+    path=@0xbfa8d4b0) at smb4kmounter.cpp:1350
+#8  0xb7f4f901 in Smb4KShareWidget::slotMountedShares (this=0x810b688)
+    at smb4ksharewidget.cpp:473
+#9  0xb7f50345 in Smb4KShareWidget::qt_invoke (this=0x810b688, _id=83, 
+    _o=0xbfa8d578) at smb4ksharewidget.moc:114
+#10 0xb7505e71 in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#11 0xb7506b4d in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#12 0xb7ebcb3c in Smb4KMounter::updated (this=0x80acbe0)
+    at smb4kmounter.moc:128
+#13 0xb7ebfb81 in Smb4KMounter::processMount (this=0x80acbe0)
+    at smb4kmounter.cpp:1277
+#14 0xb7ec0578 in Smb4KMounter::endProcess (this=0x80acbe0)
+    at smb4kmounter.cpp:1041
+#15 0xb7ec05ad in Smb4KMounter::slotProcessExited (this=0x80acbe0)
+    at smb4kmounter.cpp:1441
+#16 0xb7ec5b55 in Smb4KMounter::qt_invoke (this=0x80acbe0, _id=2, 
+    _o=0xbfa8d784) at smb4kmounter.moc:146
+#17 0xb7505f0d in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#18 0xb7a585be in KProcess::processExited () from /opt/kde3/lib/libkdecore.so.4
+#19 0xb7a5877f in KProcess::processHasExited ()
+   from /opt/kde3/lib/libkdecore.so.4
+#20 0xb7a538bf in KProcessController::slotDoHousekeeping ()
+   from /opt/kde3/lib/libkdecore.so.4
+#21 0xb7a539d2 in KProcessController::qt_invoke ()
+   from /opt/kde3/lib/libkdecore.so.4
+#22 0xb7505f0d in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#23 0xb7506a52 in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#24 0xb7841e70 in QSocketNotifier::activated ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#25 0xb7524140 in QSocketNotifier::event () from /usr/lib/qt3/lib/libqt-mt.so.3
+#26 0xb74a69b7 in QApplication::internalNotify ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#27 0xb74a7781 in QApplication::notify () from /usr/lib/qt3/lib/libqt-mt.so.3
+#28 0xb7b29bf2 in KApplication::notify () from /opt/kde3/lib/libkdecore.so.4
+#29 0xb749b361 in QEventLoop::activateSocketNotifiers ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#30 0xb7455b64 in QEventLoop::processEvents ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#31 0xb74bd7e0 in QEventLoop::enterLoop () from /usr/lib/qt3/lib/libqt-mt.so.3
+#32 0xb74bd676 in QEventLoop::exec () from /usr/lib/qt3/lib/libqt-mt.so.3
+#33 0xb74a656f in QApplication::exec () from /usr/lib/qt3/lib/libqt-mt.so.3
+#34 0x08054161 in main (argc=136373392, argv=0x82038f8) at main.cpp:146
+ 
+-------------------------------------------------------
+
+Date: 2007-May-04 13:52
+By: dustpuppy
+
+Comment:
+That's utterly strange because the only thing that was changed between 0.8.2 and 0.8.3 were some strings, i.e. no code that could cause a crash. I suspect that the crash appears because of SUSE using Qt4 - which is *not* supported by us at the moment - to compile KDE and maybe because of some configure options that were used during compilation. If you could provide the arguments that were passed to the configure script during the compilation process, I could test them and perhaps provide a fix. 
+-------------------------------------------------------
+
+Date: 2007-May-03 10:54
+By: rkrell
+
+Comment:
+The bug disappeared in smb4k 0.8.2, but unfortunately it re-appeared in 0.8.3.
+
+Still almost the same konfiguration, OpenSUSE 10.2 and:
+samba-winbind-3.0.24-14 
+samba-client-3.0.24-14 
+samba-3.0.24-14 
+cifs-mount-3.0.24-14 
+libsmbclient-3.0.24-14 
+libqt4-qt3support-4.2.91-33.1
+qt3-3.3.8-72.1
+dbus-1-qt3-0.62-38
+
+Working packages:
+<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">smb4k-0.8.2-1.guru.suse102 at i686</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">smb4k-0.8.2-2.1 at i586</A>
+
+Buggy package:
+<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">smb4k-0.8.3-1.guru.suse102 at i686</A>
+
+Stack trace:
+---------------
+System configuration startup check disabled.
+
+ [?1034h(no debugging symbols found)
+Using host libthread_db library &quot;/lib/libthread_db.so.1&quot;.
+(no debugging symbols found)
+(no debugging symbols found)
+[Thread debugging using libthread_db enabled]
+[New Thread -1232254752 (LWP 19921)]
+[KCrash handler]
+#6  0xb72e7ecd in QString::QString () from /usr/lib/qt3/lib/libqt-mt.so.3
+#7  0xb7e883ae in Smb4KShare::Smb4KShare ()
+   from /opt/kde3/lib/libsmb4kcore.so.1
+#8  0xb7f0062e in Smb4KShareWidgetItem::Smb4KShareWidgetItem ()
+   from /opt/kde3/lib/libsmb4kwidgets.so.1
+#9  0xb7efae81 in Smb4KShareWidget::slotMountedShares ()
+   from /opt/kde3/lib/libsmb4kwidgets.so.1
+#10 0xb7efb515 in Smb4KShareWidget::qt_invoke ()
+   from /opt/kde3/lib/libsmb4kwidgets.so.1
+#11 0xb7015e71 in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#12 0xb7016b4d in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#13 0xb7e67cbc in Smb4KMounter::updated () from /opt/kde3/lib/libsmb4kcore.so.1
+#14 0xb7e6ad01 in Smb4KMounter::processMount ()
+   from /opt/kde3/lib/libsmb4kcore.so.1
+#15 0xb7e6b6f8 in Smb4KMounter::endProcess ()
+   from /opt/kde3/lib/libsmb4kcore.so.1
+#16 0xb7e6b72d in Smb4KMounter::slotProcessExited ()
+   from /opt/kde3/lib/libsmb4kcore.so.1
+#17 0xb7e70cd5 in Smb4KMounter::qt_invoke ()
+   from /opt/kde3/lib/libsmb4kcore.so.1
+#18 0xb7015f0d in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#19 0xb764e5be in KProcess::processExited () from /opt/kde3/lib/libkdecore.so.4
+#20 0xb764e77f in KProcess::processHasExited ()
+   from /opt/kde3/lib/libkdecore.so.4
+#21 0xb76498bf in KProcessController::slotDoHousekeeping ()
+   from /opt/kde3/lib/libkdecore.so.4
+#22 0xb76499d2 in KProcessController::qt_invoke ()
+   from /opt/kde3/lib/libkdecore.so.4
+#23 0xb7015f0d in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#24 0xb7016a52 in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#25 0xb7351e70 in QSocketNotifier::activated ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#26 0xb7034140 in QSocketNotifier::event () from /usr/lib/qt3/lib/libqt-mt.so.3
+#27 0xb6fb69b7 in QApplication::internalNotify ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#28 0xb6fb7781 in QApplication::notify () from /usr/lib/qt3/lib/libqt-mt.so.3
+#29 0xb771fbf2 in KApplication::notify () from /opt/kde3/lib/libkdecore.so.4
+#30 0xb6fab361 in QEventLoop::activateSocketNotifiers ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#31 0xb6f65b64 in QEventLoop::processEvents ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#32 0xb6fcd7e0 in QEventLoop::enterLoop () from /usr/lib/qt3/lib/libqt-mt.so.3
+#33 0xb6fcd676 in QEventLoop::exec () from /usr/lib/qt3/lib/libqt-mt.so.3
+#34 0xb6fb656f in QApplication::exec () from /usr/lib/qt3/lib/libqt-mt.so.3
+#35 0x08054331 in QValueListPrivate&lt;KAction*&gt;::~QValueListPrivate ()
+#36 0xb68f5f9c in __libc_start_main () from /lib/libc.so.6
+#37 0x08050661 in QWidget::setUpdatesEnabled ()
+
+-------------------------------------------------------
+
+Date: 2007-Apr-04 13:32
+By: rkrell
+
+Comment:
+Nothing special, except some updates from different OpenSUSE repositories.
+
+More installed packages:
+-------------------------------
+  samba-winbind-3.0.24-14
+  samba-client-3.0.24-14
+  samba-3.0.24-14
+  cifs-mount-3.0.24-14
+  libsmbclient-3.0.24-14
+  smb4k-0.8.0-11
+  libqt4-qt3support-4.2.90-53.1
+  qt3-3.3.8-61.1
+  dbus-1-qt3-0.62-55
+
+hwinfo --short
+------------------
+cpu:
+                       Intel(R) Pentium(R) 4 CPU 2.80GHz, 2800 MHz
+keyboard:
+  /dev/input/event1    AT Translated Set 2 keyboard
+mouse:
+  /dev/input/mice      Logitech USB-PS/2 Optical Mouse
+  /dev/input/mice      Apple Macintosh mouse button emulation
+monitor:
+                       Generic Monitor
+graphics card:
+                       Micro-Star International 865 G
+sound:
+                       Micro-Star International 65PE Neo2-V (MS-6788) mainboard
+storage:
+                       Floppy disk controller
+                       Micro-Star International 865PE Neo2 (MS-6728)
+network:
+  eth0                 Micro-Star International RTL-8139/8139C/8139C+
+network interface:
+  lo                   Loopback network interface
+  eth0                 Ethernet network interface
+disk:
+  /dev/hda             MAXTOR STM3200820A
+partition:
+  /dev/hda1            Partition
+  /dev/hda2            Partition
+  /dev/hda3            Partition
+cdrom:
+  /dev/hdc             PHILIPS PCDV6116
+usb controller:
+                       Micro-Star International 865PE Neo2 (MS-6728)
+                       Micro-Star International 865PE Neo2 (MS-6728)
+                       Micro-Star International 865PE Neo2 (MS-6728)
+                       Micro-Star International 865PE Neo2 (MS-6728)
+                       Micro-Star International 865PE Neo2 (MS-6728)
+bios:
+                       BIOS
+bridge:
+                       Micro-Star International 82865G/PE/P DRAM Controller/Host-Hub Interface
+                       Intel 82801 PCI Bridge
+                       Intel 82801EB/ER (ICH5/ICH5R) LPC Interface Bridge
+hub:
+                       Linux 2.6.20.2-2-default uhci_hcd UHCI Host Controller
+                       Linux 2.6.20.2-2-default uhci_hcd UHCI Host Controller
+                       Linux 2.6.20.2-2-default uhci_hcd UHCI Host Controller
+                       Linux 2.6.20.2-2-default uhci_hcd UHCI Host Controller
+                       Linux 2.6.20.2-2-default ehci_hcd EHCI Host Controller
+memory:
+                       Main Memory
+unknown:
+                       FPU
+                       DMA controller
+                       PIC
+                       Timer
+                       RTC
+                       Keyboard controller
+  /dev/lp0             Parallel controller
+                       PS/2 Controller
+                       Micro-Star International 865PE Neo2 (MS-6728)
+                       PnP Unclassified device
+                       PnP Unclassified device
+                       Unclassified device
+                       PnP Unclassified device
+                       PnP Unclassified device
+                       PnP Unclassified device
+                       PnP Unclassified device
+                       PnP Unclassified device
+                       PnP Unclassified device
+                       PnP Unclassified device
+                       PnP Unclassified device
+                       PnP Unclassified device
+  /dev/ttyS0           16550A
+  /dev/ttyS1           16550A
+
+-------------------------------------------------------
+
+Date: 2007-Apr-04 11:31
+By: dustpuppy
+
+Comment:
+Hm, both backtraces indicate that there is something wrong with the list of mounted shares that's managed by the Smb4KMounter class. Namely, it seems the stored pointers are corrupted or freed already when the rest of the program tries to access them. - Strange. I'll have to investigate further.
+
+BTW: Do you have some special services running like SELinux, etc.? What hardware do you have?
+-------------------------------------------------------
+
+Date: 2007-Apr-04 10:15
+By: rkrell
+
+Comment:
+Yes, it still crashes whenever I try to &quot;Mount manually&quot;.
+
+Current environment:
+- OpenSuSE 10.2
+- smb4k 0.8.0 (mount as CIFS)
+- KDE 3.5.6 &quot;release 48.1&quot;
+- QT 3.3.8
+- Kernel: Linux (i686) release 2.6.20.2-2-default
+
+Backtrace (seems to be different):
+System configuration startup check disabled.
+
+ [?1034h(no debugging symbols found)
+Using host libthread_db library &quot;/lib/libthread_db.so.1&quot;.
+(no debugging symbols found)
+(no debugging symbols found)
+[Thread debugging using libthread_db enabled]
+[New Thread -1231796528 (LWP 9408)]
+[KCrash handler]
+#6  0xb77ca77d in QString::upper () from /usr/lib/qt3/lib/libqt-mt.so.3
+#7  0xb7f19f99 in Smb4KBookmarkMenuWidget::slotUpdatedShareList ()
+   from /opt/kde3/lib/libsmb4kwidgets.so.1
+#8  0xb7f1af0b in Smb4KBookmarkMenuWidget::qt_invoke ()
+   from /opt/kde3/lib/libsmb4kwidgets.so.1
+#9  0xb74f1f31 in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#10 0xb74f2c0d in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#11 0xb7eb385c in Smb4KMounter::updated () from /opt/kde3/lib/libsmb4kcore.so.1
+#12 0xb7eb68a1 in Smb4KMounter::processMount ()
+   from /opt/kde3/lib/libsmb4kcore.so.1
+#13 0xb7eb7268 in Smb4KMounter::endProcess ()
+   from /opt/kde3/lib/libsmb4kcore.so.1
+#14 0xb7eb729d in Smb4KMounter::slotProcessExited ()
+   from /opt/kde3/lib/libsmb4kcore.so.1
+#15 0xb7ebc865 in Smb4KMounter::qt_invoke ()
+   from /opt/kde3/lib/libsmb4kcore.so.1
+#16 0xb74f1fcd in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#17 0xb7a4e5be in KProcess::processExited () from /opt/kde3/lib/libkdecore.so.4
+#18 0xb7a4e77f in KProcess::processHasExited ()
+   from /opt/kde3/lib/libkdecore.so.4
+#19 0xb7a498bf in KProcessController::slotDoHousekeeping ()
+   from /opt/kde3/lib/libkdecore.so.4
+#20 0xb7a499d2 in KProcessController::qt_invoke ()
+   from /opt/kde3/lib/libkdecore.so.4
+#21 0xb74f1fcd in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#22 0xb74f2b12 in QObject::activate_signal ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#23 0xb782dea0 in QSocketNotifier::activated ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#24 0xb7510200 in QSocketNotifier::event () from /usr/lib/qt3/lib/libqt-mt.so.3
+#25 0xb7492a77 in QApplication::internalNotify ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#26 0xb7493841 in QApplication::notify () from /usr/lib/qt3/lib/libqt-mt.so.3
+#27 0xb7b1fbf2 in KApplication::notify () from /opt/kde3/lib/libkdecore.so.4
+#28 0xb7487421 in QEventLoop::activateSocketNotifiers ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#29 0xb7441c24 in QEventLoop::processEvents ()
+   from /usr/lib/qt3/lib/libqt-mt.so.3
+#30 0xb74a98a0 in QEventLoop::enterLoop () from /usr/lib/qt3/lib/libqt-mt.so.3
+#31 0xb74a9736 in QEventLoop::exec () from /usr/lib/qt3/lib/libqt-mt.so.3
+#32 0xb749262f in QApplication::exec () from /usr/lib/qt3/lib/libqt-mt.so.3
+#33 0x08054b1f in QValueListPrivate&lt;KAction*&gt;::~QValueListPrivate ()
+#34 0xb7083e5c in __libc_start_main () from /lib/libc.so.6
+#35 0x08050e41 in QWidget::setUpdatesEnabled ()
+
+-------------------------------------------------------
+
+Date: 2007-Apr-04 09:59
+By: dustpuppy
+
+Comment:
+I cannot reproduce this bug on SUSE 10.2. Is Smb4K still crashing on your system?
+-------------------------------------------------------
+
+Date: 2007-Jan-24 18:39
+By: dustpuppy
+
+Comment:
+I'll have a look at this problem as soon as I can. I'm currently preparing for a relocation which eats up almost all of my spare time.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10111&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10111&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000079.html">No subject
+</A></li>
+	<LI>Next message: <A HREF="000083.html">No subject
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#81">[ date ]</a>
+              <a href="thread.html#81">[ thread ]</a>
+              <a href="subject.html#81">[ subject ]</a>
+              <a href="author.html#81">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

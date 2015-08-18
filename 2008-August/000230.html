@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #14379] Smb4k 0.10.0rc can't find smb4k_umount
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2008-August/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2314379%5D%20Smb4k%200.10.0rc%20can%27t%20find%20smb4k_umount&In-Reply-To=%3C200808210916.m7L9Grgx013312%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000229.html">
+   <LINK REL="Next"  HREF="000231.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #14379] Smb4k 0.10.0rc can't find smb4k_umount</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2314379%5D%20Smb4k%200.10.0rc%20can%27t%20find%20smb4k_umount&In-Reply-To=%3C200808210916.m7L9Grgx013312%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #14379] Smb4k 0.10.0rc can't find smb4k_umount">admin at berlios.de
+       </A><BR>
+    <I>Thu Aug 21 11:16:53 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000229.html">[Smb4K-bugs] [Bug #14379] Smb4k 0.10.0rc can't find smb4k_umount
+</A></li>
+        <LI>Next message: <A HREF="000231.html">[Smb4K-bugs] [Bug #14379] Smb4k 0.10.0rc can't find smb4k_umount
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#230">[ date ]</a>
+              <a href="thread.html#230">[ thread ]</a>
+              <a href="subject.html#230">[ subject ]</a>
+              <a href="author.html#230">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #14379, was updated on 2008-Aug-18 18:42
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: normal
+Priority: 5
+Submitted by: lele85
+Assigned to : none
+Summary: Smb4k 0.10.0rc can't find smb4k_umount
+
+Details: Im using smb4k 0.10.0rc on archlinux.
+When i try to umount a samba share i have this message:
+
+The share &quot;//FISSO/260GB (E)(I18N_ARGUMENT_MISSING)&quot; could not be unmounted.
+Read the error message under &quot;Details&quot; to find out more.
+
+smb4k_umount: No such file or directory
+
+but i have those files in /usr/bin:
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">lele85 at lele-box</A> bin]$ ls | grep smb4k
+smb4k
+smb4k_kill
+smb4k_mount
+smb4k_sudowriter
+smb4k_umount
+
+The only way to umount the share is doing it manually with umount.cifs
+
+
+Follow-Ups:
+
+Date: 2008-Aug-21 11:16
+By: lele85
+
+Comment:
+Ok... i have understand the problem. I think ther's a problem with the name of the condivision.
+
+With:
+
+/home/lele85/smb4k/SAMBA 
+
+everything goes well.
+
+With:
+
+/home/lele85/smb4k/260GB (E)
+
+umount doesn't work.
+
+With older relases ok smb4k everything goes well in each case. I think the problem may be the space in the name of the condivision.
+-------------------------------------------------------
+
+Date: 2008-Aug-21 07:40
+By: dustpuppy
+
+Comment:
+smb4k_umount is found, because the error message it produced by it. The error means that the mount point of the share that is to be unmounted could not be found. And that may be caused be the string  (I18N_ARGUMENT_MISSING) that is appended to it. Have you configured Samba?
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14379&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14379&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000229.html">[Smb4K-bugs] [Bug #14379] Smb4k 0.10.0rc can't find smb4k_umount
+</A></li>
+	<LI>Next message: <A HREF="000231.html">[Smb4K-bugs] [Bug #14379] Smb4k 0.10.0rc can't find smb4k_umount
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#230">[ date ]</a>
+              <a href="thread.html#230">[ thread ]</a>
+              <a href="subject.html#230">[ subject ]</a>
+              <a href="author.html#230">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

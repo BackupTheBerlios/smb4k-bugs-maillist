@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] Fw: Re:  Crash SMB4K
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%3D%3Futf-8%3Fq%3FFw%3D3A_Re%3D3A__Crash_SMB4K%3F%3D&In-Reply-To=%3C1Q0CXT-2L5lxI0%40fwd10.aul.t-online.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000464.html">
+   <LINK REL="Next"  HREF="000467.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] Fw: Re:  Crash SMB4K</H1>
+    <B>alexander.reinholdt at t-online.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%3D%3Futf-8%3Fq%3FFw%3D3A_Re%3D3A__Crash_SMB4K%3F%3D&In-Reply-To=%3C1Q0CXT-2L5lxI0%40fwd10.aul.t-online.de%3E"
+       TITLE="[Smb4K-bugs] Fw: Re:  Crash SMB4K">alexander.reinholdt at t-online.de
+       </A><BR>
+    <I>Thu Mar 17 13:42:51 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000464.html">[Smb4K-bugs] Crash by sel lower tab network search then clickng	scan network
+</A></li>
+        <LI>Next message: <A HREF="000467.html">[Smb4K-bugs] [Bug #18001] Grouping Of Bookmarks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#466">[ date ]</a>
+              <a href="thread.html#466">[ thread ]</a>
+              <a href="subject.html#466">[ subject ]</a>
+              <a href="author.html#466">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+-----Original-Nachricht-----
+Subject: Re: [Smb4K-bugs] Crash SMB4K
+Date: Thu, 17 Mar 2011 13:38:32 +0100
+From: &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">alexander.reinholdt at t-online.de</A>&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">alexander.reinholdt at t-online.de</A>&gt;
+To: &quot;Victor Asuncion&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">victor at gotjesus.net</A>&gt;
+
+Hello Victor,
+
+thank you for reporting this bug. However, it has already been fixed, so please upgrade to the latest Version (0.10.10). It is available at <A HREF="http://prdownload.berlios.de/smb4k/smb4k-0.10.10.tar.bz2.">http://prdownload.berlios.de/smb4k/smb4k-0.10.10.tar.bz2.</A>
+
+(If you do not want to do the build on your own, you might want to grab Smb4K's source package for Ubuntu Natty (version 0.10.9) from one of Ubuntu's archives and follow the procedure described at <A HREF="http://www.debian.org/doc/FAQ/ch-pkg_basics.en.html">http://www.debian.org/doc/FAQ/ch-pkg_basics.en.html</A> under section 17.4.)
+
+Best regards
+Alexander
+
+-----Original-Nachricht-----
+Subject: [Smb4K-bugs] Crash SMB4K
+Date: Wed, 16 Mar 2011 18:33:48 +0100
+From: &quot;Victor Asuncion&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">victor at gotjesus.net</A>&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">smb4k-bugs at lists.berlios.de</A>
+
+Application that crashed: smb4k
+Version of the application: 0.10.2
+KDE Version: 4.3.2 (KDE 4.3.2)
+Qt Version: 4.5.2
+Operating System: Linux 2.6.31-15-generic-pae i686
+Distribution: Ubuntu 9.10
+
+What I was doing when the application crashed:
+&lt;In detail, tell us what you were doing  when the application
+crashed.&gt;
+
+-- Backtrace:
+Application: Smb4K (smb4k), signal: Segmentation fault
+[KCrash Handler]
+#6  0xb60adaca in QString::operator=(QString const&amp;) () from
+/usr/lib/libQtCore.so.4
+#7  0xb748bef5 in Smb4KAuthInfo::unc(int) const () from
+/usr/lib/libsmb4kcore.so.3
+#8  0xb74d8364 in Smb4KWalletManager::readAuthInfo(Smb4KAuthInfo*) ()
+from /usr/lib/libsmb4kcore.so.3
+#9  0xb74c3568 in Smb4KScanner::scanForShares(Smb4KHost const&amp;) ()
+from /usr/lib/libsmb4kcore.so.3
+#10 0xb74c840b in Smb4KScanner::timerEvent(QTimerEvent*) () from
+/usr/lib/libsmb4kcore.so.3
+#11 0xb61683bf in QObject::event(QEvent*) () from
+/usr/lib/libQtCore.so.4
+#12 0xb63def54 in QApplicationPrivate::notify_helper(QObject*,
+QEvent*) () from /usr/lib/libQtGui.so.4
+#13 0xb63e667c in QApplication::notify(QObject*, QEvent*) () from
+/usr/lib/libQtGui.so.4
+#14 0xb729bbfa in KApplication::notify(QObject*, QEvent*) () from
+/usr/lib/libkdeui.so.5
+#15 0xb61586cb in QCoreApplication::notifyInternal(QObject*, QEvent*)
+() from /usr/lib/libQtCore.so.4
+#16 0xb61857ce in ?? () from /usr/lib/libQtCore.so.4
+#17 0xb61830e0 in ?? () from /usr/lib/libQtCore.so.4
+#18 0xb5952e78 in g_main_context_dispatch () from
+/lib/libglib-2.0.so.0
+#19 0xb5956720 in ?? () from /lib/libglib-2.0.so.0
+#20 0xb5956853 in g_main_context_iteration () from
+/lib/libglib-2.0.so.0
+#21 0xb618302c in
+QEventDispatcherGlib::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;)
+() from /usr/lib/libQtCore.so.4
+#22 0xb647fbe5 in ?? () from /usr/lib/libQtGui.so.4
+#23 0xb6156c79 in
+QEventLoop::processEvents(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) ()
+from /usr/lib/libQtCore.so.4
+#24 0xb61570ca in
+QEventLoop::exec(QFlags&lt;QEventLoop::ProcessEventsFlag&gt;) () from
+/usr/lib/libQtCore.so.4
+#25 0xb615953f in QCoreApplication::exec() () from
+/usr/lib/libQtCore.so.4
+#26 0xb63dedd7 in QApplication::exec() () from /usr/lib/libQtGui.so.4
+#27 0x08051e34 in _start ()
+
+Report to <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">smb4k-bugs at lists.berlios.de</A> 
+
+--
+In Service for HIM,
+
+vic
+
+Witness without saying a WORD! Contact us now @ www.gotJESUS.net 
+Find out how you can participate in what GOD has been doing for
+thousands of years.  Philippians 2:9-11 (KJV)
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000464.html">[Smb4K-bugs] Crash by sel lower tab network search then clickng	scan network
+</A></li>
+	<LI>Next message: <A HREF="000467.html">[Smb4K-bugs] [Bug #18001] Grouping Of Bookmarks
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#466">[ date ]</a>
+              <a href="thread.html#466">[ thread ]</a>
+              <a href="subject.html#466">[ subject ]</a>
+              <a href="author.html#466">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

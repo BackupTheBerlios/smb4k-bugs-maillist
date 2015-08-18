@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] wallet support disabled automatically when wallet	inaccessible
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20wallet%20support%20disabled%20automatically%20when%20wallet%0A%09inaccessible&In-Reply-To=%3C200802290822.35446.alexander.reinholdt%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000162.html">
+   <LINK REL="Next"  HREF="000164.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] wallet support disabled automatically when wallet	inaccessible</H1>
+    <B>Alexander Reinholdt</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20wallet%20support%20disabled%20automatically%20when%20wallet%0A%09inaccessible&In-Reply-To=%3C200802290822.35446.alexander.reinholdt%40web.de%3E"
+       TITLE="[Smb4K-bugs] wallet support disabled automatically when wallet	inaccessible">alexander.reinholdt at web.de
+       </A><BR>
+    <I>Fri Feb 29 08:22:35 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000162.html">[Smb4K-bugs] wallet support disabled automatically when wallet	inaccessible
+</A></li>
+        <LI>Next message: <A HREF="000164.html">[Smb4K-bugs] [Bug #12707] SMB4K hangs on starting automatically	with KDE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#163">[ date ]</a>
+              <a href="thread.html#163">[ thread ]</a>
+              <a href="subject.html#163">[ subject ]</a>
+              <a href="author.html#163">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello!
+
+Thank you for reporting this issue. I fixed it and in the upcoming Smb4K 0.9.4 
+the wallet support will only be disabled for the current session and never 
+completely.
+
+Best regards
+Alexander Reinholdt
+
+Am Donnerstag 28 Februar 2008 schrieb Alexander Blum:
+&gt;<i> Package: smb4k
+</I>&gt;<i> Version: 0.8.4 3.5.8, Kubuntu (gutsy) 4:3.5.8-0ubuntu3.3
+</I>&gt;<i> Severity: normal
+</I>&gt;<i> Compiler: Target: i486-linux-gnu
+</I>&gt;<i> OS: Linux 2.6.15.7 i686 (Kubuntu (gutsy) 4:3.5.8-0ubuntu3.3)
+</I>&gt;<i>
+</I>&gt;<i> I have smb4k in my session, so it starts once I log in. The passwords for
+</I>&gt;<i> my samba shares are stored in kdewallet. Every time there is a problem
+</I>&gt;<i> accessing kdewalled (e.g. wrong password or some other problem) smb4k falls
+</I>&gt;<i> back to asking me for passwords for all my shares. While being able to
+</I>&gt;<i> access my shares with a disfunctional/non responding/closed wallet is good,
+</I>&gt;<i> the option in the settings dialog is reset as well which is bad. Because
+</I>&gt;<i> the next time you log in the wallet problem should be fixed and smb4k
+</I>&gt;<i> should again try to use the wallet. If it is still broken, then it can fall
+</I>&gt;<i> back to asking for passwords. But the option should never change without
+</I>&gt;<i> user intervention.
+</I>&gt;<i>
+</I>&gt;<i> I admit that my wallet problems may be due to misconfiguration on my side,
+</I>&gt;<i> and smb4k has to handle such problems (which it does). But resetting an
+</I>&gt;<i> option I specifically set without asking or at least telling me, is not
+</I>&gt;<i> very nice. _______________________________________________
+</I>&gt;<i> Smb4K-bugs mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">Smb4K-bugs at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">https://lists.berlios.de/mailman/listinfo/smb4k-bugs</A>
+</I>
+
+
+-- 
+&quot;Never argue with idiots. They drag you down to their level and beat you with
+experience...&quot; (unknown)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000162.html">[Smb4K-bugs] wallet support disabled automatically when wallet	inaccessible
+</A></li>
+	<LI>Next message: <A HREF="000164.html">[Smb4K-bugs] [Bug #12707] SMB4K hangs on starting automatically	with KDE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#163">[ date ]</a>
+              <a href="thread.html#163">[ thread ]</a>
+              <a href="subject.html#163">[ subject ]</a>
+              <a href="author.html#163">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

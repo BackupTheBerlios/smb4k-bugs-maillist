@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #17084] smb4k unable to detect shares
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2317084%5D%20smb4k%20unable%20to%20detect%20shares&In-Reply-To=%3C201111041642.pA4Ggebp024078%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000534.html">
+   <LINK REL="Next"  HREF="000536.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #17084] smb4k unable to detect shares</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2317084%5D%20smb4k%20unable%20to%20detect%20shares&In-Reply-To=%3C201111041642.pA4Ggebp024078%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #17084] smb4k unable to detect shares">admin at berlios.de
+       </A><BR>
+    <I>Fri Nov  4 17:42:40 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000534.html">[Smb4K-bugs] [Bug #16929] Ping server before first mount attempt
+</A></li>
+        <LI>Next message: <A HREF="000536.html">[Smb4K-bugs] [Bug #17413] can't browser network
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#535">[ date ]</a>
+              <a href="thread.html#535">[ thread ]</a>
+              <a href="subject.html#535">[ subject ]</a>
+              <a href="author.html#535">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #17084, was updated on 2010-Apr-14 20:43
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Closed
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: mmodem
+Assigned to : none
+Summary: smb4k unable to detect shares
+
+Details: I have this machine conected to another through a crossover cable, i have internet shared.
+
+In konqueror, in address bar i enter smb:/ and i get the share groups from this machine and from the other machine.
+
+However in smb4k it only lists the group share from this machine, to get listed the group share from the other machine i need to first know its ip and them enter it in smb4k network search field.
+
+Follow-Ups:
+
+Date: 2011-Nov-04 17:42
+By: dustpuppy
+
+Comment:
+Bug report migrated to Sourceforge.
+-------------------------------------------------------
+
+Date: 2011-Jun-08 07:14
+By: dustpuppy
+
+Comment:
+I guess the reason why you do not see the shares is that your Windows box running ME. Smb4K's default setting is to automatically detect the protocol when querying the remote host for its shares. Most of the time this method chooses the RPC protocol. But as far as I can remember, Windows ME (and older versions) needs the RAP protocol. Have you tried setting the RAP protocol either in the custom options dialog or in the configuration dialog (Samba-&gt;Utility Programs-&gt;net)?
+-------------------------------------------------------
+
+Date: 2011-May-31 19:59
+By: kitchm
+
+Comment:
+I believe my problem to be similar since a crossover cable is as good as a switch for two computers.
+
+I am using Arch Linux with Xfce 4.8.0 on a wired LAN with one other computer (Windows ME).  For some odd reason I can't seem to figure out, the smb4k display shows my local Linux server and my Win ME server on the local LAN.  However, while I can see the Linux shares, there are none for the Win machine.  The network neighborhood on the Win machine easily connects to the Linux shares (as well as seeing its own shares, of course).  There are no delays in hooking up and no other problems.
+
+smb.conf:
+
+[global]
+	workgroup = workgroup
+	netbios name = myhost
+	encrypt passwords = yes
+	security = share
+	# lanman fix, next 3 lines
+	client lanman auth = yes
+	client ntlmv2 auth = no
+	client plaintext auth = yes
+	wins support = yes
+	guest account = jkl
+
+[homes]
+	read only = No
+#	browseable = Yes
+	browsable = Yes
+	public = yes
+	writable = yes
+
+[jkl]
+	path = /home/jkl
+	available = yes
+	browsable = yes
+	public = yes
+	writable = yes
+
+
+SMB4K is Version 0.10.10
+Latest Samba updated version
+
+Can anyone shed some light on why the Linux machine can't see the Win shares?  Thanks.
+-------------------------------------------------------
+
+Date: 2010-Aug-12 22:07
+By: mmodem
+
+Comment:
+At that time i dont know what version was, but i use mandriva distro and it uses to have updated apps, so at that time should be latest version.
+
+Now its:
+
+]$ LC_ALL=C smb4k --version
+Qt: 4.7.0
+KDE Development Platform: 4.5.00 (KDE 4.5.0)
+Smb4K: 0.10.7
+
+but i cant test now the problem since i dont have here another machine to attach a crossover cable.
+-------------------------------------------------------
+
+Date: 2010-Aug-09 11:55
+By: dustpuppy
+
+Comment:
+What version of Smb4K are you using?
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17084&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17084&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000534.html">[Smb4K-bugs] [Bug #16929] Ping server before first mount attempt
+</A></li>
+	<LI>Next message: <A HREF="000536.html">[Smb4K-bugs] [Bug #17413] can't browser network
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#535">[ date ]</a>
+              <a href="thread.html#535">[ thread ]</a>
+              <a href="subject.html#535">[ subject ]</a>
+              <a href="author.html#535">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #11543] SIGSEGV when mounting after Windows	password changes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2007-July/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2311543%5D%20SIGSEGV%20when%20mounting%20after%20Windows%0A%09password%20changes&In-Reply-To=%3C200707121110.l6CBAgaP013656%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000099.html">
+   <LINK REL="Next"  HREF="000101.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #11543] SIGSEGV when mounting after Windows	password changes</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2311543%5D%20SIGSEGV%20when%20mounting%20after%20Windows%0A%09password%20changes&In-Reply-To=%3C200707121110.l6CBAgaP013656%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #11543] SIGSEGV when mounting after Windows	password changes">admin at berlios.de
+       </A><BR>
+    <I>Thu Jul 12 13:10:42 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000099.html">[Smb4K-bugs] [Bug #11499] Crash when mounting share with local name
+</A></li>
+        <LI>Next message: <A HREF="000101.html">[Smb4K-bugs] bug smb4k
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#100">[ date ]</a>
+              <a href="thread.html#100">[ thread ]</a>
+              <a href="subject.html#100">[ subject ]</a>
+              <a href="author.html#100">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #11543, was updated on 2007-Jul-12 13:10
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: crash
+Priority: 5
+Submitted by: stefzechef
+Assigned to : none
+Summary: SIGSEGV when mounting after Windows password changes
+
+Details: I changed my windows password (my old password had expired). After starting smb4k and clicking on a bookmarked mount, i got a SEGV. I expected to be asked
+for my new password.
+
+OS: Ubuntu Feisty Fawn
+Qt: 3.3.7
+KDE: 3.5.6
+Smb4K: 0.8.0
+
+Using host libthread_db library &quot;/lib/tls/i686/cmov/libthread_db.so.1&quot;.
+[Thread debugging using libthread_db enabled]
+[New Thread -1233840432 (LWP 23565)]
+[KCrash handler]
+#6  0xb6f03fbd in QGArray::data (this=0x81f1344) at ../include/qgarray.h:77
+#7  0xb6f0536d in QMemArray&lt;char&gt;::data (this=0x81f1344)
+    at ../include/qmemarray.h:64
+#8  0xb72c27ab in QCString::upper (this=0x81f1344) at tools/qcstring.cpp:1415
+#9  0xb7e51dc0 in Smb4KMounter::findShareByPath (this=0x80b0a30, 
+    path=@0xbfd4bda0)
+    at /build/buildd/smb4k-0.8.0/./smb4k/core/smb4kmounter.cpp:1344
+#10 0xb7e57260 in Smb4KMounter::import (this=0x80b0a30)
+    at /build/buildd/smb4k-0.8.0/./smb4k/core/smb4kmounter.cpp:445
+#11 0xb7e58698 in Smb4KMounter::init (this=0x80b0a30)
+    at /build/buildd/smb4k-0.8.0/./smb4k/core/smb4kmounter.cpp:1467
+#12 0xb7e58939 in Smb4KMounter::qt_invoke (this=0x80b0a30, _id=5, 
+    _o=0xbfd4bf6c) at ./smb4kmounter.moc:149
+#13 0xb6fdb88b in QObject::activate_signal (this=0x80612d8, clist=0x80b0990, 
+    o=0xbfd4bf6c) at kernel/qobject.cpp:2356
+#14 0xb6fdc330 in QObject::activate_signal (this=0x80612d8, signal=2)
+    at kernel/qobject.cpp:2325
+#15 0xb7369ba6 in QTimer::timeout (this=0x80612d8)
+    at .moc/debug-shared-mt/moc_qtimer.cpp:82
+#16 0xb7003596 in QTimer::event (this=0x80612d8, e=0xbfd4c298)
+    at kernel/qtimer.cpp:219
+#17 0xb6f72a60 in QApplication::internalNotify (this=0xbfd4c554, 
+    receiver=0x80612d8, e=0xbfd4c298) at kernel/qapplication.cpp:2635
+#18 0xb6f7488f in QApplication::notify (this=0xbfd4c554, receiver=0x80612d8, 
+    e=0xbfd4c298) at kernel/qapplication.cpp:2358
+#19 0xb7736ce2 in KApplication::notify (this=0xbfd4c554, receiver=0x80612d8, 
+    event=0xbfd4c298)
+    at /build/buildd/kdelibs-3.5.6/./kdecore/kapplication.cpp:550
+#20 0xb6f051e9 in QApplication::sendEvent (receiver=0x80612d8, 
+    event=0xbfd4c298) at ../include/qapplication.h:520
+#21 0xb6f654ab in QEventLoop::activateTimers (this=0x8072e00)
+    at kernel/qeventloop_unix.cpp:556
+#22 0xb6f19d25 in QEventLoop::processEvents (this=0x8072e00, flags=4)
+    at kernel/qeventloop_x11.cpp:389
+#23 0xb6f8d136 in QEventLoop::enterLoop (this=0x8072e00)
+    at kernel/qeventloop.cpp:198
+#24 0xb6f8cf46 in QEventLoop::exec (this=0x8072e00)
+    at kernel/qeventloop.cpp:145
+#25 0xb6f74609 in QApplication::exec (this=0xbfd4c554)
+    at kernel/qapplication.cpp:2758
+#26 0x08054c6f in main (argc=136239280, argv=0x813c6b8)
+    at /build/buildd/smb4k-0.8.0/./smb4k/main.cpp:146
+#27 0xb6797ebc in __libc_start_main () from /lib/tls/i686/cmov/libc.so.6
+#28 0x08050f91 in _start ()
+
+
+
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=11543&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=11543&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000099.html">[Smb4K-bugs] [Bug #11499] Crash when mounting share with local name
+</A></li>
+	<LI>Next message: <A HREF="000101.html">[Smb4K-bugs] bug smb4k
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#100">[ date ]</a>
+              <a href="thread.html#100">[ thread ]</a>
+              <a href="subject.html#100">[ subject ]</a>
+              <a href="author.html#100">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

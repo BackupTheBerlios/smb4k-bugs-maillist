@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #12369] Crash when mounting shares with special	names
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2007-November/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2312369%5D%20Crash%20when%20mounting%20shares%20with%20special%0A%09names&In-Reply-To=%3C200711210702.lAL72hWG010323%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000125.html">
+   <LINK REL="Next"  HREF="000127.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #12369] Crash when mounting shares with special	names</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%2312369%5D%20Crash%20when%20mounting%20shares%20with%20special%0A%09names&In-Reply-To=%3C200711210702.lAL72hWG010323%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #12369] Crash when mounting shares with special	names">admin at berlios.de
+       </A><BR>
+    <I>Wed Nov 21 08:02:43 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000125.html">[Smb4K-bugs] [Bug #12369] Crash when mounting shares with special	names
+</A></li>
+        <LI>Next message: <A HREF="000127.html">[Smb4K-bugs] [Bug #12369] Crash when mounting shares with special	names
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#126">[ date ]</a>
+              <a href="thread.html#126">[ thread ]</a>
+              <a href="subject.html#126">[ subject ]</a>
+              <a href="author.html#126">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #12369, was updated on 2007-Nov-09 07:58
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: crash
+Priority: 5
+Submitted by: arkascha
+Assigned to : none
+Summary: Crash when mounting shares with special names
+
+Details: Since I cannot find a way to reopen a closed bug I file this as a new one. Bug #11973 already describes this problem. It was closed on 15.10.2007 towards smb4k-0.8.6, but the bug has not been solved at all. Smb4k is still unusable for me. 
+
+Shares are mounted all right when mounting them manually. However after closing down smb4k things durn bad: however you start smb4k again, the moment it tries to remount the share mounted last time it crashes. Traceback is already contained in bug #11973 . 
+
+Follow-Ups:
+
+Date: 2007-Nov-21 08:02
+By: dustpuppy
+
+Comment:
+The corruption of the sudoers file is not supposed to happen. I apologize for that.
+
+Could you please paste the corrupted sudoers file here and tell me where the problem occurred? Have you run Smb4K as normal user or as super user when the corruption took place?
+
+Last time I checked the syntax was alright. But maybe I'm mistaken. Where did I make a mistake?
+-------------------------------------------------------
+
+Date: 2007-Nov-20 16:52
+By: arkascha
+
+Comment:
+Umpf ! 
+smb4k-0.9-beta REALLY corrupted my sudoers file
+=&gt;
+a) be more than careful with that (beta) version
+b) dont use the super user features
+
+Problems: 
+- smb4k-0.9-beta seems to manipulate that file, that is not good
+- smb4k-0.9-beta breaks wraps several lines which does not make sense at all
+- smb4k-0.9-beta creates an invalid syntax
+-------------------------------------------------------
+
+Date: 2007-Nov-20 11:00
+By: dustpuppy
+
+Comment:
+If you can work with Smb4K 0.9.0beta, I think the bug is also fixed in the 0.8 branch, because it also includes the corrections I made.
+-------------------------------------------------------
+
+Date: 2007-Nov-20 10:19
+By: arkascha
+
+Comment:
+a) yes, there are shares mounted. I have this setup: 
+- globally mounted local partitions (/etc/fstab), types ext2, ext3 and reiserfs
+- remote nfs volumes
+- some cifs shares of global importance for all users
+these are 'statically' mounted via entries in /etc/samba/smbfstab, working like /etc/fstab
+
+smb4k was meant to add personal shares in addition to those mounted 'globally'. 
+
+2.) en_US.UTF-8, no special locale configured for the shares. Here is an example from my smbfstab file: 
+//iwcsrv01/Produkte     /iwc/Produkte           cifs   \
+credentials=/etc/samba/auth.iwc.entwicklung,gid=users
+
+The good news: 
+I just had a try with smb4k 0.9.0beta, things seem to work fine so far, I like it ! Until now I thought that smb4k is going to be a KDE-4 port so I did not check that before, sorry. 
+I'll keep an eye opn the beta version on my local machine to see if it's stable in that point. 
+Thanks again !
+-------------------------------------------------------
+
+Date: 2007-Nov-20 09:34
+By: dustpuppy
+
+Comment:
+I found a bug in Smb4KMounter::slotShutdown() that made Smb4K crash on restart. Since then I did not experience any crashes on start-up anymore. To verify that this fix also closes the crash you reported, I need to know the following:
+* Are there shares mounted on your system either through /etc/fstab or by other users when you experience the crash?
+* Which locale do you use?
+-------------------------------------------------------
+
+Date: 2007-Nov-11 11:13
+By: dustpuppy
+
+Comment:
+I was able to reproduce the bug with version 0.8.6 (but not with the upcoming 0.9.0 where the GUI was almost completely rewritten). I'm currently investigating it.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12369&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12369&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000125.html">[Smb4K-bugs] [Bug #12369] Crash when mounting shares with special	names
+</A></li>
+	<LI>Next message: <A HREF="000127.html">[Smb4K-bugs] [Bug #12369] Crash when mounting shares with special	names
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#126">[ date ]</a>
+              <a href="thread.html#126">[ thread ]</a>
+              <a href="subject.html#126">[ subject ]</a>
+              <a href="author.html#126">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>

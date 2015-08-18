@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Smb4K-bugs] [Bug #7949] smb4k unable to detect all available samba	shares
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/smb4k-bugs/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%237949%5D%20smb4k%20unable%20to%20detect%20all%20available%20samba%0A%09shares&In-Reply-To=%3C201003071958.o27JwYqP029549%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000385.html">
+   <LINK REL="Next"  HREF="000387.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Smb4K-bugs] [Bug #7949] smb4k unable to detect all available samba	shares</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:smb4k-bugs%40lists.berlios.de?Subject=Re%3A%20%5BSmb4K-bugs%5D%20%5BBug%20%237949%5D%20smb4k%20unable%20to%20detect%20all%20available%20samba%0A%09shares&In-Reply-To=%3C201003071958.o27JwYqP029549%40unicorn.berlios.de%3E"
+       TITLE="[Smb4K-bugs] [Bug #7949] smb4k unable to detect all available samba	shares">admin at berlios.de
+       </A><BR>
+    <I>Sun Mar  7 20:58:34 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000385.html">[Smb4K-bugs] [Bug #16837] First share not shown with 0.10.1
+</A></li>
+        <LI>Next message: <A HREF="000387.html">[Smb4K-bugs] [Bug #16929] Ping server before first mount attempt
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#386">[ date ]</a>
+              <a href="thread.html#386">[ thread ]</a>
+              <a href="subject.html#386">[ subject ]</a>
+              <a href="author.html#386">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #7949, was updated on 2006-Jun-21 18:45
+Here is a current snapshot of the bug.
+
+Project: Smb4K
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: mmodem
+Assigned to : none
+Summary: smb4k unable to detect all available samba shares
+
+Details: Im using Mandriva 2006 and sometimes happens that smb4k is unable to detect activa samba shares, but if i run draksamba i can see the active samba mount points.
+
+Follow-Ups:
+
+Date: 2010-Mar-07 20:58
+By: dustpuppy
+
+Comment:
+Does this problem still persist with the latest version of Smb4K? Would you be willing to test the latest CVS snapshot from 0.10 branch to verify that this problem has been fixed?
+-------------------------------------------------------
+
+Date: 2006-Jun-23 17:40
+By: mmodem
+
+Comment:
+Whats even more impressive is that when smb4k doesnt show any shares but when i do a search for for example localhost is shows that share (that is the share of the 2&#186; machine conected to this one through a crossover cable).
+-------------------------------------------------------
+
+Date: 2006-Jun-23 16:14
+By: mmodem
+
+Comment:
+I havent set any for those your saying, and yes the samba shares are correctly set in both machines.
+
+Now seams all is working fine but as i said sometimes when i reboot machine smb4k is able to detect shares and those appear detected with draksamba, so i have to reboot machine again and then the shares appear ok in smb4k, this is weird...
+-------------------------------------------------------
+
+Date: 2006-Jun-23 16:04
+By: dustpuppy
+
+Comment:
+Smb4K initially searches for the master browser of the workgroup. If none is found, the browser window stays empty. Are you sure, your Samba set-up on both machines is correct? Especially, check that the options 'local master' and 'preferred master' are *not* switched off.
+-------------------------------------------------------
+
+Date: 2006-Jun-21 20:15
+By: mmodem
+
+Comment:
+Im using smb4k-0.7.0.
+
+I put 2 computers conected through a crossover cable and then a samba share in each one, so sometimes happens that in smb4k i can see both shares ok in both machines, but other times smb4k doesnt show anything and if i do a search of the samba share of that machine that ir appears in the search result and then i add it, so then smb4k shows it, but if i click to reload it doesnt show again that share, i have to do again a share to appear that share, but it continues not showinf the share of the other machine.
+-------------------------------------------------------
+
+Date: 2006-Jun-21 19:13
+By: dustpuppy
+
+Comment:
+Could you please be a bit more specific (What does not work? What did you do? Which version of Smb4K are you using? etc.)?
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=7949&amp;group_id=769">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=7949&amp;group_id=769</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000385.html">[Smb4K-bugs] [Bug #16837] First share not shown with 0.10.1
+</A></li>
+	<LI>Next message: <A HREF="000387.html">[Smb4K-bugs] [Bug #16929] Ping server before first mount attempt
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#386">[ date ]</a>
+              <a href="thread.html#386">[ thread ]</a>
+              <a href="subject.html#386">[ subject ]</a>
+              <a href="author.html#386">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/smb4k-bugs">More information about the Smb4K-bugs
+mailing list</a><br>
+</body></html>
